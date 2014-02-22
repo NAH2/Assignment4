@@ -27,8 +27,8 @@ public class GameBoard extends javax.swing.JFrame {
         initComponents();
     }
 
-    public GameBoard(boolean game) {
-
+    public GameBoard(boolean game) {     //true = othello , false = connect4 
+      initComponents();
         if (game = true) {
             gameBoard = new char[8][8];
             for (int i = 0; i < 8; i++) {
@@ -39,9 +39,12 @@ public class GameBoard extends javax.swing.JFrame {
                     square.setBackground(new Color(170, 150, 100));
                     gamePanel.add(square);
                     gameBoard[i][j] = 0;
+                    final int row = i;
+                    final int col = j;
                     square.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
+                            System.out.println("Postition :" + row +","+ col );
                          // check vaild move here ! 
                         }
                     });
@@ -91,9 +94,12 @@ public class GameBoard extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(gamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(gamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -129,7 +135,7 @@ public class GameBoard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GameBoard().setVisible(true);
+                new GameBoard(true).setVisible(true);
             }
         });
     }
