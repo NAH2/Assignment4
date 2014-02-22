@@ -47,7 +47,7 @@ public class GameBoard extends javax.swing.JFrame {
                     Border blackBorder = BorderFactory.createLineBorder(Color.black);
                     final JPanel square = new JPanel();
                     square.setBorder(blackBorder);
-                //    square.setBackground(new Color(170, 150, 100));
+                    square.setBackground(new Color(170, 150, 100));
                     gamePanel.add(square);
                     gameBoard[i][j] = 0;
                     final int row = i;
