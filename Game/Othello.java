@@ -70,24 +70,86 @@ public class Othello extends Game {
 	//Not complete
 	public boolean ValidMove(int x, int y, int[][] gameBoard) {
 		//if selection.getPlayerColor() == Color.BLACK , i.e. player = black
-		//for(int i=0;i<boardSize;i++){
-			//for(int j=0;j<boardSize;j++){
 				if(gameBoard[x][y] != 0){
 					System.out.println("false");
 					return false;
 				} else if ((x != boardSize-1)&&(x != 0 )&&(y != boardSize-1)&&(y != 0)){
-					if(gameBoard[x+1][y] != 2 && gameBoard[x][y+1] != 2 && gameBoard[x-1][y] != 2 && gameBoard[x][y-1] != 2 && gameBoard[x+1][y+1] != 2 && gameBoard[x-1][y+1] != 2 && gameBoard[x+1][y-1] != 2 && gameBoard[x-1][y-1] != 2){ //EVERY CASE for boardsize - x, IF GAMEBOARD=1  return true 
-						System.out.println("false"); 
-						return false;
-						} else {
-							System.out.println("true"); 
-						return true;
-						}
-				} else {
-					System.out.println("edge"); return false;
-				}
-			//}
-		//}
+						
+					if(gameBoard[x+1][y] == white){
+						for(int i=x+1; i<boardSize-1; i++){
+							if(gameBoard[i+1][y] == black){
+								return true; 
+							}
+						}	return false;
+					}	
+					
+					if(gameBoard[x][y+1] == white){
+						for(int j=y+1; j<boardSize-1; j++){
+							if(gameBoard[x][j+1] == black){
+								return true; 
+							}
+						}	return false;
+					}	
+					
+					if(gameBoard[x-1][y] == white){
+						for(int i=x-1; i>0; i--){
+							if(gameBoard[i-1][y] == black){
+								return true; 
+							}
+						}	return false;
+					}		
+						
+					if(gameBoard[x][y-1] == white){
+						for(int j=y-1; j>0; j--){
+							if(gameBoard[x][j-1] == black){
+								return true; 
+							}
+						}	return false;
+					}	
+						
+					if(gameBoard[x-1][y-1] == white){
+						int i=x-1;
+						for(int j=y-1; j>0; j--){
+							if(i>0){
+								if(gameBoard[i-1][j-1] == black ){
+									return true; 
+								} 
+								i--;
+							}
+						}	return false;
+					}		
+						
+					if(gameBoard[x-1][y+1] == white){
+						int i=x-1;
+						for(int j=y+1; j<boardSize-1; j++){
+							if(gameBoard[i-1][j+1] == black && i>0){
+								return true; 
+							} i--;
+						}	return false;
+					}	
+						
+					if(gameBoard[x+1][y-1] == white){
+						int i=x+1;
+						for(int j=y-1; j>0; j--){
+							if(gameBoard[i+1][j-1] == black && i<boardSize-1){
+								return true; 
+							} i++;
+						}	return false;
+					}		
+					
+					if(gameBoard[x+1][y+1] == white){
+						int i=x+1;
+						for(int j=y+1 ; j<boardSize-1; j++){
+							if(i<boardSize-1){
+								if(gameBoard[i+1][j+1] == black){
+									return true; 
+								} 
+								i++;
+							}
+						}	return false;
+					}
+				} 
+					else System.out.println("edge"); return false;
 		
 	}
 	
