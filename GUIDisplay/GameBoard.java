@@ -66,10 +66,12 @@ public class GameBoard extends javax.swing.JFrame {
                         @Override
                         public void mouseClicked(MouseEvent e) {
                             System.out.println("Position :" + row +","+ col );
+							//if(othelloGame.ValidMove(row, col, gameBoard)){
                            othelloGame.Move(row, col, gameBoard, true);
 							try{
                             	Update(square);
 							} catch(IOException e3){}
+							//}
                          // check vaild move here ! 
                         }
                     });
@@ -88,7 +90,7 @@ public class GameBoard extends javax.swing.JFrame {
             square.removeAll();
             square.add(new JLabel(new ImageIcon(getClass().getResource("black.png"))));
 			square.updateUI();
-               System.out.println(gameBoard[i][j]);
+               //System.out.println(gameBoard[i][j]);
         }
         else if (gameBoard[i][j] == white){
 			square.removeAll();
