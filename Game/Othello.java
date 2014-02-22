@@ -1,10 +1,11 @@
 //May need getplayerName() from SELECTION class
 import java.awt.Color;
-public class Othello extends Game {
+//public class Othello extends Game {
+	public class Othello {
 
-	private int[][] gameBoard, newPiecePosition;
-	private int scoreWhite, scoreBlack, boardSize = 8, x, y, startingScore = 0;
-	private boolean playerTurn;
+	//private int[][] gameBoard, newPiecePosition;
+	private int scoreWhite, scoreBlack, boardSize = 8, startingScore = 0;
+	//private boolean playerTurn;
 	private int empty = 0,black = 1, white = 2;
 	
 	//add playerTurn as parameter, maybe 2d array board as output(set available markers as value 3 in the array)?
@@ -13,10 +14,10 @@ public class Othello extends Game {
 		gameBoard.setUpdate(move);
 	}*/
 	
-	public boolean SetPlayer(boolean playerTurn) {
+	/*public boolean SetPlayer(boolean playerTurn) {
 		this.playerTurn = playerTurn;
 		return true;
-	}
+	}*/
 	
 	/*public String GetFirstPlayer() {
 		if (playerTurn == true){
@@ -26,12 +27,12 @@ public class Othello extends Game {
 		}
 	}*/
 	
+	//change boardsize to boardsize x,y
 	//need calcWhiteScore and calcBlackScore from OthelloFB?
-	/*
-	public int GetScoreWhite() {
+	/*public int GetScoreWhite() {
 		scoreWhite = startingScore;
-		for(x=0;x<boardSize;x++){	
-			for(y=0;y<boardSize;y++){
+		for(x=0;x<boardSizeX;x++){	
+			for(y=0;y<boardSizeY;y++){
 				if(gameBoard[x][y] == 2){
 					scoreWhite++;
 				}
@@ -42,8 +43,8 @@ public class Othello extends Game {
 	
 	public int GetScoreBlack() {
 		scoreBlack = startingScore;
-		for(x=0;x<boardSize;x++){	
-			for(y=0;y<boardSize;y++){
+		for(x=0;x<boardSizeX;x++){	
+			for(y=0;y<boardSizeY;y++){
 				if(gameBoard[x][y] == 1){
 					scoreBlack++;
 				}
@@ -51,8 +52,8 @@ public class Othello extends Game {
 		}
 		return scoreBlack;
 	}*/
-	/*
-	public int[][] GetNewPiecePosition() {
+	
+	/*public int[][] GetNewPiecePosition() {
 	}
 	
 	public boolean AvailableMove(int[][] gameBoard, boolean playerTurn) {
@@ -62,15 +63,26 @@ public class Othello extends Game {
 	}
 	
 	public boolean Game(int boardSize, boolean playerTurn) {
-	}
-	
-	public boolean Move(int[][] placePiece, int[][] gameBoard, boolean playerTurn) {
 	}*/
 	
-	//Not complete
+	public int[][] Move(int x, int y, int[][] gameBoard, boolean playerTurn) {  
+		//true = black piece player, false = white piece player.
+	        if (ValidMove(x, y, gameBoard)) {
+	            if (playerTurn == true) {
+	                gameBoard[x][y] = black;
+	                return gameBoard;
+	            } else {
+	                gameBoard[x][y] = white;
+	                return gameBoard;
+	            }
+	        } System.out.println(ValidMove(x,y, gameBoard));
+	        return gameBoard;
+	    }
+	
 	public boolean ValidMove(int x, int y, int[][] gameBoard) {
 		//if selection.getPlayerColor() == Color.BLACK , i.e. player = black
-				if(gameBoard[x][y] != 0){
+		return false;
+				/*if(gameBoard[x][y] != 0){
 					System.out.println("false");
 					return false;
 				} else if ((x != boardSize-1)&&(x != 0 )&&(y != boardSize-1)&&(y != 0)){
@@ -149,7 +161,7 @@ public class Othello extends Game {
 						}	return false;
 					}
 				} 
-					else System.out.println("edge"); return false;
+					else System.out.println("edge"); return false;*/
 		
 	}
 	
