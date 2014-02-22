@@ -3,7 +3,7 @@ import java.awt.Color;
 public class Othello extends Game {
 
 	private int[][] gameBoard, newPiecePosition;
-	private int scoreWhite, scoreBlack, boardSizeX,boardSizeY, x, y, startingScore = 0;
+	private int scoreWhite, scoreBlack, boardSize, x, y, startingScore = 0;
 	private boolean playerTurn;
 	
 	//add playerTurn as parameter, maybe 2d array board as output(set available markers as value 3 in the array)?
@@ -20,12 +20,11 @@ public class Othello extends Game {
 		return ;//?  May need getplayerName() from selection class
 	}
 	
-	//change boardsize to boardsize x,y
 	//need calcWhiteScore and calcBlackScore from OthelloFB?
 	public int GetScoreWhite() {
 		scoreWhite = startingScore;
-		for(x=0;x<boardSizeX;x++){	
-			for(y=0;y<boardSizeY;y++){
+		for(x=0;x<boardSize;x++){	
+			for(y=0;y<boardSize;y++){
 				if(gameBoard[x][y] == /*e.g. 1or2?*/){
 					scoreWhite++;
 				}
@@ -36,8 +35,8 @@ public class Othello extends Game {
 	
 	public int GetScoreBlack() {
 		scoreBlack = startingScore;
-		for(x=0;x<boardSizeX;x++){	
-			for(y=0;y<boardSizeY;y++){
+		for(x=0;x<boardSize;x++){	
+			for(y=0;y<boardSize;y++){
 				if(gameBoard[x][y] == /*e.g. 1or2?*/){
 					scoreBlack++;
 				}
