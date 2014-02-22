@@ -4,7 +4,7 @@ public class Othello extends Game {
 
 	private int[][] gameBoard, newPiecePosition;
 	private int scoreWhite, scoreBlack, boardSizeX,boardSizeY, x, y, startingScore = 0;
-	private boolean playerTurn, gameOn;
+	private boolean playerTurn;
 	
 	//add playerTurn as parameter, maybe 2d array board as output(set available markers as value 3 in the array)?
 	private boolean SetAvailMarkers(int[][] move, boolean playerTurn){
