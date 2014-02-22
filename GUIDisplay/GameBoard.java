@@ -44,7 +44,7 @@ public class GameBoard extends javax.swing.JFrame {
                     square.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            System.out.println("Postition :" + row +","+ col );
+                            System.out.println("Position :" + row +","+ col );
                          // check vaild move here ! 
                         }
                     });
