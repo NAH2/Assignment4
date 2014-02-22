@@ -17,9 +17,11 @@ import java.io.File;
 
 public class GameBoard extends javax.swing.JFrame {
 
-    char[][] gameBoard;
+    int[][] gameBoard;
     boolean playerTurn;
-
+    Image piece ;
+    private int empty = 0,black = 1, white = 2;
+ Othello othelloGame = new Othello();
     /**
      * Creates new form GameBoard
      */
@@ -27,16 +29,25 @@ public class GameBoard extends javax.swing.JFrame {
         initComponents();
     }
 
+    public int[][] getGameboard (){
+        return this.gameBoard;
+    }
+    
+    public void setGameboard(int[][] gameboard){
+         this.gameBoard = gameboard;
+    }
+    
     public GameBoard(boolean game) {     //true = othello , false = connect4 
       initComponents();
+      
         if (game = true) {
-            gameBoard = new char[8][8];
+            gameBoard = new int[8][8];
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     Border blackBorder = BorderFactory.createLineBorder(Color.black);
                     final JPanel square = new JPanel();
                     square.setBorder(blackBorder);
-                    square.setBackground(new Color(170, 150, 100));
+                //    square.setBackground(new Color(170, 150, 100));
                     gamePanel.add(square);
                     gameBoard[i][j] = 0;
                     final int row = i;
@@ -44,7 +55,9 @@ public class GameBoard extends javax.swing.JFrame {
                     square.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            System.out.println("Postition :" + row +","+ col );
+                            System.out.println("Position :" + row +","+ col );
+                           othelloGame.Move(row, col, gameBoard, true);
+                            Update(square);
                          // check vaild move here ! 
                         }
                     });
@@ -54,6 +67,25 @@ public class GameBoard extends javax.swing.JFrame {
 
         }
 
+    }
+    
+    public void Update(JPanel square){
+         for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+        if (gameBoard[i][j] == black){
+        //   square.setBackground(new Color(255, 255, 255));
+                         square.removeAll();
+            square.add(new JLabel(new ImageIcon(getClass().getResource("white.png"))));
+         //     square.removeAll();
+           // square.setBackground(new Color(255, 255, 255));
+                  System.out.println(gameBoard[i][j]);
+        }
+        else if (gameBoard[i][j] == white){
+            square.add(new JLabel(new ImageIcon("./white.png")));
+        }
+      
+                }
+         }
     }
 
     /**
