@@ -41,15 +41,24 @@ public class GameBoard extends javax.swing.JFrame {
       initComponents();
       
         if (game = true) {
+			//final JPanel square = new JPanel();
             gameBoard = new int[8][8];
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     Border blackBorder = BorderFactory.createLineBorder(Color.black);
                     final JPanel square = new JPanel();
                     square.setBorder(blackBorder);
-                    square.setBackground(new Color(170, 150, 100));
+					if((i == 3 && j == 3)||(i == 4 && j == 4)){
+						square.setBackground(new Color(0, 0, 0));
+						gameBoard[i][j] = 1;
+					} else if((i == 4 && j == 3)||(i == 3 && j == 4)){
+						square.setBackground(new Color(255, 255, 255));
+						gameBoard[i][j] = 2;
+					} else {
+                    	square.setBackground(new Color(170, 150, 100));
+						gameBoard[i][j] = 0;
+					}
                     gamePanel.add(square);
-                    gameBoard[i][j] = 0;
                     final int row = i;
                     final int col = j;
                     square.addMouseListener(new MouseAdapter() {
@@ -73,15 +82,16 @@ public class GameBoard extends javax.swing.JFrame {
          for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
         if (gameBoard[i][j] == black){
-        //   square.setBackground(new Color(255, 255, 255));
-                         square.removeAll();
-            square.add(new JLabel(new ImageIcon(getClass().getResource("white.png"))));
+           square.setBackground(new Color(0, 0, 0));
+                        // square.removeAll();
+           // square.add(new JLabel(new ImageIcon(getClass().getResource("white.png"))));
          //     square.removeAll();
            // square.setBackground(new Color(255, 255, 255));
                   System.out.println(gameBoard[i][j]);
         }
         else if (gameBoard[i][j] == white){
-            square.add(new JLabel(new ImageIcon("./white.png")));
+           // square.add(new JLabel(new ImageIcon("./white.png")));
+           square.setBackground(new Color(255, 255, 255));
         }
       
                 }
