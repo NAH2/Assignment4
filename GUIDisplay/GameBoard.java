@@ -51,28 +51,37 @@ public class GameBoard extends javax.swing.JFrame {
                     Border blackBorder = BorderFactory.createLineBorder(Color.black);
                     final JPanel square = new JPanel();
                     square.setBorder(blackBorder);
-		    square.setBackground(new Color(170, 150, 100));
-		    if((i == 3 && j == 3)||(i == 4 && j == 4)){
-			square.add(new JLabel(blackpiece));
-			gameBoard[i][j] = 1;
-		    } else if((i == 4 && j == 3)||(i == 3 && j == 4)){
-			square.add(new JLabel(whitepiece));
-			gameBoard[i][j] = 2;
-		    } else {
-			gameBoard[i][j] = 0;	
-		    }
+			        square.setBackground(new Color(170, 150, 100));
+					if((i == 3 && j == 3)||(i == 4 && j == 4)){
+						square.add(new JLabel(blackpiece));
+						gameBoard[i][j] = 1;
+					} else if((i == 4 && j == 3)||(i == 3 && j == 4)){
+						square.add(new JLabel(whitepiece));
+						gameBoard[i][j] = 2;
+					} else if((i == 5 && j == 3)||(i == 3 && j == 5)){
+						square.add(new JLabel(whitepiece));
+						gameBoard[i][j] = 2;
+					} else if((i == 6 && j == 6)||(i == 4 && j == 6)){
+						square.add(new JLabel(whitepiece));
+						gameBoard[i][j] = 2;
+					} else if((i == 2 && j == 2)||(i == 5 && j == 1)){
+						square.add(new JLabel(whitepiece));
+						gameBoard[i][j] = 2;
+					} else {
+						gameBoard[i][j] = 0;
+					}
                     gamePanel.add(square);
                     final int row = i;
                     final int col = j;
                     square.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                           System.out.println("Position :" + row +","+ col );
+                            System.out.println("Position :" + col +","+ row );
 							//if(othelloGame.ValidMove(row, col, gameBoard)){
                            othelloGame.Move(row, col, gameBoard, true);
-			   try{
-                           	Update(square, row, col);
-			   } catch(IOException e3){}
+							try{
+                            	Update(square, row, col);
+							} catch(IOException e3){}
 							//}
                          // check vaild move here ! 
                         }
@@ -84,18 +93,18 @@ public class GameBoard extends javax.swing.JFrame {
 
     }
     
-    public void Update(JPanel square, int i, int j) throws IOException{
-        if (gameBoard[i][j] == black){
+    public void Update(JPanel square, int row, int col) throws IOException{
+        if (gameBoard[row][col] == black){
            //square.setBackground(new Color(0, 0, 0));
             square.removeAll();
             square.add(new JLabel(blackpiece));
 			square.updateUI();
                //System.out.println(gameBoard[i][j]);
         }
-        else if (gameBoard[i][j] == white){
-	    square.removeAll();
-	    square.add(new JLabel(whitepiece));
-	    square.updateUI();
+        else if (gameBoard[row][col] == white){
+			square.removeAll();
+			square.add(new JLabel(whitepiece));
+			square.updateUI();
         }
     }
 
@@ -178,9 +187,9 @@ public class GameBoard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-		try {
-			new GameBoard(true).setVisible(true);
-		} catch (IOException e2) {}
+				try {
+					new GameBoard(true).setVisible(true);
+				} catch (IOException e2) {}
             }
         });
     }
