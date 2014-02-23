@@ -3,7 +3,7 @@ import java.awt.Color;
 	public class Othello {
 
 	//private int[][] gameBoard, newPiecePosition;
-	private int scoreWhite, scoreBlack, boardSize = 8, startingScore = 0;
+	private int scoreWhite, scoreBlack, boardLength = 8, initialScore = 0;
 	private boolean playerTurn;
 	private int empty = 0,black = 1, white = 2, counter;
 	private int[] flipdata;
@@ -23,9 +23,9 @@ import java.awt.Color;
 	
 	//need calcWhiteScore and calcBlackScore from OthelloFB?
 	/*public int GetScoreWhite() {
-		scoreWhite = startingScore;
-		for(x=0;x<boardSize;x++){	
-			for(y=0;y<boardSize;y++){
+		scoreWhite = initialScore;
+		for(x=0;x<boardLength;x++){	
+			for(y=0;y<boardLength;y++){
 				if(gameBoard[x][y] == 2){
 					scoreWhite++;
 				}
@@ -35,9 +35,9 @@ import java.awt.Color;
 	}
 	
 	public int GetScoreBlack() {
-		scoreBlack = startingScore;
-		for(x=0;x<boardSize;x++){	
-			for(y=0;y<boardSize;y++){
+		scoreBlack = initialScore;
+		for(x=0;x<boardLength;x++){	
+			for(y=0;y<boardLength;y++){
 				if(gameBoard[x][y] == 1){
 					scoreBlack++;
 				}
@@ -50,10 +50,9 @@ import java.awt.Color;
 	//}
 	
 	public char[][] AvailableMove(int[][] gameBoard, boolean playerTurn) {
-	        char[][] availableMov = new char[8][8];
-	        for (int i = 0; i < 8; i++) {
-	            for (int j = 0; j < 8; j++) {
-					//availableMov[i][j] = 'X';
+	        char[][] availableMov = new char[boardLength][boardLength];
+	        for (int i = 0; i < boardLength; i++) {
+	            for (int j = 0; j < boardLength; j++) {
 	                if( ValidMove(i,j,gameBoard,playerTurn)){
 	                    availableMov[i][j] = 'O';   //Location of available Move 
 	                }
@@ -63,12 +62,12 @@ import java.awt.Color;
 	        }
 	        return availableMov;
 	        
-	    }
+	}
 	
 	/*public boolean ChangePieces(int[][] newPiecePosition) {
 	}
 	
-	public boolean Game(int boardSize, boolean playerTurn) {
+	public boolean Game(int boardLength, boolean playerTurn) {
 	}*/
 	
 	public int[][] Move(int y, int x, int[][] gameBoard, boolean playerTurn) {  
@@ -106,7 +105,7 @@ import java.awt.Color;
 		                    boolean found = false;
 		                    searchY = y + i;
 		                    searchX = x + j;
-		                    if ((searchX >= 8 || searchX < 0) || (searchY >= 8 || searchY < 0)) {
+		                    if ((searchX >= boardLength || searchX < 0) || (searchY >= boardLength || searchY < 0)) {
 		                            //System.out.println("Over bound! Y:" + searchY +" X: " +searchX + " i:" + i +" j: " + j);
 		                        continue;
 		                        
@@ -119,7 +118,8 @@ import java.awt.Color;
 		                    if ((i == 0 && j == 0) || searchValue == empty || searchValue == playerColor) {
 		                        continue;
 		                    }
-
+							
+							counter = 0;
 		                    //Search along the direction
 		                    while (!found) {
 		                        //System.out.println("Looping..");
@@ -127,7 +127,7 @@ import java.awt.Color;
 		                        searchY += i;
 		                        //counter = 1;
 		                        //prevent out of bound, if over 8, exit the while loop and stop search this direction
-		                        if ((searchX >= 8 || searchX < 0) || (searchY >= 8 || searchY < 0)) {
+		                        if ((searchX >= boardLength || searchX < 0) || (searchY >= boardLength || searchY < 0)) {
 		                            found = true;
 		                        } else {
 		                            searchValue = gameBoard[searchY][searchX];
@@ -136,13 +136,7 @@ import java.awt.Color;
 		                        // if found the same color is along to direction 
 		                        if (searchValue == playerColor) {
 		                            found = true;
-		                            //System.out.println("found : true, Y:" + searchY + ", X:" + searchX + ", newp value:" + searchValue);
-									/*for(int a = 0; a<counter; a++){
-										searchX -= j;
-										searchY -= i;
-										gameBoard[searchY][searchX] = playerColor;
-									}*/
-						flipdata = new int[] {searchY,searchX,i,j,counter,playerColor};
+						        flipdata = new int[] {searchY,searchX,i,j,counter,playerColor};
 		                            return true;
 		                        } //If end of the direction is empty , then stop search this direction.
 		                        else if (searchValue == empty) {
@@ -174,8 +168,8 @@ import java.awt.Color;
 		
 	//change to string as output
 	/*public String WinningCondition(int[][] currentGameBoard) {
-		for(x=0;x<boardSizeX;x++){	
-			for(y=0;y<boardSizeY;y++){
+		for(x=0;x<boardLength;x++){	
+			for(y=0;y<boardLength;y++){
 				if(gameBoard[x][y] != 1 && gameBoard[x][y] != 2){
 					return "gameon";
 				}
