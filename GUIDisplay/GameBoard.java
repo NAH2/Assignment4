@@ -1,4 +1,3 @@
-
 /**
  * @file -GameBoard.java
  * @author -Chun Kit So
@@ -95,7 +94,7 @@ public class GameBoard extends javax.swing.JFrame {
                             othelloGame.Move(row, col, gameBoard, true);
                             Update(square, row, col);
 
-                            // check vaild move here ! 
+                            // check valid move here ! 
 =======
 			        square.setBackground(new Color(170, 150, 100));
 					if((i == 3 && j == 3)||(i == 4 && j == 4)){
@@ -137,7 +136,7 @@ public class GameBoard extends javax.swing.JFrame {
 
             }
 <<<<<<< HEAD
-            char[][] availableMov = othelloGame.availableMove(gameBoard, true);
+            char[][] availableMov = othelloGame.AvailableMove(gameBoard, true);
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     if (availableMov[i][j] == 'O'){
