@@ -21,7 +21,7 @@ public class GameBoard extends javax.swing.JFrame {
     private JPanel[][] squareBoard = new JPanel[8][8];
     private ImageIcon picture;
     boolean playerTurn;
-<<<<<<< HEAD
+
     Image piece;
 
     private int empty = 0, black = 1, white = 2;
