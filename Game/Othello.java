@@ -7,6 +7,7 @@ public class Othello{
     private boolean playerTurn; //ture = black piece player, false = white piece player.
     private int empty = 0, black = 1, white = 2, counter;
 	private int[] flipdata;
+	private char[][] AvailableMov;
     //  GameBoard gb = new GameBoard(true);
     HumanPlayer P1 = new HumanPlayer("P1", false, black);
     HumanPlayer P2 = new HumanPlayer("P2", true, white);
@@ -70,7 +71,7 @@ public class Othello{
     }
 
     public char[][] AvailableMove(int[][] gameBoard, boolean playerTurn) {
-        char[][] AvailableMov = new char[boardLength][boardLength];
+        AvailableMov = new char[boardLength][boardLength];
         for (int i = 0; i < boardLength; i++) {
             for (int j = 0; j < boardLength; j++) {
                 if (validMove(i, j, gameBoard, playerTurn)) {
@@ -111,8 +112,10 @@ public class Othello{
                 P1.SetPlayerTurn(true);
                 return gameBoard;
             }
+		
+        }	
 
-        }
+	//if (GetPlayerTurn())System.out.println(P2.GetColor()+" turn"); else System.out.println(P1.GetColor()+" turn");
         return gameBoard;
     }
 
@@ -197,16 +200,17 @@ public class Othello{
 	}
 
     //change to string as output
-    public boolean winningCondition(int[][] currentGameBoard) {
+    public boolean winningCondition() {
         for (int x = 0; x < boardLength; x++) {
             for (int y = 0; y < boardLength; y++) {
-                if (gameBoard[x][y] != 1 && gameBoard[x][y] != 2) {
+                if (AvailableMov[x][y] == 'O') {
                     //  return "gameon";
-                    return true;
+                    return false;
                 }
             }
         }
-        return false;
+		System.out.println("END");
+        return true;
 //        if (GetScoreBlack() == GetScoreWhite()) {
 //            return "draw";
 //        } else if (GetScoreWhite() > GetScoreBlack()) {
