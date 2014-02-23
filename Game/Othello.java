@@ -2,7 +2,7 @@ import java.awt.Color;
 
 //public class Othello extends Game {
 public class Othello{
-    private int[][] gameBoard, newPiecePosition;
+    private int[][] gameBoard;
     private int scoreWhite, scoreBlack, boardLength = 8, initialScore = 0;
     private boolean playerTurn; //ture = black piece player, false = white piece player.
     private int empty = 0, black = 1, white = 2, counter;
@@ -44,28 +44,30 @@ public class Othello{
 
     
     //need calcWhiteScore and calcBlackScore from OthelloFB?
-//    public int GetScoreWhite() {
-//        scoreWhite = initialScore;
-//        for (x = 0; x < boardLength; x++) {
-//            for (y = 0; y < boardLength; y++) {
-//                if (gameBoard[x][y] == /*e.g. 1or2?*/) {
-//                    scoreWhite++;
-//                }
-//            }
-//        }
-//        return scoreWhite;
-//    }
-//    public int GetScoreBlack() {
-//        scoreBlack = initialScore;
-//        for (x = 0; x < boardLength; x++) {
-//            for (y = 0; y < boardLength; y++) {
-//                if (gameBoard[x][y] == /*e.g. 1or2?*/) {
-//                    scoreBlack++;
-//                }
-//            }
-//        }
-//        return scoreBlack;
-//    }
+    public int GetScoreWhite() {
+       scoreWhite = initialScore;
+        for (int x = 0; x < boardLength; x++) {
+            for (int y = 0; y < boardLength; y++) {
+                if (gameBoard[y][x] == white) {
+                    scoreWhite++;
+                }
+            }
+        }
+        return scoreWhite;
+    }
+
+    public int GetScoreBlack() {
+        scoreBlack = initialScore;
+        for (int x = 0; x < boardLength; x++) {
+            for (int y = 0; y < boardLength; y++) {
+                if (gameBoard[y][x] == black) {
+                    scoreBlack++;
+                }
+            }
+        }
+        return scoreBlack;
+    }
+
     public int[][] GetNewPiecePosition() {
         return null;
     }
@@ -102,6 +104,9 @@ public class Othello{
 		gameBoard[y][x] = P1.GetColor();
                 P1.SetPlayerTurn(false);
                 P2.SetPlayerTurn(true);
+				this.gameBoard = gameBoard;
+				System.out.println("Black score:"+GetScoreBlack());
+				System.out.println("White score:"+GetScoreWhite());
                 return gameBoard;
             } else {
 		do {
@@ -110,6 +115,9 @@ public class Othello{
 		gameBoard[y][x] = P2.GetColor();
                 P2.SetPlayerTurn(false);
                 P1.SetPlayerTurn(true);
+				this.gameBoard = gameBoard;
+				System.out.println("Black score:"+GetScoreBlack());
+				System.out.println("White score:"+GetScoreWhite());
                 return gameBoard;
             }
 		
@@ -203,7 +211,7 @@ public class Othello{
     public boolean winningCondition() {
         for (int x = 0; x < boardLength; x++) {
             for (int y = 0; y < boardLength; y++) {
-                if (AvailableMov[x][y] == 'O') {
+                if (AvailableMov[y][x] == 'O') {
                     //  return "gameon";
                     return false;
                 }
