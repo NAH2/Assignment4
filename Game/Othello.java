@@ -165,7 +165,6 @@ import java.awt.Color;
 		public int[][] Flip(int[] flipdata, int[][] gameBoard) {
 			System.out.println("FLIP "+flipdata[4]+" PIECE(S)");
 				for(int a = 0; a<flipdata[4]; a++){
-					System.out.println(flipdata[4]);
 					flipdata[1] -= flipdata[3];
 					flipdata[0] -= flipdata[2];
 					gameBoard[flipdata[0]][flipdata[1]] = flipdata[5];
