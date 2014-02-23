@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 
 public class ConnectFourPiece extends GamePiece {
     
-    public ConnectFourPiece(int x, int y, String col) {
+    public ConnectFourPiece(String col) {
         super();
         setColour(col);
         setIcons();

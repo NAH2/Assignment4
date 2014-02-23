@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class OthelloPiece extends GamePiece{
     
-    public OthelloPiece(int x, int y, String col) {
+    public OthelloPiece(String col) {
         super();
         setColour(col);
         setIcons();
