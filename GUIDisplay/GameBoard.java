@@ -1,9 +1,10 @@
+
 /**
- * @file    -GameBoard.java
- * @author  -Chun Kit So
- * @date    -21 Feb '2014
+ * @file -GameBoard.java
+ * @author -Chun Kit So
+ * @date -21 Feb '2014
  *
- *  \brief Create a gameboard
+ * \brief Create a gameboard
  *
  *
  */
@@ -17,11 +18,17 @@ import java.io.File;
 
 public class GameBoard extends javax.swing.JFrame {
 
-    int[][] gameBoard;
+    private int[][] gameBoard;
+    private JPanel[][] squareBoard = new JPanel[8][8];
+    private ImageIcon picture;
     boolean playerTurn;
-    Image piece ;
-    private int empty = 0,black = 1, white = 2;
- Othello othelloGame = new Othello();
+    Image piece;
+
+    private int empty = 0, black = 1, white = 2;
+    Othello othelloGame = new Othello();
+    Icon blackpiece = new ImageIcon(getClass().getResource("black.png"));
+    Icon whitepiece = new ImageIcon(getClass().getResource("white.png"));
+
     /**
      * Creates new form GameBoard
      */
@@ -29,17 +36,17 @@ public class GameBoard extends javax.swing.JFrame {
         initComponents();
     }
 
-    public int[][] getGameboard (){
+    public int[][] getGameboard() {
         return this.gameBoard;
     }
-    
-    public void setGameboard(int[][] gameboard){
-         this.gameBoard = gameboard;
+
+    public void setGameboard(int[][] gameboard) {
+        this.gameBoard = gameboard;
     }
-    
+
     public GameBoard(boolean game) {     //true = othello , false = connect4 
-      initComponents();
-      
+        initComponents();
+
         if (game = true) {
             gameBoard = new int[8][8];
             for (int i = 0; i < 8; i++) {
@@ -48,44 +55,60 @@ public class GameBoard extends javax.swing.JFrame {
                     final JPanel square = new JPanel();
                     square.setBorder(blackBorder);
                     square.setBackground(new Color(170, 150, 100));
+                    if ((i == 3 && j == 3) || (i == 4 && j == 4)) {
+                        square.add(new JLabel(blackpiece));
+                        gameBoard[i][j] = black;
+                    } else if ((i == 4 && j == 3) || (i == 3 && j == 4)) {
+                        square.add(new JLabel(whitepiece));
+                        gameBoard[i][j] = white;
+                    } else {
+                        gameBoard[i][j] = empty;
+                    }
+
                     gamePanel.add(square);
-                    gameBoard[i][j] = 0;
-                    final int row = i;
-                    final int col = j;
+                    squareBoard[i][j] = square;
+                    final int row = i;   //y
+                    final int col = j;   //x
                     square.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            System.out.println("Position :" + row +","+ col );
-                           othelloGame.Move(row, col, gameBoard, true);
-                            Update(square);
-                         // check vaild move here ! 
+                            System.out.println("Position : col:" + col + ", row:" + row);
+                            square.setBackground(new Color(170, 150, 100));
+                            othelloGame.Move(row, col, gameBoard, true);
+                            Update(square, row, col);
+
+                            // check vaild move here ! 
                         }
                     });
                 }
 
             }
+            char[][] availableMov = othelloGame.availableMove(gameBoard, true);
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (availableMov[i][j] == 'O'){
+                        squareBoard[i][j].setBackground(new Color(255, 0, 0));
+                    }
+                }
+            }
 
         }
 
     }
-    
-    public void Update(JPanel square){
-         for (int i = 0; i < 8; i++) {
-                for (int j = 0; j < 8; j++) {
-        if (gameBoard[i][j] == black){
-        //   square.setBackground(new Color(255, 255, 255));
-                         square.removeAll();
+
+    public void Update(JPanel square, int y, int x) {
+
+        if (gameBoard[y][x] == black) {
+            square.removeAll();
+            square.add(new JLabel(new ImageIcon(getClass().getResource("black.png"))));
+            square.updateUI();
+            System.out.println(gameBoard[x][y]);
+        } else if (gameBoard[y][x] == white) {
+            square.removeAll();
             square.add(new JLabel(new ImageIcon(getClass().getResource("white.png"))));
-         //     square.removeAll();
-           // square.setBackground(new Color(255, 255, 255));
-                  System.out.println(gameBoard[i][j]);
+            square.updateUI();
         }
-        else if (gameBoard[i][j] == white){
-            square.add(new JLabel(new ImageIcon("./white.png")));
-        }
-      
-                }
-         }
+
     }
 
     /**
