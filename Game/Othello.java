@@ -1,4 +1,3 @@
-//May need getplayerName() from SELECTION class
 import java.awt.Color;
 //public class Othello extends Game {
 	public class Othello {
@@ -65,106 +64,87 @@ import java.awt.Color;
 	public boolean Game(int boardSize, boolean playerTurn) {
 	}*/
 	
-	public int[][] Move(int x, int y, int[][] gameBoard, boolean playerTurn) {  
+	public int[][] Move(int y, int x, int[][] gameBoard, boolean playerTurn) {  
 		//true = black piece player, false = white piece player.
-	        if (ValidMove(x, y, gameBoard)) {
+	        if (ValidMove(y, x, gameBoard, playerTurn)) {
 	            if (playerTurn == true) {
-	                gameBoard[x][y] = black;
+	                gameBoard[y][x] = black;
 	                return gameBoard;
 	            } else {
-	                gameBoard[x][y] = white;
+	                gameBoard[y][x] = white;
 	                return gameBoard;
 	            }
-	        } System.out.println(ValidMove(x,y, gameBoard));
+	        } 
 	        return gameBoard;
 	    }
 	
-	public boolean ValidMove(int x, int y, int[][] gameBoard) {
-		//if selection.getPlayerColor() == Color.BLACK , i.e. player = black
-		return false;
-				/*if(gameBoard[x][y] != 0){
-					System.out.println("false");
-					return false;
-				} else if ((x != boardSize-1)&&(x != 0 )&&(y != boardSize-1)&&(y != 0)){
-						
-					if(gameBoard[x+1][y] == white){
-						for(int i=x+1; i<boardSize-1; i++){
-							if(gameBoard[i+1][y] == black){
-								return true; 
-							}
-						}	return false;
-					}	
-					
-					if(gameBoard[x][y+1] == white){
-						for(int j=y+1; j<boardSize-1; j++){
-							if(gameBoard[x][j+1] == black){
-								return true; 
-							}
-						}	return false;
-					}	
-					
-					if(gameBoard[x-1][y] == white){
-						for(int i=x-1; i>0; i--){
-							if(gameBoard[i-1][y] == black){
-								return true; 
-							}
-						}	return false;
-					}		
-						
-					if(gameBoard[x][y-1] == white){
-						for(int j=y-1; j>0; j--){
-							if(gameBoard[x][j-1] == black){
-								return true; 
-							}
-						}	return false;
-					}	
-						
-					if(gameBoard[x-1][y-1] == white){
-						int i=x-1;
-						for(int j=y-1; j>0; j--){
-							if(i>0){
-								if(gameBoard[i-1][j-1] == black ){
-									return true; 
-								} 
-								i--;
-							}
-						}	return false;
-					}		
-						
-					if(gameBoard[x-1][y+1] == white){
-						int i=x-1;
-						for(int j=y+1; j<boardSize-1; j++){
-							if(gameBoard[i-1][j+1] == black && i>0){
-								return true; 
-							} i--;
-						}	return false;
-					}	
-						
-					if(gameBoard[x+1][y-1] == white){
-						int i=x+1;
-						for(int j=y-1; j>0; j--){
-							if(gameBoard[i+1][j-1] == black && i<boardSize-1){
-								return true; 
-							} i++;
-						}	return false;
-					}		
-					
-					if(gameBoard[x+1][y+1] == white){
-						int i=x+1;
-						for(int j=y+1 ; j<boardSize-1; j++){
-							if(i<boardSize-1){
-								if(gameBoard[i+1][j+1] == black){
-									return true; 
-								} 
-								i++;
-							}
-						}	return false;
-					}
-				} 
-					else System.out.println("edge"); return false;*/
+	public boolean ValidMove(int y, int x, int[][] gameBoard, boolean playerTurn) {
+
+		        if (gameBoard[y][x] == 0) {
+		            int searchX, searchY;
+		            int searchValue, playerColor;
+
+		            if (playerTurn == true) {
+		                playerColor = black;
+		            } else {
+		                playerColor = white;
+		            }
+
+		            // Search each direction (8 direction)
+		            for (int i = -1; i <= 1; i++) {
+		                for (int j = -1; j <= 1; j++) {
+		                    boolean found = false;
+		                    searchY = y + i;
+		                    searchX = x + j;
+		                    if ((searchX >= 8 || searchX < 0) || (searchY >= 8 || searchY < 0)) {
+		                            System.out.println("Over bound! Y:" + searchY +" X: " +searchX + " i:" + i +" j: " + j);
+		                        continue;
+		                        
+		                    } else {
+		                        searchValue = gameBoard[searchY][searchX];
+		                    }
+		                    // skip the search if i and j is 0.
+		                    // skip the search if one of the direction is empty
+		                    // skip the search if one of the direction is same color piece
+		                    if ((i == 0 && j == 0) || searchValue == empty || searchValue == playerColor) {
+		                        continue;
+		                    }
+
+		                    //Search along the direction
+		                    while (!found) {
+		                        System.out.println("Looping..");
+		                        searchX += j;
+		                        searchY += i;
+		                        
+		                        //prevent out of bound, if over 8, exit the while loop and stop search this direction
+		                        if ((searchX >= 8 || searchX < 0) || (searchY >= 8 || searchY < 0)) {
+		                            found = true;
+		                        } else {
+		                            searchValue = gameBoard[searchY][searchX];
+		                        }
+
+		                        // if found the same color is along to direction 
+		                        if (searchValue == playerColor) {
+		                            found = true;
+		                            System.out.println("found : true, Y:" + searchY + ", X:" + searchX + ", newp value:" + searchValue);
+		                            return true;
+		                        } //If end of the direction is empty , then stop search this direction.
+		                        else if (searchValue == empty) {
+		                            found = true;
+		                            System.out.println("empty : true, Y:" + searchY + ", X:" + searchX);
+		                        }
+		                    }
+		                }
+
+		            }
+		            System.out.println("false");
+		            return false;
+		        }
+		        System.out.println("false");
+		        return false;
+
+		    }
 		
-	}
-	
 	//change to string as output
 	/*public String WinningCondition(int[][] currentGameBoard) {
 		for(x=0;x<boardSizeX;x++){	
