@@ -187,7 +187,7 @@ public class Othello{
     }
 
 	public int[][] Flip(int[] flipdata, int[][] gameBoard) {
-		System.out.println("FLIP "+flipdata[4]+" PIECE(S)");
+		//System.out.println("FLIP "+flipdata[4]+" PIECE(S)");
 			for(int a = 0; a<flipdata[4]; a++){
 				flipdata[1] -= flipdata[3];
 				flipdata[0] -= flipdata[2];
