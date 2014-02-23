@@ -52,13 +52,26 @@ import java.awt.Color;
 		return scoreBlack;
 	}*/
 	
-	/*public int[][] GetNewPiecePosition() {
-	}
+	//public int[][] GetNewPiecePosition() {
+	//}
 	
-	public boolean AvailableMove(int[][] gameBoard, boolean playerTurn) {
-	}
+	public char[][] AvailableMove(int[][] gameBoard, boolean playerTurn) {
+	        char[][] availableMov = new char[8][8];
+	        for (int i = 0; i < 8; i++) {
+	            for (int j = 0; j < 8; j++) {
+					//availableMov[i][j] = 'X';
+	                if( ValidMove(i,j,gameBoard,playerTurn)){
+	                    availableMov[i][j] = 'O';   //Location of available Move 
+	                }
+	                else 
+	                    availableMov[i][j] = 'X';
+	            }
+	        }
+	        return availableMov;
+	        
+	    }
 	
-	public boolean ChangePieces(int[][] newPiecePosition) {
+	/*public boolean ChangePieces(int[][] newPiecePosition) {
 	}
 	
 	public boolean Game(int boardSize, boolean playerTurn) {
@@ -127,6 +140,7 @@ import java.awt.Color;
 		                        if (searchValue == playerColor) {
 		                            found = true;
 		                            System.out.println("found : true, Y:" + searchY + ", X:" + searchX + ", newp value:" + searchValue);
+									//gameBoard[searchY][searchX]
 		                            return true;
 		                        } //If end of the direction is empty , then stop search this direction.
 		                        else if (searchValue == empty) {
