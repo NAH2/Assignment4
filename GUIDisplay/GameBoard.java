@@ -68,7 +68,7 @@ public class GameBoard extends javax.swing.JFrame {
 						square.add(new JLabel(whitepiece));
 						gameBoard[i][j] = white;
 					} else {
-						gameBoard[i][j] = 0;
+						gameBoard[i][j] = empty;
 					}
                     gamePanel.add(square);
                     final int row = i;
