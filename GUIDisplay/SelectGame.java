@@ -3,7 +3,7 @@ import java.io.IOException;
 
 //public class SelectGame extends GUIDisplay {
 public class SelectGame {
-	private String[] game = {"Othello", "Connect4"};
+	private String[] game = {"Othello", "ConnectFour"};
 	private String chosenGame;
 
 	private boolean SetGame(String chosenGame) {
