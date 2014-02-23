@@ -98,7 +98,7 @@ import java.awt.Color;
 		            } else {
 		                playerColor = white;
 		            }
-					counter = 1;
+			    counter = 1;
 
 		            // Search each direction (8 direction)
 		            for (int i = -1; i <= 1; i++) {
@@ -129,7 +129,6 @@ import java.awt.Color;
 		                        //prevent out of bound, if over 8, exit the while loop and stop search this direction
 		                        if ((searchX >= 8 || searchX < 0) || (searchY >= 8 || searchY < 0)) {
 		                            found = true;
-									counter = 0;
 		                        } else {
 		                            searchValue = gameBoard[searchY][searchX];
 		                        }
@@ -143,13 +142,14 @@ import java.awt.Color;
 										searchY -= i;
 										gameBoard[searchY][searchX] = playerColor;
 									}*/
-									flipdata = new int[] {searchY,searchX,i,j,counter,playerColor};
+						flipdata = new int[] {searchY,searchX,i,j,counter,playerColor};
 		                            return true;
 		                        } //If end of the direction is empty , then stop search this direction.
 		                        else if (searchValue == empty) {
 		                            found = true;
 		                            //System.out.println("empty : true, Y:" + searchY + ", X:" + searchX);
-		                        } counter++;
+		                        } 
+		                        counter++;
 		                    }
 		                }
 
@@ -170,7 +170,7 @@ import java.awt.Color;
 					flipdata[0] -= flipdata[2];
 					gameBoard[flipdata[0]][flipdata[1]] = flipdata[5];
 				}
-			    return gameBoard;
+			return gameBoard;
 		}
 		
 	//change to string as output
