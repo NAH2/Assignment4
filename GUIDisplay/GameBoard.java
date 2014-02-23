@@ -141,8 +141,9 @@ public class GameBoard extends javax.swing.JFrame {
 	                    } 
                     }
                 }
-            }
-			if (othelloGame.GetPlayerTurn())System.out.println("Black turn"); else System.out.println("White turn");
+            } 
+			if(!othelloGame.winningCondition()){
+			if (othelloGame.GetPlayerTurn())System.out.println("Black turn"); else System.out.println("White turn");}
 
     }
 
