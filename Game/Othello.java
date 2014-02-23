@@ -95,14 +95,18 @@ public class Othello{
     public int[][] Move(int y, int x, int[][] gameBoard, boolean playerTurn) {
         if (validMove(y, x, gameBoard, playerTurn)) {
             if (P1.GetPlayerTurn()) {
-                gameBoard[y][x] = P1.GetColor();
-                gameBoard = Flip(flipdata, gameBoard);
+		do {
+                    gameBoard = Flip(flipdata, gameBoard);
+		} while (validMove(y, x, gameBoard, playerTurn));
+		gameBoard[y][x] = P1.GetColor();
                 P1.SetPlayerTurn(false);
                 P2.SetPlayerTurn(true);
                 return gameBoard;
             } else {
-                gameBoard[y][x] = P2.GetColor();
-                gameBoard = Flip(flipdata, gameBoard);
+		do {
+                    gameBoard = Flip(flipdata, gameBoard);
+		} while(validMove(y, x, gameBoard, playerTurn));
+		gameBoard[y][x] = P2.GetColor();
                 P2.SetPlayerTurn(false);
                 P1.SetPlayerTurn(true);
                 return gameBoard;
@@ -123,7 +127,7 @@ public class Othello{
             } else {
                 playerColor = P2.GetColor();
             }
-			counter = 1;
+	    counter = 1;
 
             // Search each direction (total : 8 direction)
             for (int i = -1; i <= 1; i++) {
@@ -169,7 +173,7 @@ public class Othello{
                             found = true;
                             //System.out.println("empty : true, Y:" + searchY + ", X:" + searchX);
                         }
-						counter++;
+			counter++;
                     }
                 }
 
