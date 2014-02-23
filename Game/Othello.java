@@ -104,7 +104,7 @@ public class Othello{
 		gameBoard[y][x] = P1.GetColor();
                 P1.SetPlayerTurn(false);
                 P2.SetPlayerTurn(true);
-				this.gameBoard = gameBoard;
+				this.gameBoard = gameBoard;//for other method in this class
 				System.out.println("Black score:"+GetScoreBlack());
 				System.out.println("White score:"+GetScoreWhite());
                 return gameBoard;
@@ -124,6 +124,7 @@ public class Othello{
         }	
 
 	//if (GetPlayerTurn())System.out.println(P2.GetColor()+" turn"); else System.out.println(P1.GetColor()+" turn");
+		this.gameBoard = gameBoard;
         return gameBoard;
     }
 
