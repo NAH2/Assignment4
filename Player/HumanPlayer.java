@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
  *
- * @author So
+ * @author Matt
  */
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -16,11 +12,15 @@ public class HumanPlayer {
     private String playerName;
     private boolean playerTurn;
     private int pieceColor;
+    private int gameType;
+    private int[][] coord;
 
-    public HumanPlayer(String playName, boolean playerTurn, int pieceColor) {
+    private HumanPlayer(){}
+    public HumanPlayer(String playName, boolean playerTurn, int pieceColor, int gameType) {
         this.playerName = playName;
         this.playerTurn = playerTurn;
         this.pieceColor = pieceColor;
+        this.gameType = gameType;
     }
 
     public String GetPlayerName() {
@@ -56,14 +56,27 @@ public class HumanPlayer {
     public void placePiece(int[][] inCoord) {
 
         if (validMove(inCoord) == true) {
-
+        	
+        	if(gameType == 0){
+        		Connect4.move(inCoord);
+        	}else{
+        		//Need to change input parameters on Othello.
+        		Othello.Move(inCoord);
+        	}
+        	
         }
 
     }
 
     public boolean validMove(int[][] inCoord) {
-        boolean bool = false;
-        return bool;
+    	//Need to change input parameters on Othello.
+    	if(gameType == 0){
+    		return Connect4.validMove();
+    	}else{
+    		return Othello.validMove();
+    	}
+       
+        
     }
 
     public int[][] mouseReleased(MouseEvent e) {
@@ -77,5 +90,12 @@ public class HumanPlayer {
     }
 
     public void updateLastPiece(int[][] coord) {
+    }
+    
+    /**
+     * For testing purposes have a main method.
+     */
+    public static void main(String args[]){
+    	HumanPlayer humanPlayer = new HumanPlayer();
     }
 }
