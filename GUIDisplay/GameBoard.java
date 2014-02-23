@@ -75,7 +75,7 @@ public class GameBoard extends javax.swing.JFrame {
                     final int col = j;
                     square.addMouseListener(new MouseAdapter() {
                         @Override
-                        public void mouseClicked(MouseEvent e) {
+                        public void mouseReleased(MouseEvent e) {
                             System.out.println("Position :" + col +","+ row );
 							//if(othelloGame.ValidMove(row, col, gameBoard)){
                            othelloGame.Move(row, col, gameBoard, true);
@@ -102,7 +102,7 @@ public class GameBoard extends javax.swing.JFrame {
                     }
                 }
             }
-			System.out.print("White turn");
+			System.out.println("White turn");
 		} else {
 			System.out.print("Connect4");
 		}
@@ -142,7 +142,7 @@ public class GameBoard extends javax.swing.JFrame {
                     }
                 }
             }
-			if (othelloGame.GetPlayerTurn())System.out.print("Black turn"); else System.out.print("White turn");
+			if (othelloGame.GetPlayerTurn())System.out.println("Black turn"); else System.out.println("White turn");
 
     }
 
