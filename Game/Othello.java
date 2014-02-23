@@ -144,7 +144,7 @@ public class Othello{
                     if ((i == 0 && j == 0) || searchValue == empty || searchValue == playerColor) {
                         continue;
                     }
-					
+					counter = 1;
                     //Searching along the direction
                     while (!found) {
                         //System.out.println("Looping..");
