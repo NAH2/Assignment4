@@ -54,19 +54,19 @@ public class GameBoard extends javax.swing.JFrame {
 			        square.setBackground(new Color(170, 150, 100));
 					if((i == 3 && j == 3)||(i == 4 && j == 4)){
 						square.add(new JLabel(blackpiece));
-						gameBoard[i][j] = 1;
+						gameBoard[i][j] = black;
 					} else if((i == 4 && j == 3)||(i == 3 && j == 4)){
 						square.add(new JLabel(whitepiece));
-						gameBoard[i][j] = 2;
+						gameBoard[i][j] = white;
 					} else if((i == 5 && j == 3)||(i == 3 && j == 5)){
 						square.add(new JLabel(whitepiece));
-						gameBoard[i][j] = 2;
+						gameBoard[i][j] = white;
 					} else if((i == 6 && j == 6)||(i == 4 && j == 6)){
 						square.add(new JLabel(whitepiece));
-						gameBoard[i][j] = 2;
+						gameBoard[i][j] = white;
 					} else if((i == 2 && j == 2)||(i == 5 && j == 1)){
 						square.add(new JLabel(whitepiece));
-						gameBoard[i][j] = 2;
+						gameBoard[i][j] = white;
 					} else {
 						gameBoard[i][j] = 0;
 					}
