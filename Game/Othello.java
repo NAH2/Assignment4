@@ -20,7 +20,6 @@ import java.awt.Color;
 		}
 	}*/
 	
-	//change boardsize to boardsize x,y
 	//need calcWhiteScore and calcBlackScore from OthelloFB?
 	/*public int GetScoreWhite() {
 		scoreWhite = startingScore;
@@ -49,12 +48,12 @@ import java.awt.Color;
 	//public int[][] GetNewPiecePosition() {
 	//}
 	
-	public char[][] availableMove(int[][] gameBoard, boolean playerTurn) {
+	public char[][] AvailableMove(int[][] gameBoard, boolean playerTurn) {
 	        char[][] availableMov = new char[8][8];
 	        for (int i = 0; i < 8; i++) {
 	            for (int j = 0; j < 8; j++) {
 					//availableMov[i][j] = 'X';
-	                if( ValidMove(i,j,gameBoard,playerTurn)){
+	                if(ValidMove(i,j,gameBoard,playerTurn)){
 	                    availableMov[i][j] = 'O';   //Location of available Move 
 	                }
 	                else 
@@ -63,7 +62,7 @@ import java.awt.Color;
 	        }
 	        return availableMov;
 	        
-	    }
+	}
 	
 	/*public boolean ChangePieces(int[][] newPiecePosition) {
 	}
