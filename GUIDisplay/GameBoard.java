@@ -45,7 +45,7 @@ public class GameBoard extends javax.swing.JFrame {
     public GameBoard(boolean game) throws IOException{     //true = othello , false = connect4 
       initComponents();
       
-        if (game = true) {
+        if (game == true) {
 			//final JPanel square = new JPanel();
             gameBoard = new int[8][8];
             for (int i = 0; i < 8; i++) {
@@ -86,8 +86,8 @@ public class GameBoard extends javax.swing.JFrame {
                 }
 
             }
-        }
-			char[][] availableMov = othelloGame.availableMove(gameBoard, true);
+
+			char[][] availableMov = othelloGame.AvailableMove(gameBoard, true);
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     if (availableMov[i][j] == 'O'){
@@ -95,6 +95,9 @@ public class GameBoard extends javax.swing.JFrame {
                     }
                 }
             }
+		} else {
+			System.out.print("Connect4");
+		}
 
     }
     
@@ -118,7 +121,7 @@ public class GameBoard extends javax.swing.JFrame {
 			}
 		}
 			
-			char[][] availableMov = othelloGame.availableMove(gameBoard, true);
+			char[][] availableMov = othelloGame.AvailableMove(gameBoard, true);
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
 					squareBoard[i][j].setBackground(new Color(170, 150, 100));
