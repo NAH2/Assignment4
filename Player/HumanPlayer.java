@@ -1,96 +1,53 @@
-
+package Player;
 
 /**
  *
  * @author Matt
- */
-import java.awt.*;
-import java.awt.event.MouseEvent;
+ * */
 
 public class HumanPlayer {
 
     private String playerName;
     private boolean playerTurn;
     private int pieceColor;
-    private int gameType;
-    private int[][] coord;
-
+    
     private HumanPlayer(){}
-    public HumanPlayer(String playName, boolean playerTurn, int pieceColor, int gameType) {
-        this.playerName = playName;
-        this.playerTurn = playerTurn;
-        this.pieceColor = pieceColor;
-        this.gameType = gameType;
+    
+    public HumanPlayer(String playName, boolean playerTurn, int pieceColor) {
+        SetPlayerName(playName);
+        SetPlayerTurn(playerTurn);
+        SetPieceColor(pieceColor);
     }
 
     public String GetPlayerName() {
-        return this.playerName;
+        return playerName;
     }
 
-    public void SetPlayerName(String playerName) {
-        this.playerName = playerName;
+    public void SetPlayerName(String settingPlayerName) {
+        playerName = settingPlayerName;
     }
 
     public boolean GetPlayerTurn() {
-        return this.playerTurn;
+        return playerTurn;
     }
 
-    public void SetPlayerTurn(boolean playerTurn) {
-        this.playerTurn = playerTurn;
+    public void SetPlayerTurn(boolean settingPlayerTurn) {
+        playerTurn = settingPlayerTurn;
     }
 
     public int GetColor() {
-        return this.pieceColor;
+        return pieceColor;
     }
 
-    public void SetPieceColor(int color) {
-        this.pieceColor = color;
+    public void SetPieceColor(int colorPiece) {
+        pieceColor = colorPiece;
     }
 
-    public void setPlayer(String playerType) {
+
+    public void SetPlayerText(String name) {
     }
+    
 
-    public void setPlayerText(String name) {
-    }
-
-    public void placePiece(int[][] inCoord) {
-
-        if (validMove(inCoord) == true) {
-        	
-        	if(gameType == 0){
-        		Connect4.move(inCoord);
-        	}else{
-        		//Need to change input parameters on Othello.
-        		Othello.Move(inCoord);
-        	}
-        	
-        }
-
-    }
-
-    public boolean validMove(int[][] inCoord) {
-    	//Need to change input parameters on Othello.
-    	if(gameType == 0){
-    		return Connect4.validMove();
-    	}else{
-    		return Othello.validMove();
-    	}
-       
-        
-    }
-
-    public int[][] mouseReleased(MouseEvent e) {
-        int[][] position = null;
-        return position;
-    }
-
-    public int[][] lastPiecePlaced() {
-        int[][] position = null;
-        return position;
-    }
-
-    public void updateLastPiece(int[][] coord) {
-    }
     
     /**
      * For testing purposes have a main method.
