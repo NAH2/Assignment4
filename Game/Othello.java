@@ -73,6 +73,7 @@ public class Othello{
     }
 
     public char[][] AvailableMove(int[][] gameBoard, boolean playerTurn) {
+
         AvailableMov = new char[boardLength][boardLength];
         for (int i = 0; i < boardLength; i++) {
             for (int j = 0; j < boardLength; j++) {
@@ -83,8 +84,41 @@ public class Othello{
                 }
             }
         }
+        CheckPassTurn(gameBoard);
         return AvailableMov;
 
+    }
+
+    public void CheckPassTurn(int[][] gameBoard) {
+        boolean passTurn = true;
+        for (int i = 0; i < boardLength; i++) {
+            for (int j = 0; j < boardLength; j++) {
+                if (AvailableMov[i][j] == 'O') {    // Check the AvailableMov in array
+                    passTurn = false;              // if there is AvailableMov , then no need to pass the turn to opponent
+                }
+            }
+        }
+        if (passTurn == true) {                    // if there is no any available Move , then pass the turn to opponent
+            System.out.println("Pass turn");
+            if (P1.GetPlayerTurn()) {
+                P1.SetPlayerTurn(false);
+                P2.SetPlayerTurn(true);
+            } else {
+                P2.SetPlayerTurn(false);
+                P1.SetPlayerTurn(true);
+            }
+        }
+
+        for (int i = 0; i < boardLength; i++) {         // After pass the turn to opponent , check the available move again 
+            for (int j = 0; j < boardLength; j++) {
+                if (validMove(i, j, gameBoard, playerTurn)) {
+                    AvailableMov[i][j] = 'O';   //Location of Available Move 
+                } else {
+                    AvailableMov[i][j] = 'X';
+                }
+
+            }
+        }
     }
 
     public boolean ChangePieces(int[][] newPiecePosition) {
