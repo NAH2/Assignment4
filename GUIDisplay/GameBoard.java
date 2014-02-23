@@ -22,12 +22,21 @@ public class GameBoard extends javax.swing.JFrame {
     private JPanel[][] squareBoard = new JPanel[8][8];
     private ImageIcon picture;
     boolean playerTurn;
+<<<<<<< HEAD
     Image piece;
 
     private int empty = 0, black = 1, white = 2;
     Othello othelloGame = new Othello();
     Icon blackpiece = new ImageIcon(getClass().getResource("black.png"));
     Icon whitepiece = new ImageIcon(getClass().getResource("white.png"));
+=======
+    Image piece ;
+    private int empty = 0,black = 1, white = 2, boardSizeX, boardSizeY;
+    Othello othelloGame = new Othello();
+    Icon blackpiece = new ImageIcon(getClass().getResource("black.png"));
+    Icon whitepiece = new ImageIcon(getClass().getResource("white.png"));
+    private JPanel[][] squareBoard;
+>>>>>>> d72ce5f121019a3762ba25f812f7905978ce4010
 
     /**
      * Creates new form GameBoard
@@ -43,6 +52,7 @@ public class GameBoard extends javax.swing.JFrame {
     public void setGameboard(int[][] gameboard) {
         this.gameBoard = gameboard;
     }
+<<<<<<< HEAD
 
     public GameBoard(boolean game) {     //true = othello , false = connect4 
         initComponents();
@@ -65,6 +75,37 @@ public class GameBoard extends javax.swing.JFrame {
                         gameBoard[i][j] = empty;
                     }
 
+=======
+    
+    public GameBoard(boolean game) throws IOException{     //true = othello , false = connect4 
+      initComponents();
+      
+        if (game == true) {
+	    boardSizeY = 8;
+	    boardSizeX = 8;
+	    squareBoard	= new JPanel[boardSizeY][boardSizeX];
+			//final JPanel square = new JPanel();
+            gameBoard = new int[boardSizeY][boardSizeX];
+            for (int i = 0; i < boardSizeY; i++) {
+                for (int j = 0; j < boardSizeX; j++) {
+                    Border blackBorder = BorderFactory.createLineBorder(Color.black);
+                    final JPanel square = new JPanel();
+		    squareBoard[i][j] = square;
+                    square.setBorder(blackBorder);
+			square.setBackground(new Color(170, 150, 100));
+			if((i == 3 && j == 3)||(i == 4 && j == 4)){
+				square.add(new JLabel(blackpiece));
+				gameBoard[i][j] = black;
+			} else if((i == 4 && j == 3)||(i == 3 && j == 4)){
+				square.add(new JLabel(whitepiece));
+				gameBoard[i][j] = white;
+			} else if((i == 2 && j == 2)||(i == 5 && j == 1)||(i == 6 && j ==3)||(i == 6 && j == 6)||(i == 4 && j == 6)||(i == 5 && j == 3)||(i == 3 && j == 5)){
+				square.add(new JLabel(whitepiece));
+				gameBoard[i][j] = white;
+			} else {
+				gameBoard[i][j] = empty;
+			}
+>>>>>>> d72ce5f121019a3762ba25f812f7905978ce4010
                     gamePanel.add(square);
                     squareBoard[i][j] = square;
                     final int row = i;   //y
@@ -72,22 +113,41 @@ public class GameBoard extends javax.swing.JFrame {
                     square.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
+<<<<<<< HEAD
                             System.out.println("Position : col:" + col + ", row:" + row);
                             square.setBackground(new Color(170, 150, 100));
                             othelloGame.Move(row, col, gameBoard, true);
                     //        Update(square, row, col);
                             Update(gameBoard);
                             // check vaild move here ! 
+=======
+                            System.out.println("Position :" + col +","+ row );
+							//if(othelloGame.ValidMove(row, col, gameBoard)){
+                           othelloGame.Move(row, col, gameBoard, true);
+			    try{
+                            	Update(gameBoard);
+			    } catch(IOException e3){}
+							//}
+                         // check vaild move here ! 
+>>>>>>> d72ce5f121019a3762ba25f812f7905978ce4010
                         }
                     });
                 }
 
             }
+<<<<<<< HEAD
             char[][] availableMov = othelloGame.availableMove(gameBoard, true);
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                       if (availableMov[i][j] == 'O') {
                         if (othelloGame.GetPlayerTurn()){
+=======
+
+	    char[][] availableMov = othelloGame.AvailableMove(gameBoard, true);
+            for (int i = 0; i < boardSizeY; i++) {
+                for (int j = 0; j < boardSizeX; j++) {
+                    if (availableMov[i][j] == 'O'){
+>>>>>>> d72ce5f121019a3762ba25f812f7905978ce4010
                         squareBoard[i][j].setBackground(new Color(255, 0, 0));
                         }
                         else {
@@ -96,6 +156,9 @@ public class GameBoard extends javax.swing.JFrame {
                     }
                 }
             }
+        } else {
+		System.out.print("Connect4");
+	}
 
         }
 
@@ -115,6 +178,7 @@ public class GameBoard extends javax.swing.JFrame {
         }
 
     }
+<<<<<<< HEAD
 
     public void Update(int[][] gameBoard) {
         for (int i = 0; i < 8; i++) {
@@ -141,6 +205,34 @@ public class GameBoard extends javax.swing.JFrame {
                 squareBoard[i][j].setBackground(new Color(170, 150, 100));
                   if (availableMov[i][j] == 'O') {
                         if (othelloGame.GetPlayerTurn()){
+=======
+    
+    public void Update(int[][] gameBoard) throws IOException{
+		for (int i = 0; i < boardSizeY; i++) {
+		    for (int j = 0; j < boardSizeX; j++) {
+			    //final JPanel square = new JPanel();
+				// squareBoard[i][j] = square;
+		        if (gameBoard[i][j] == black){
+		           //square.setBackground(new Color(0, 0, 0));
+		            squareBoard[i][j].removeAll();
+		            squareBoard[i][j].add(new JLabel(blackpiece));
+					squareBoard[i][j].updateUI();
+		               //System.out.println(gameBoard[i][j]);
+		        }
+		        else if (gameBoard[i][j] == white){
+					squareBoard[i][j].removeAll();
+					squareBoard[i][j].add(new JLabel(whitepiece));
+					squareBoard[i][j].updateUI();
+		        }
+		    }
+		}
+			
+			char[][] availableMov = othelloGame.AvailableMove(gameBoard, true);
+            for (int i = 0; i < boardSizeY; i++) {
+                for (int j = 0; j < boardSizeX; j++) {
+					squareBoard[i][j].setBackground(new Color(170, 150, 100));
+                    if (availableMov[i][j] == 'O'){
+>>>>>>> d72ce5f121019a3762ba25f812f7905978ce4010
                         squareBoard[i][j].setBackground(new Color(255, 0, 0));
                         }
                         else {
@@ -231,7 +323,13 @@ public class GameBoard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+<<<<<<< HEAD
                 new GameBoard(true).setVisible(true);
+=======
+		try {
+			new GameBoard(true).setVisible(true);
+		} catch (IOException e2) {}
+>>>>>>> d72ce5f121019a3762ba25f812f7905978ce4010
             }
         });
     }
