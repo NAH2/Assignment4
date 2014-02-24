@@ -1,4 +1,4 @@
-package Player;
+
 /**
  *
  * @author Matt
@@ -8,14 +8,14 @@ public class HumanPlayer extends Player{
 
     private String playerName;
     private boolean playerTurn;
-    private GamePiece pieceColor;
+    private GamePiece piece;
     
     private HumanPlayer(){}
     
-    public HumanPlayer(String playName, boolean playerTurn, GamePiece pieceColor) {
+    public HumanPlayer(String playName, boolean playerTurn, GamePiece gamePiece) {
         SetPlayerName(playName);
         SetPlayerTurn(playerTurn);
-        SetPieceColor(pieceColor);
+        SetPieceColor(gamePiece);
     }
 
     public String GetPlayerName() {
@@ -34,12 +34,12 @@ public class HumanPlayer extends Player{
         playerTurn = settingPlayerTurn;
     }
 
-    public GamePiece GetColor() {
-        return pieceColor;
+    public GamePiece GetPiece() {
+        return piece;
     }
 
-    public void SetPieceColor(GamePiece colorPiece) {
-        pieceColor = colorPiece;
+    public void SetPieceColor(GamePiece gamePiece) {
+        piece = gamePiece;
     }
 
 
