@@ -1,9 +1,26 @@
+/**
+ * @file   -GamePiece.java
+ * @author -Gavin Bailey 711036
+ * @date   -24th Feb 14
+ * 
+ *  \brief Parent class of pieces for connect four and
+ *  othello games
+ *  
+ *  This abstract class is the parent object for game pieces,
+ *  it contains accessor methods for piece data and abstract 
+ *  method declarations
+ */
 package piece;
 
-import javax.swing.*;
+import javax.swing.Icon;
 
 public abstract class GamePiece {
     
+    /**
+     * Accessor method to set piece colour
+     * @param col a String for piece colour
+     * @return true when method completes
+     */
     public boolean setColour(String col) {
         boolean test = false;
         if (test || m_test) {
@@ -19,6 +36,10 @@ public abstract class GamePiece {
         return true;
     }
     
+    /**
+     * Accessor method to get piece colour
+     * @return m_colour a String of what colour the piece is currently
+     */
     public String getColour() {
         boolean test = false;
         if (test || m_test) {
@@ -33,12 +54,22 @@ public abstract class GamePiece {
         
         
     }
-    
+    /* Abstract classes */
+    /**
+     * An abstract accessor method to get the Icon of the piece
+     * @return Icon image of piece 
+     */
     public abstract Icon getIcon();
     
+    /**
+     * An abstract accessor method to set the icons of the pieces for the current game
+     * @return true when method completes
+     */
     public abstract boolean setIcons();
     
-    //variable declarations
+    /*variable declarations*/
+    /** Stores the String of the current colour */
     private String m_colour;
+    /** Indicates whether to run tests */
     private boolean m_test = false;
 }

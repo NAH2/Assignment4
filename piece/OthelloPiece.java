@@ -1,9 +1,25 @@
+/**
+ * @file   -OthelloPiece.java
+ * @author -Gavin Bailey 711036
+ * @date   -24th Feb 14
+ * 
+ * /brief Othello game piece used in a game of Othello,
+ * extends GamePiece.java
+ * 
+ * This is an extension of the GamePiece class, where the icons
+ * differ from other piece types.
+ */
 package piece;
 
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public class OthelloPiece extends GamePiece{
     
+    /**
+     * Constructor of OthelloPiece, calls  setColour() and setIcons()
+     * @param col a String to set colour using setColour() of the superclass
+     */
     public OthelloPiece(String col) {
         boolean test = false;
         if (test || m_test) {
@@ -18,6 +34,10 @@ public class OthelloPiece extends GamePiece{
         }
     }
     
+    /**
+     * Accessor method to retrieve the ImageIcon of the piece
+     * @return Icon depending on piece colour
+     */
     public Icon getIcon() {
         boolean test = false;
         if (test || m_test) {
@@ -39,15 +59,23 @@ public class OthelloPiece extends GamePiece{
         }
     }
     
-    public boolean setIcons() {
+    /**
+     * Accessor method to set the ImageIcons of a piece
+     * @return boolean on success
+     * @throws NullPointerException
+     */
+    public boolean setIcons()  throws NullPointerException {
         boolean test = false;
         if (test || m_test) {
             System.out.println("OthelloPiece :: setIcons() BEGIN");
         }
         
+        String blackImageURL = "black.png";
+        String whiteImageURL = "white.png";
+        
         try {
-            m_blackpiece = new ImageIcon(getClass().getResource("black.png"));
-            m_whitepiece = new ImageIcon(getClass().getResource("white.png"));
+            m_blackpiece = new ImageIcon(getClass().getResource(blackImageURL));
+            m_whitepiece = new ImageIcon(getClass().getResource(whiteImageURL));
         } catch (NullPointerException e) {
             System.out.println("Images Not Found");
         }
@@ -60,7 +88,10 @@ public class OthelloPiece extends GamePiece{
     }
     
     //variable declarations
+    /** store the black icon */
     private Icon m_blackpiece;
+    /** store the white icon */
     private Icon m_whitepiece;
+    /** Indicates whether to run tests */
     private boolean m_test = false;
 }
