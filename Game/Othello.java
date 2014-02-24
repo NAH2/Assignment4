@@ -1,26 +1,27 @@
 //public class Othello extends Game {
 public class Othello {
 
-    private int[][] gameBoard;
-    private int scoreWhite, scoreBlack, initialScore = 0, counter;
+    private int counter, scoreWhite, scoreBlack;
     private boolean playerTurn;
-    final private int empty = 0, black = 1, white = 2, boardLength = 8;
+    private final int boardLength = 8;
     private int[] flipdata;
     private char[][] AvailableMov;
-    //  GameBoard gb = new GameBoard(true);
-    HumanPlayer P1 = new HumanPlayer("P1", false, black); //add the Player (should do it in selection class)
-    HumanPlayer P2 = new HumanPlayer("P2", true, white);
+	private HumanPlayer P1;
+	private HumanPlayer P2;
+	private GamePiece playerColor;
 	
-	public Othello(){
+	public Othello(HumanPlayer P1, HumanPlayer P2){
+		this.P1 = P1;
+		this.P2 = P2;
 		System.out.println("Othello Game created");
 		if(P1.GetPlayerTurn()){
-			if (P1.GetColor() == black) {
+			if (P1.GetPiece().getColour().equals("black")) {
 				System.out.println("Player 1(BLACK) Turn");
 			} else {
 				System.out.println("Player 1(WHITE) Turn");
 			}
 		} else if(P2.GetPlayerTurn()){
-			if (P2.GetColor() == black) {
+			if (P2.GetPiece().getColour().equals("black")) {
 				System.out.println("Player 2(BLACK) Turn");
 			} else {
 				System.out.println("Player 2(WHITE) Turn");
@@ -35,19 +36,6 @@ public class Othello {
 	public int GetBoardSizeX(){
 		return boardLength;
 	}
-	
-    public void Othello(HumanPlayer P1, HumanPlayer P2) {   // get player
-        if (P1.GetPlayerTurn() == true) {
-            playerTurn = P1.GetPlayerTurn();
-        } else {
-            playerTurn = P2.GetPlayerTurn();
-        }
-
-    }
-//
-//    public boolean SetPlayer(boolean playerTurn) {
-//        this.playerTurn = playerTurn;
-//    }
 
     public boolean GetPlayerTurn() {
         return playerTurn = P1.GetPlayerTurn();
@@ -65,7 +53,7 @@ public class Othello {
      }
      }*/
     //need calcWhiteScore and calcBlackScore from OthelloFB?
-    private int GetScoreWhite() {
+    /*private int GetScoreWhite() {
         scoreWhite = initialScore;
         for (int x = 0; x < boardLength; x++) {
             for (int y = 0; y < boardLength; y++) {
@@ -87,13 +75,9 @@ public class Othello {
             }
         }
         return scoreBlack;
-    }
+    }*/
 
-    public int[][] GetNewPiecePosition() {   // no idea why is there
-        return null;
-    }
-
-    public char[][] AvailableMove(int[][] gameBoard, boolean playerTurn) {   // check available move and return the char array.     
+    public char[][] AvailableMove(GamePiece[][] gameBoard, boolean playerTurn) {   // check available move and return the char array.     
         // 'O' means available move.
         AvailableMov = new char[boardLength][boardLength];
         for (int i = 0; i < boardLength; i++) {
@@ -110,7 +94,7 @@ public class Othello {
 
     }
 
-    private void CheckPassTurn(int[][] gameBoard) {     // check the player if he has no any available move , pass the turn to opponent.
+    private void CheckPassTurn(GamePiece[][] gameBoard) {     // check the player if he has no any available move , pass the turn to opponent.
         boolean passTurn = true;
         for (int i = 0; i < boardLength; i++) {
             for (int j = 0; j < boardLength; j++) {
@@ -142,23 +126,22 @@ public class Othello {
         }
     }
 
-    public void game(int[][] gameBoard, boolean playerTurn) {   //??
+    /*public void game(GamePiece[][] gameBoard, boolean playerTurn) {   //??
 
-    }
+    }*/
 
-    public int[][] Move(int y, int x, int[][] gameBoard, boolean playerTurn) {   //move action 
-        if (validMove(y, x, gameBoard, playerTurn)) {        // check whether the move is valid or not.
-            if (P1.GetPlayerTurn()) {            // check the player turn 
+    public GamePiece[][] Move(int y, int x, GamePiece[][] gameBoard, boolean playerTurn) {   //move action 
+        if (validMove(y, x, gameBoard, playerTurn) == true) {        // check whether the move is valid or not.
+            if (P1.GetPlayerTurn() == true) {            // check the player turn 
                 do {
                     gameBoard = Flip(flipdata, gameBoard);             //do the flip action here 
                 } while (validMove(y, x, gameBoard, playerTurn));     // while it is valid move 
-                gameBoard[y][x] = P1.GetColor();         // add the piece into gameBoard
+                gameBoard[y][x] = P1.GetPiece();         // add the piece into gameBoard
                 P1.SetPlayerTurn(false);
                 P2.SetPlayerTurn(true);
-                this.gameBoard = gameBoard;  // get gameboard array from gameBoard.
-                System.out.println("Black score:" + GetScoreBlack());
-                System.out.println("White score:" + GetScoreWhite());
-				if (P2.GetColor() == black) {
+                //System.out.println("Black score:" + GetScoreBlack());
+                //System.out.println("White score:" + GetScoreWhite());
+				if (P2.GetPiece().getColour().equals("black")) {
 					System.out.println("Player 2(BLACK) Turn");
 				} else {
 					System.out.println("Player 2(WHITE) Turn");
@@ -168,13 +151,12 @@ public class Othello {
                 do {
                     gameBoard = Flip(flipdata, gameBoard);
                 } while (validMove(y, x, gameBoard, playerTurn));
-                gameBoard[y][x] = P2.GetColor();
+                gameBoard[y][x] = P2.GetPiece();
                 P2.SetPlayerTurn(false);
                 P1.SetPlayerTurn(true);
-                this.gameBoard = gameBoard;
-                System.out.println("Black score:" + GetScoreBlack());
-                System.out.println("White score:" + GetScoreWhite());
-				if (P1.GetColor() == black) {
+                //System.out.println("Black score:" + GetScoreBlack());
+                //System.out.println("White score:" + GetScoreWhite());
+				if (P1.GetPiece().getColour().equals("black")) {
 					System.out.println("Player 1(BLACK) Turn");
 				} else {
 					System.out.println("Player 1(WHITE) Turn");
@@ -185,20 +167,19 @@ public class Othello {
         }
 
 		System.out.println("Non-valid move");
-        this.gameBoard = gameBoard;
         return gameBoard;
     }
 
-    private boolean validMove(int y, int x, int[][] gameBoard, boolean playerturn) { // check valid move here (OTHELLO CORE)
+    private boolean validMove(int y, int x, GamePiece[][] gameBoard, boolean playerturn) { // check valid move here (OTHELLO CORE)
 
-        if (gameBoard[y][x] == 0) {
+        if (gameBoard[y][x] == null) {
             int searchX, searchY;
-            int searchValue, playerColor;
+            GamePiece searchValue, playerColor;
 
             if (P1.GetPlayerTurn() == true) {
-                playerColor = P1.GetColor();
+                playerColor = P1.GetPiece();
             } else {
-                playerColor = P2.GetColor();
+                playerColor = P2.GetPiece();
             }
             counter = 1;
 
@@ -219,7 +200,7 @@ public class Othello {
                     // skip the search if i and j is 0.
                     // skip the search if one of the direction is empty
                     // skip the search if one of the direction is same color piece
-                    if ((i == 0 && j == 0) || searchValue == empty || searchValue == playerColor) {
+                    if ((i == 0 && j == 0) || searchValue == null || searchValue == playerColor) {
                         continue;
                     }
                     counter = 1;
@@ -236,16 +217,17 @@ public class Othello {
                         } else {
                             searchValue = gameBoard[searchY][searchX];
                         }
-
+						//System.out.println(playerColor.getColour());
                         // if find the same color is along to direction 
                         if (searchValue == playerColor) {
                             found = true;
-                            flipdata = new int[]{searchY, searchX, i, j, counter, playerColor};   // store the piece and ready to flip 
+                            flipdata = new int[]{searchY, searchX, i, j, counter};   // store the piece and ready to flip 
+							this.playerColor = playerColor;
                             //System.out.println("found : true, Y:" + searchY + ", X:" + searchX + ", newp value:" + searchValue);
                             //Debug message
                             return true;
                         } //If end of the direction is empty , then stop search this direction.
-                        else if (searchValue == empty) {
+                        else if (searchValue == null) {
                             found = true;
                             //System.out.println("empty : true, Y:" + searchY + ", X:" + searchX);
                             //Debug message
@@ -262,15 +244,23 @@ public class Othello {
 
     }
 
-    private int[][] Flip(int[] flipdata, int[][] gameBoard) {
+    private GamePiece[][] Flip(int[] flipdata, GamePiece[][] gameBoard) {
         //System.out.println("FLIP "+flipdata[4]+" PIECE(S)");
         for (int a = 0; a < flipdata[4]; a++) {
             flipdata[1] -= flipdata[3];
             flipdata[0] -= flipdata[2];
-            gameBoard[flipdata[0]][flipdata[1]] = flipdata[5];
+            gameBoard[flipdata[0]][flipdata[1]] = playerColor;
         }
         return gameBoard;
     }
+	
+	public void SetScoreWhite(int scoreWhite){
+		this.scoreWhite = scoreWhite;
+	}
+	
+	public void SetScoreBlack(int scoreBlack){
+		this.scoreBlack = scoreBlack;
+	}
 
     public boolean winningCondition() {
         for (int x = 0; x < boardLength; x++) {
@@ -281,9 +271,9 @@ public class Othello {
                 }
             }
         }
-		        if (GetScoreBlack() == GetScoreWhite()) {
+		        if (scoreBlack == scoreWhite) {
 		            System.out.println("draw");
-		        } else if ((GetScoreWhite() > GetScoreBlack() && P1.GetColor()==white)|| (GetScoreBlack() > GetScoreWhite() && P1.GetColor()==black)){
+		        } else if ((scoreWhite > scoreBlack && P1.GetPiece().getColour().equals("white"))|| (scoreBlack > scoreWhite && P1.GetPiece().getColour().equals("black"))){
 		               System.out.println("Player 1 wins");
 		        } else {
 		               System.out.println("Player 2 wins");
