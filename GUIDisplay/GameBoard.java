@@ -26,9 +26,9 @@ public class GameBoard extends javax.swing.JFrame {
     /**
      * Creates new form GameBoard
      */
-    public GameBoard() {
-        initComponents();
-    }
+    //public GameBoard() {
+    //   initComponents();
+    //}
 
     public int[][] getGameboard() {
         return this.gameBoard;
@@ -38,13 +38,13 @@ public class GameBoard extends javax.swing.JFrame {
         this.gameBoard = gameboard;
     }
 
-    public GameBoard(boolean game) throws IOException {     //true = othello , false = connect4 
+    public GameBoard(String game) throws IOException {     //true = othello , false = connect4 
         initComponents();
 
-        if (game == true) {
+        if (game.equals("Othello")) {
 			othelloGame = new Othello();
-            boardSizeY = 8;
-            boardSizeX = 8;
+            boardSizeY = othelloGame.GetBoardSizeY();
+            boardSizeX = othelloGame.GetBoardSizeX();
             squareBoard = new JPanel[boardSizeY][boardSizeX];
             gameBoard = new int[boardSizeY][boardSizeX];
             for (int i = 0; i < boardSizeY; i++) {    //use for loop to make a 8*8 game board 
@@ -194,7 +194,7 @@ public class GameBoard extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -209,18 +209,18 @@ public class GameBoard extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GameBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(GameBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        }*/
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new GameBoard(true).setVisible(true);
+                    new GameBoard().setVisible(true);
                 } catch (IOException e2) {
                 }
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
