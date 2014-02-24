@@ -16,15 +16,15 @@ public class Othello {
 		System.out.println("Othello Game created");
 		if(P1.GetPlayerTurn()){
 			if (P1.GetPiece().getColour().equals("black")) {
-				System.out.println("Player 1(BLACK) Turn");
+				System.out.println(P1.GetPlayerName()+"(BLACK)'s Turn");
 			} else {
-				System.out.println("Player 1(WHITE) Turn");
+				System.out.println(P1.GetPlayerName()+"(WHITE)'s Turn");
 			}
 		} else if(P2.GetPlayerTurn()){
 			if (P2.GetPiece().getColour().equals("black")) {
-				System.out.println("Player 2(BLACK) Turn");
+				System.out.println(P2.GetPlayerName()+"(BLACK)'s Turn");
 			} else {
-				System.out.println("Player 2(WHITE) Turn");
+				System.out.println(P2.GetPlayerName()+"(WHITE)'s Turn");
 			}
 		}
 	}
@@ -142,9 +142,9 @@ public class Othello {
                 //System.out.println("Black score:" + GetScoreBlack());
                 //System.out.println("White score:" + GetScoreWhite());
 				if (P2.GetPiece().getColour().equals("black")) {
-					System.out.println("Player 2(BLACK) Turn");
+					System.out.println(P2.GetPlayerName()+"(BLACK)'s Turn");
 				} else {
-					System.out.println("Player 2(WHITE) Turn");
+					System.out.println(P2.GetPlayerName()+"(WHITE)'s Turn");
 				}
                 return gameBoard;
             } else {
@@ -157,9 +157,9 @@ public class Othello {
                 //System.out.println("Black score:" + GetScoreBlack());
                 //System.out.println("White score:" + GetScoreWhite());
 				if (P1.GetPiece().getColour().equals("black")) {
-					System.out.println("Player 1(BLACK) Turn");
+					System.out.println(P1.GetPlayerName()+"(BLACK)'s Turn");
 				} else {
-					System.out.println("Player 1(WHITE) Turn");
+					System.out.println(P1.GetPlayerName()+"(WHITE)'s Turn");
 				}
                 return gameBoard;
             }
@@ -274,9 +274,9 @@ public class Othello {
 		        if (scoreBlack == scoreWhite) {
 		            System.out.println("draw");
 		        } else if ((scoreWhite > scoreBlack && P1.GetPiece().getColour().equals("white"))|| (scoreBlack > scoreWhite && P1.GetPiece().getColour().equals("black"))){
-		               System.out.println("Player 1 wins");
+		               System.out.println(P1.GetPlayerName()+" wins");
 		        } else {
-		               System.out.println("Player 2 wins");
+		               System.out.println(P2.GetPlayerName()+" wins");
 		        }
         return true;
 
