@@ -4,17 +4,8 @@ import javax.swing.*;
 
 public abstract class GamePiece {
     
-    public GamePiece() {
-        ++m_totalPieces;
-    }
-    
-    public static int getTotalPieces() {
-        return m_totalPieces;
-    }
-    
     public void setColour(String col) {
         m_colour = col;
-        //System.out.println("colour changed");
     }
     
     public String getColour() {
@@ -26,6 +17,5 @@ public abstract class GamePiece {
     public abstract void setIcons();
     
     //variable declarations
-    private static int m_totalPieces;
     private String m_colour;
 }
