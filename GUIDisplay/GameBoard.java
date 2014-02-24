@@ -151,11 +151,11 @@ public class GameBoard extends javax.swing.JFrame {
 		othelloGame.SetScoreBlack(scoreBlack);
     }
 
-    public int GetScoreBlack() {
+    private int GetScoreBlack() {
         return scoreBlack;
     }
 
-	public int GetScoreWhite() {
+	private int GetScoreWhite() {
 	    return scoreWhite;
 	}
 
