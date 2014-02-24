@@ -9,14 +9,14 @@ import java.awt.*;
 
 public class SelectGame {
 
-	JFrame display;
-	JButton othello_Button;	
-	JButton connectFour_Button;
-	JPanel content;
-	JLabel title_Label;
-	JLabel blank_Label;
+	private JFrame display;
+	private JButton othello_Button;	
+	private JButton connectFour_Button;
+	private JPanel content;
+	private JLabel title_Label;
+	private JLabel blank_Label;
 	
-	Font fontSettings = new Font ("Dialog", Font.PLAIN, 15);
+	private Font fontSettings = new Font ("Dialog", Font.PLAIN, 15);
 	
 	public void draw() {	
 		
