@@ -1,4 +1,3 @@
-
 /*/**
  * @file    -GameBoard.java
  * @author  -Chun Kit So
@@ -98,7 +97,6 @@ public class GameBoard extends javax.swing.JFrame {
                     }
                 }
             }
-            System.out.println("White turn");
         } else {
             System.out.print("Connect4");
         }
@@ -134,14 +132,7 @@ public class GameBoard extends javax.swing.JFrame {
                 }
             }
         }
-        if (!othelloGame.winningCondition()) {   // check winning condition
-            if (othelloGame.GetPlayerTurn()) {
-                System.out.println("Black turn");
-            } else {
-                System.out.println("White turn");
-            }
-        }
-
+        othelloGame.winningCondition();
     }
 
     /**
