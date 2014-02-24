@@ -1,10 +1,10 @@
-
+package Player;
 /**
  *
  * @author Matt
  * */
 
-public class HumanPlayer {
+public class HumanPlayer extends Player{
 
     private String playerName;
     private boolean playerTurn;
