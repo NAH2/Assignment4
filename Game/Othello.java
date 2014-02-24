@@ -28,6 +28,14 @@ public class Othello {
 		}
 	}
 	
+	public int GetBoardSizeY(){
+		return boardLength;
+	}
+	
+	public int GetBoardSizeX(){
+		return boardLength;
+	}
+	
     public void Othello(HumanPlayer P1, HumanPlayer P2) {   // get player
         if (P1.GetPlayerTurn() == true) {
             playerTurn = P1.GetPlayerTurn();
