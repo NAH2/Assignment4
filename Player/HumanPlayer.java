@@ -1,4 +1,3 @@
-//package Player;
 
 /**
  *
@@ -9,11 +8,11 @@ public class HumanPlayer {
 
     private String playerName;
     private boolean playerTurn;
-    private int pieceColor;
+    private GamePiece pieceColor;
     
     private HumanPlayer(){}
     
-    public HumanPlayer(String playName, boolean playerTurn, int pieceColor) {
+    public HumanPlayer(String playName, boolean playerTurn, GamePiece pieceColor) {
         SetPlayerName(playName);
         SetPlayerTurn(playerTurn);
         SetPieceColor(pieceColor);
@@ -35,25 +34,21 @@ public class HumanPlayer {
         playerTurn = settingPlayerTurn;
     }
 
-    public int GetColor() {
+    public GamePiece GetColor() {
         return pieceColor;
     }
 
-    public void SetPieceColor(int colorPiece) {
+    public void SetPieceColor(GamePiece colorPiece) {
         pieceColor = colorPiece;
     }
 
 
-    public void SetPlayerText(String name) {
-    }
-    
 
     
     /**
      * For testing purposes have a main method.
      */
     public static void main(String args[]){
-
     	HumanPlayer humanPlayer = new HumanPlayer();
     }
 }
