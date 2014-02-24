@@ -1,4 +1,4 @@
-package Player;
+//package Player;
 
 /**
  *
@@ -53,6 +53,7 @@ public class HumanPlayer {
      * For testing purposes have a main method.
      */
     public static void main(String args[]){
+
     	HumanPlayer humanPlayer = new HumanPlayer();
     }
 }

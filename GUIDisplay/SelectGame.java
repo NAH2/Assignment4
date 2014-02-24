@@ -8,7 +8,9 @@ import java.awt.*;
 
 
 public class SelectGame {
-
+	
+	private Selection s = new Selection();
+	
 	private JFrame display;
 	private JButton othello_Button;	
 	private JButton connectFour_Button;
@@ -67,7 +69,7 @@ public class SelectGame {
 	private class GUIEventHandler implements ActionListener {
 		
 		public void actionPerformed(ActionEvent event) {
-			Selection s = new Selection(); 
+			 
 			
 			if (event.getSource()==othello_Button){
 				s.setGameType("othello");
