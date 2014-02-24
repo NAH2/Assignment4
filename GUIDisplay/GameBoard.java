@@ -18,7 +18,7 @@ public class GameBoard extends javax.swing.JFrame {
     int[][] gameBoard;
     boolean playerTurn;
     private int empty = 0, black = 1, white = 2, boardSizeX, boardSizeY;
-    Othello othelloGame = new Othello();
+    Othello othelloGame;
     Icon blackpiece = new ImageIcon(getClass().getResource("black.png"));
     Icon whitepiece = new ImageIcon(getClass().getResource("white.png"));
     private JPanel[][] squareBoard;
@@ -42,6 +42,7 @@ public class GameBoard extends javax.swing.JFrame {
         initComponents();
 
         if (game == true) {
+			othelloGame = new Othello();
             boardSizeY = 8;
             boardSizeX = 8;
             squareBoard = new JPanel[boardSizeY][boardSizeX];
@@ -98,7 +99,7 @@ public class GameBoard extends javax.swing.JFrame {
                 }
             }
         } else {
-            System.out.print("Connect4");
+            System.out.println("Connect4");
         }
 
     }
