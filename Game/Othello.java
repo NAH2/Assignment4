@@ -1,4 +1,3 @@
-
 //public class Othello extends Game {
 public class Othello {
 
@@ -238,7 +237,6 @@ public class Othello {
         return gameBoard;
     }
 
-    //change to string as output
     public boolean winningCondition() {
         for (int x = 0; x < boardLength; x++) {
             for (int y = 0; y < boardLength; y++) {
@@ -248,18 +246,15 @@ public class Othello {
                 }
             }
         }
-        System.out.println("END");
+		        if (GetScoreBlack() == GetScoreWhite()) {
+		            System.out.println("draw");
+		        } else if ((GetScoreWhite() > GetScoreBlack() && P1.GetColor()==white)|| (GetScoreBlack() > GetScoreWhite() && P1.GetColor()==black)){
+		               System.out.println("P1 wins");
+		        } else {
+		               System.out.println("P2 wins");
+		        }
         return true;
-//        if (GetScoreBlack() == GetScoreWhite()) {
-//            return "draw";
-//        } else if (GetScoreWhite() > GetScoreBlack()) {
-//            if ((Color.WHITE).equals(selection.getPlayerColor())) {
-//                return selection.getplayerName() + " wins";
-//            } else {
-//                return selection.getCPUName() + " wins";
-//            }
-//        }
-        // return "error";
+
     }
 
 }
