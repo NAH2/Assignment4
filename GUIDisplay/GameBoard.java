@@ -44,6 +44,7 @@ public class GameBoard extends javax.swing.JFrame {
         othelloGame = new Othello(P1, P2);
         boardSizeY = othelloGame.GetBoardSizeY();
         boardSizeX = othelloGame.GetBoardSizeX();
+        gamePanel.setPreferredSize(new Dimension(800, 800)); // Hard Code 
         gamePanel.setLayout(new GridLayout(boardSizeY, boardSizeX));
         squareBoard = new JPanel[boardSizeY][boardSizeX];
         gameBoard = new OthelloPiece[boardSizeY][boardSizeX];
@@ -106,7 +107,6 @@ public class GameBoard extends javax.swing.JFrame {
     private void drawConnect4() {
         boardSizeY = 7;     // Hard code 
         boardSizeX = 10;       // Hard code 
-     
         gamePanel.setPreferredSize(new Dimension(1000, 700)); // Hard Code 
         gamePanel.setLayout(new GridLayout(boardSizeY, boardSizeX));
         
@@ -229,8 +229,8 @@ public class GameBoard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(gamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -264,14 +264,14 @@ public class GameBoard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+      //  java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
 //                try {
 //                    new GameBoard("Connect4").setVisible(true);
 //                } catch (IOException e2) {
 //                }
 //            }
-        });
+      //  });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

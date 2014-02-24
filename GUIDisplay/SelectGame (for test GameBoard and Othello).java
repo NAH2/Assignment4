@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import javax.swing.*;
 import java.io.IOException;
 
@@ -23,11 +24,15 @@ public class SelectGame {
 		try {
 			if(chosenGame.equals("Othello")){
 				GameBoard GB = new GameBoard(chosenGame, P1, P2);
+                                GB.setSize(new Dimension(813, 800));
 				GB.setVisible(true);
+                                
 				//Selection SE = new Selection(chosenGame);
 			} else {
 				GameBoard GB = new GameBoard(chosenGame, P1, P2);
+                                GB.setSize(new Dimension(1013, 700));
                                 GB.setVisible(true);
+                                
 				//Selection SE = new Selection(chosenGame);
 			}
 		} catch (IOException e) {}
