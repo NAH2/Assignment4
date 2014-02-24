@@ -8,9 +8,26 @@ public class Othello {
     private int[] flipdata;
     private char[][] AvailableMov;
     //  GameBoard gb = new GameBoard(true);
-    HumanPlayer P1 = new HumanPlayer("P1", false, black); //add the Player (should be do it in selection class)
+    HumanPlayer P1 = new HumanPlayer("P1", false, black); //add the Player (should do it in selection class)
     HumanPlayer P2 = new HumanPlayer("P2", true, white);
-
+	
+	public Othello(){
+		System.out.println("Othello Game created");
+		if(P1.GetPlayerTurn()){
+			if (P1.GetColor() == black) {
+				System.out.println("Player 1(BLACK) Turn");
+			} else {
+				System.out.println("Player 1(WHITE) Turn");
+			}
+		} else if(P2.GetPlayerTurn()){
+			if (P2.GetColor() == black) {
+				System.out.println("Player 2(BLACK) Turn");
+			} else {
+				System.out.println("Player 2(WHITE) Turn");
+			}
+		}
+	}
+	
     public void Othello(HumanPlayer P1, HumanPlayer P2) {   // get player
         if (P1.GetPlayerTurn() == true) {
             playerTurn = P1.GetPlayerTurn();
@@ -133,6 +150,11 @@ public class Othello {
                 this.gameBoard = gameBoard;  // get gameboard array from gameBoard.
                 System.out.println("Black score:" + GetScoreBlack());
                 System.out.println("White score:" + GetScoreWhite());
+				if (P2.GetColor() == black) {
+					System.out.println("Player 2(BLACK) Turn");
+				} else {
+					System.out.println("Player 2(WHITE) Turn");
+				}
                 return gameBoard;
             } else {
                 do {
@@ -144,12 +166,17 @@ public class Othello {
                 this.gameBoard = gameBoard;
                 System.out.println("Black score:" + GetScoreBlack());
                 System.out.println("White score:" + GetScoreWhite());
+				if (P1.GetColor() == black) {
+					System.out.println("Player 1(BLACK) Turn");
+				} else {
+					System.out.println("Player 1(WHITE) Turn");
+				}
                 return gameBoard;
             }
 
         }
 
-        //if (GetPlayerTurn())System.out.println(P2.GetColor()+" turn"); else System.out.println(P1.GetColor()+" turn");
+		System.out.println("Non-valid move");
         this.gameBoard = gameBoard;
         return gameBoard;
     }
@@ -249,9 +276,9 @@ public class Othello {
 		        if (GetScoreBlack() == GetScoreWhite()) {
 		            System.out.println("draw");
 		        } else if ((GetScoreWhite() > GetScoreBlack() && P1.GetColor()==white)|| (GetScoreBlack() > GetScoreWhite() && P1.GetColor()==black)){
-		               System.out.println("P1 wins");
+		               System.out.println("Player 1 wins");
 		        } else {
-		               System.out.println("P2 wins");
+		               System.out.println("Player 2 wins");
 		        }
         return true;
 
