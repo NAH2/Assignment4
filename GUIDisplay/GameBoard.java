@@ -25,8 +25,7 @@ public class GameBoard extends javax.swing.JFrame {
     private JPanel[][] squareBoard;
     private HumanPlayer P1;
     private HumanPlayer P2;
-	//private JPanel info;
-	//private JLabel playerTurnLabel;
+	Font f = new Font("Dialog", Font.PLAIN, 18);
 
     public GameBoard(String game, HumanPlayer P1, HumanPlayer P2) throws IOException {
         initComponents();
@@ -102,6 +101,16 @@ public class GameBoard extends javax.swing.JFrame {
             }
         }
         SetScore();
+			playerOneColor.setFont(f);
+			playerTwoColor.setFont(f);
+			playerOneIcon.setFont(f);
+			playerTwoIcon.setFont(f);
+			playerTurnIcon.setFont(f);
+			playerTurnLabel.setFont(f);
+			blackIcon.setFont(f);
+			whiteIcon.setFont(f);
+			blackPieces.setFont(f);
+			whitePieces.setFont(f);
             playerOneColor.setText(P1.GetPlayerName()+"'s color: ");
             playerOneIcon.setIcon(P1.GetPiece().getIcon());
             playerTwoColor.setText(P2.GetPlayerName()+"'s color: ");
@@ -226,7 +235,7 @@ public class GameBoard extends javax.swing.JFrame {
     private int GetScoreWhite() {
         return scoreWhite;
     }
-	
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -238,7 +247,7 @@ public class GameBoard extends javax.swing.JFrame {
 
         gamePanel = new javax.swing.JPanel();
         restart = new javax.swing.JButton();
-        TextPanel = new javax.swing.JPanel();
+        TextPanel2 = new javax.swing.JPanel();
         playerOneColor = new javax.swing.JLabel();
         playerOneIcon = new javax.swing.JLabel();
         playerTwoColor = new javax.swing.JLabel();
@@ -266,18 +275,17 @@ public class GameBoard extends javax.swing.JFrame {
             }
         });
 
-        TextPanel.setLayout(new java.awt.GridLayout(5, 2));
-
-        TextPanel.add(playerOneColor);
-        TextPanel.add(playerOneIcon);
-        TextPanel.add(playerTwoColor);
-        TextPanel.add(playerTwoIcon);
-        TextPanel.add(playerTurnIcon);
-        TextPanel.add(playerTurnLabel);
-        TextPanel.add(blackIcon);
-        TextPanel.add(blackPieces);
-        TextPanel.add(whiteIcon);
-        TextPanel.add(whitePieces);
+        TextPanel2.setLayout(new java.awt.GridLayout(5, 2));
+        TextPanel2.add(playerOneColor);
+        TextPanel2.add(playerOneIcon);
+        TextPanel2.add(playerTwoColor);
+        TextPanel2.add(playerTwoIcon);
+        TextPanel2.add(playerTurnIcon);
+        TextPanel2.add(playerTurnLabel);
+        TextPanel2.add(blackIcon);
+        TextPanel2.add(blackPieces);
+        TextPanel2.add(whiteIcon);
+        TextPanel2.add(whitePieces);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -289,10 +297,10 @@ public class GameBoard extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(TextPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                         .addComponent(restart)
                         .addGap(43, 43, 43))))
         );
@@ -303,8 +311,8 @@ public class GameBoard extends javax.swing.JFrame {
                 .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
-                .addComponent(TextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addComponent(TextPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
                 .addComponent(restart)
                 .addGap(39, 39, 39))
@@ -314,7 +322,7 @@ public class GameBoard extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void restartMouseReleased(java.awt.event.MouseEvent evt) {                                      
-		P1.SetPlayerTurn(false);
+        		P1.SetPlayerTurn(false);
 		P2.SetPlayerTurn(true);
 		scoreWhite = initialScore;
 		scoreBlack = initialScore;
@@ -332,8 +340,8 @@ public class GameBoard extends javax.swing.JFrame {
     	}
 		try{
 			Update(gameBoard);
-		} catch (IOException e4) {}
-	}                                     
+		} catch (IOException e4) {}        // TODO add your handling code here:
+    }                                     
 
     /**
      * @param args the command line arguments
@@ -374,7 +382,7 @@ public class GameBoard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JPanel TextPanel;
+    private javax.swing.JPanel TextPanel2;
     private javax.swing.JLabel blackIcon;
     private javax.swing.JLabel blackPieces;
     private javax.swing.JPanel gamePanel;
