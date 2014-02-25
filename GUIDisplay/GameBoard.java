@@ -76,8 +76,8 @@ public class GameBoard extends javax.swing.JFrame {
                 square.addMouseListener(new MouseAdapter() {     //Add moseRelease event in each Jpanel
                     @Override
                     public void mouseReleased(MouseEvent e) {
-                        System.out.println("Position :" + col + "," + row);
-                        othelloGame.Move(row, col, gameBoard, true);  // do move action 
+                       // System.out.println("Position :" + col + "," + row);
+                        othelloGame.Move(row, col, gameBoard);  // do move action 
                         try {
                             Update(gameBoard);   // update whole game board
                         } catch (IOException e3) {
@@ -89,11 +89,11 @@ public class GameBoard extends javax.swing.JFrame {
             }
 
         }
-        char[][] availableMov = othelloGame.AvailableMove(gameBoard, true); // show the available move ,when the game start
+        char[][] availableMov = othelloGame.AvailableMove(gameBoard); // show the available move ,when the game start
         for (int i = 0; i < boardSizeY; i++) {
             for (int j = 0; j < boardSizeX; j++) {
                 if (availableMov[i][j] == 'O') {
-                    if (othelloGame.GetPlayerTurn()) {
+                    if (P1.GetPlayerTurn() == true) {
                         squareBoard[i][j].setBackground(new Color(255, 0, 0));
                     } else {
                         squareBoard[i][j].setBackground(new Color(0, 0, 255));
@@ -106,7 +106,7 @@ public class GameBoard extends javax.swing.JFrame {
             playerOneIcon.setIcon(P1.GetPiece().getIcon());
             playerTwoColor.setText(P2.GetPlayerName()+"'s color: ");
 			playerTwoIcon.setIcon(P2.GetPiece().getIcon());
-            if(P1.GetPlayerTurn()) {
+            if(P1.GetPlayerTurn() == true) {
 			playerTurnIcon.setIcon(P1.GetPiece().getIcon());
 		} else {
 			playerTurnIcon.setIcon(P2.GetPiece().getIcon());
@@ -121,8 +121,8 @@ public class GameBoard extends javax.swing.JFrame {
 			}
 			blackPieces.setText(GetScoreBlack()+"");
 			whitePieces.setText(GetScoreWhite()+"");
-        System.out.println("Black score:" + GetScoreBlack());
-        System.out.println("White score:" + GetScoreWhite());
+        //System.out.println("Black score:" + GetScoreBlack());
+        //System.out.println("White score:" + GetScoreWhite());
     }
 
     private void drawConnect4() {
@@ -168,16 +168,19 @@ public class GameBoard extends javax.swing.JFrame {
                     squareBoard[i][j].removeAll();
                     squareBoard[i][j].add(new JLabel(P1.GetPiece().getIcon()));
                     squareBoard[i][j].updateUI();
-                }
+                } else if (gameBoard[i][j] == null) {
+                    squareBoard[i][j].removeAll();
+                    squareBoard[i][j].updateUI();
+				}
             }
         }
 
-        char[][] availableMov = othelloGame.AvailableMove(gameBoard, true);  // check the available move again when the piece is placed.
+        char[][] availableMov = othelloGame.AvailableMove(gameBoard);  // check the available move again when the piece is placed.
         for (int i = 0; i < boardSizeY; i++) {
             for (int j = 0; j < boardSizeX; j++) {
                 squareBoard[i][j].setBackground(new Color(170, 150, 100));
                 if (availableMov[i][j] == 'O') {
-                    if (othelloGame.GetPlayerTurn()) {
+                    if (P1.GetPlayerTurn()) {
                         squareBoard[i][j].setBackground(new Color(255, 0, 0));
                     } else {
                         squareBoard[i][j].setBackground(new Color(0, 0, 255));
@@ -193,8 +196,8 @@ public class GameBoard extends javax.swing.JFrame {
 		}
 		blackPieces.setText(GetScoreBlack()+"");
 		whitePieces.setText(GetScoreWhite()+"");
-        System.out.println("Black score:" + GetScoreBlack());
-        System.out.println("White score:" + GetScoreWhite());
+       // System.out.println("Black score:" + GetScoreBlack());
+       // System.out.println("White score:" + GetScoreWhite());
         othelloGame.winningCondition();
     }
 
@@ -223,7 +226,7 @@ public class GameBoard extends javax.swing.JFrame {
     private int GetScoreWhite() {
         return scoreWhite;
     }
-
+	
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -256,7 +259,7 @@ public class GameBoard extends javax.swing.JFrame {
         gamePanel.setRequestFocusEnabled(false);
         gamePanel.setLayout(new java.awt.BorderLayout());
 
-        restart.setText("jButton1");
+        restart.setText("RESTART");
         restart.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 restartMouseReleased(evt);
@@ -311,8 +314,26 @@ public class GameBoard extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void restartMouseReleased(java.awt.event.MouseEvent evt) {                                      
-        //drawOthello();        // TODO add your handling code here:
-    }                                     
+		P1.SetPlayerTurn(false);
+		P2.SetPlayerTurn(true);
+		scoreWhite = initialScore;
+		scoreBlack = initialScore;
+		
+        for (int i = 0; i < boardSizeY; i++) {    //use for loop to make a 8*8 game board 
+            for (int j = 0; j < boardSizeX; j++) {
+	                if ((i == 3 && j == 3) || (i == 4 && j == 4)) {       // initial the game board, start with 2 black pieces and 2 white piece
+	                    gameBoard[i][j] = P2.GetPiece();
+	                } else if ((i == 4 && j == 3) || (i == 3 && j == 4)) {
+	                    gameBoard[i][j] = P1.GetPiece();
+					} else {
+						gameBoard[i][j] = null;
+					}	
+			}
+    	}
+		try{
+			Update(gameBoard);
+		} catch (IOException e4) {}
+	}                                     
 
     /**
      * @param args the command line arguments
