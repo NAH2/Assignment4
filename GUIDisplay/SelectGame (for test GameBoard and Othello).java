@@ -6,8 +6,8 @@ import java.io.IOException;
 public class SelectGame {
 	private String[] game = {"Othello", "ConnectFour"};
 	private String chosenGame;
-	HumanPlayer P1 = new HumanPlayer("P1", false, new OthelloPiece("black"));
-	HumanPlayer P2 = new HumanPlayer("P2", true, new OthelloPiece("white"));
+	HumanPlayer P1 = new HumanPlayer("JOHN", true, new OthelloPiece("black"));
+	HumanPlayer P2 = new HumanPlayer("PETER", false, new OthelloPiece("white"));
 
 	private boolean SetGame(String chosenGame) {
 		this.chosenGame = chosenGame;
@@ -24,7 +24,7 @@ public class SelectGame {
 		try {
 			if(chosenGame.equals("Othello")){
 				GameBoard GB = new GameBoard(chosenGame, P1, P2);
-                                GB.setSize(new Dimension(1023, 800));
+                                GB.setSize(new Dimension(1100, 800));
 				GB.setVisible(true);
                                 
 				//Selection SE = new Selection(chosenGame);
