@@ -24,7 +24,7 @@ public class SelectGame {
 		try {
 			if(chosenGame.equals("Othello")){
 				GameBoard GB = new GameBoard(chosenGame, P1, P2);
-                                GB.setSize(new Dimension(1013, 800));
+                                GB.setSize(new Dimension(1023, 800));
 				GB.setVisible(true);
                                 
 				//Selection SE = new Selection(chosenGame);
