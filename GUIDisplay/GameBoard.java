@@ -21,11 +21,11 @@ public class GameBoard extends javax.swing.JFrame {
     private int boardSizeX, boardSizeY;
     private Othello othelloGame;
     private int scoreWhite, scoreBlack, initialScore = 0;
-    Icon emptySpace = new ImageIcon(getClass().getResource("empty.png"));
+    private Icon emptySpace = new ImageIcon(getClass().getResource("empty.png"));
     private JPanel[][] squareBoard;
     private HumanPlayer P1;
     private HumanPlayer P2;
-	Font f = new Font("Dialog", Font.PLAIN, 18);
+	private Font f = new Font("Dialog", Font.PLAIN, 18);
 	private Boolean initialP1Turn;
 	private String game;
 
@@ -105,38 +105,42 @@ public class GameBoard extends javax.swing.JFrame {
             }
         }
         SetScore();
-			playerOneColor.setFont(f);
-			playerTwoColor.setFont(f);
-			playerOneIcon.setFont(f);
-			playerTwoIcon.setFont(f);
-			playerTurnIcon.setFont(f);
-			playerTurnLabel.setFont(f);
-			blackIcon.setFont(f);
-			whiteIcon.setFont(f);
-			blackPieces.setFont(f);
-			whitePieces.setFont(f);
-            playerOneColor.setText(P1.GetPlayerName()+"'s color: ");
-            playerOneIcon.setIcon(P1.GetPiece().getIcon());
-            playerTwoColor.setText(P2.GetPlayerName()+"'s color: ");
-			playerTwoIcon.setIcon(P2.GetPiece().getIcon());
-            if(P1.GetPlayerTurn() == true) {
-			playerTurnIcon.setIcon(P1.GetPiece().getIcon());
-		} else {
-			playerTurnIcon.setIcon(P2.GetPiece().getIcon());
-		}
-			playerTurnLabel.setText("Player Turn");
-			if(P1.GetPiece().getColour().equals("black")){
-				blackIcon.setIcon(P1.GetPiece().getIcon());
-				whiteIcon.setIcon(P2.GetPiece().getIcon());
-			} else {
-				blackIcon.setIcon(P2.GetPiece().getIcon());
-				whiteIcon.setIcon(P1.GetPiece().getIcon());
-			}
-			blackPieces.setText(GetScoreBlack()+"");
-			whitePieces.setText(GetScoreWhite()+"");
+		drawInfo();
         //System.out.println("Black score:" + GetScoreBlack());
         //System.out.println("White score:" + GetScoreWhite());
     }
+
+	private void drawInfo() {
+		playerOneColor.setFont(f);
+		playerTwoColor.setFont(f);
+		playerOneIcon.setFont(f);
+		playerTwoIcon.setFont(f);
+		playerTurnIcon.setFont(f);
+		playerTurnLabel.setFont(f);
+		blackIcon.setFont(f);
+		whiteIcon.setFont(f);
+		blackPieces.setFont(f);
+		whitePieces.setFont(f);
+           playerOneColor.setText(P1.GetPlayerName()+"'s color: ");
+           playerOneIcon.setIcon(P1.GetPiece().getIcon());
+           playerTwoColor.setText(P2.GetPlayerName()+"'s color: ");
+		playerTwoIcon.setIcon(P2.GetPiece().getIcon());
+           if(P1.GetPlayerTurn() == true) {
+		playerTurnIcon.setIcon(P1.GetPiece().getIcon());
+	} else {
+		playerTurnIcon.setIcon(P2.GetPiece().getIcon());
+	}
+		playerTurnLabel.setText("Player Turn");
+		if(P1.GetPiece().getColour().equals("black")){
+			blackIcon.setIcon(P1.GetPiece().getIcon());
+			whiteIcon.setIcon(P2.GetPiece().getIcon());
+		} else {
+			blackIcon.setIcon(P2.GetPiece().getIcon());
+			whiteIcon.setIcon(P1.GetPiece().getIcon());
+		}
+		blackPieces.setText(GetScoreBlack()+"");
+		whitePieces.setText(GetScoreWhite()+"");
+	}
 
     private void drawConnect4() {
         boardSizeY = 7;     // Hard code 
@@ -262,6 +266,14 @@ public class GameBoard extends javax.swing.JFrame {
 			Update(gameBoard);
 		} catch (IOException e4) {} 
 	}
+	
+	private void restartMouseReleased(java.awt.event.MouseEvent evt) {    
+	   if (game.equals("Othello")) {
+		clearOthello();
+		} else {
+			System.out.println("Clear Connect4");
+		}// TODO add your handling code here:
+	}  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -347,14 +359,7 @@ public class GameBoard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
-
-    private void restartMouseReleased(java.awt.event.MouseEvent evt) {    
-       if (game.equals("Othello")) {
-			clearOthello();
-		} else {
-			System.out.println("Clear Connect4");
-		}// TODO add your handling code here:
-    }                                     
+                                
 
     /**
      * @param args the command line arguments
