@@ -1,8 +1,9 @@
+import javax.swing.JOptionPane;
 //public class Othello extends Game {
 public class Othello {
 
     private int counter, scoreWhite, scoreBlack;
-    private boolean playerTurn;
+   // private boolean playerTurn;
     private final int boardLength = 8;
     private int[] flipdata;
     private char[][] AvailableMov;
@@ -13,20 +14,7 @@ public class Othello {
 	public Othello(HumanPlayer P1, HumanPlayer P2){
 		this.P1 = P1;
 		this.P2 = P2;
-		System.out.println("Othello Game created");
-		if(P1.GetPlayerTurn()){
-			if (P1.GetPiece().getColour().equals("black")) {
-				System.out.println(P1.GetPlayerName()+"(BLACK)'s Turn");
-			} else {
-				System.out.println(P1.GetPlayerName()+"(WHITE)'s Turn");
-			}
-		} else if(P2.GetPlayerTurn()){
-			if (P2.GetPiece().getColour().equals("black")) {
-				System.out.println(P2.GetPlayerName()+"(BLACK)'s Turn");
-			} else {
-				System.out.println(P2.GetPlayerName()+"(WHITE)'s Turn");
-			}
-		}
+		//System.out.println("Othello Game created");
 	}
 	
 	public int GetBoardSizeY(){
@@ -37,52 +25,12 @@ public class Othello {
 		return boardLength;
 	}
 
-    public boolean GetPlayerTurn() {
-        return playerTurn = P1.GetPlayerTurn();
-    }
-
-    public void SetPlayerTurn(boolean playerTurn) {
-        this.playerTurn = playerTurn;
-    }
-
-    /*public String GetFirstPlayer() {
-     if (playerTurn == true){
-     return selection.getplayerName();
-     } else {
-     return selection.getCPUName();
-     }
-     }*/
-    //need calcWhiteScore and calcBlackScore from OthelloFB?
-    /*private int GetScoreWhite() {
-        scoreWhite = initialScore;
-        for (int x = 0; x < boardLength; x++) {
-            for (int y = 0; y < boardLength; y++) {
-                if (gameBoard[y][x] == white) {
-                    scoreWhite++;
-                }
-            }
-        }
-        return scoreWhite;
-    }
-
-    private int GetScoreBlack() {
-        scoreBlack = initialScore;
-        for (int x = 0; x < boardLength; x++) {
-            for (int y = 0; y < boardLength; y++) {
-                if (gameBoard[y][x] == black) {
-                    scoreBlack++;
-                }
-            }
-        }
-        return scoreBlack;
-    }*/
-
-    public char[][] AvailableMove(GamePiece[][] gameBoard, boolean playerTurn) {   // check available move and return the char array.     
+    public char[][] AvailableMove(GamePiece[][] gameBoard) {   // check available move and return the char array.     
         // 'O' means available move.
         AvailableMov = new char[boardLength][boardLength];
         for (int i = 0; i < boardLength; i++) {
             for (int j = 0; j < boardLength; j++) {
-                if (validMove(i, j, gameBoard, playerTurn)) {
+                if (validMove(i, j, gameBoard)) {
                     AvailableMov[i][j] = 'O';   //Location of Available Move 
                 } else {
                     AvailableMov[i][j] = 'X';
@@ -104,7 +52,7 @@ public class Othello {
             }
         }
         if (passTurn == true) {                    // if there is no any available Move , then pass the turn to opponent
-            System.out.println("Pass turn");
+            //System.out.println("Pass turn");
             if (P1.GetPlayerTurn()) {
                 P1.SetPlayerTurn(false);
                 P2.SetPlayerTurn(true);
@@ -116,7 +64,7 @@ public class Othello {
 
         for (int i = 0; i < boardLength; i++) {         // After pass the turn to opponent , check the available move again 
             for (int j = 0; j < boardLength; j++) {
-                if (validMove(i, j, gameBoard, playerTurn)) {
+                if (validMove(i, j, gameBoard)) {
                     AvailableMov[i][j] = 'O';
                 } else {
                     AvailableMov[i][j] = 'X';
@@ -130,47 +78,33 @@ public class Othello {
 
     }*/
 
-    public GamePiece[][] Move(int y, int x, GamePiece[][] gameBoard, boolean playerTurn) {   //move action 
-        if (validMove(y, x, gameBoard, playerTurn) == true) {        // check whether the move is valid or not.
+    public GamePiece[][] Move(int y, int x, GamePiece[][] gameBoard) {   //move action 
+        if (validMove(y, x, gameBoard) == true) {        // check whether the move is valid or not.
             if (P1.GetPlayerTurn() == true) {            // check the player turn 
                 do {
                     gameBoard = Flip(flipdata, gameBoard);             //do the flip action here 
-                } while (validMove(y, x, gameBoard, playerTurn));     // while it is valid move 
+                } while (validMove(y, x, gameBoard));     // while it is valid move 
                 gameBoard[y][x] = P1.GetPiece();         // add the piece into gameBoard
                 P1.SetPlayerTurn(false);
                 P2.SetPlayerTurn(true);
-                //System.out.println("Black score:" + GetScoreBlack());
-                //System.out.println("White score:" + GetScoreWhite());
-				if (P2.GetPiece().getColour().equals("black")) {
-					System.out.println(P2.GetPlayerName()+"(BLACK)'s Turn");
-				} else {
-					System.out.println(P2.GetPlayerName()+"(WHITE)'s Turn");
-				}
                 return gameBoard;
             } else {
                 do {
                     gameBoard = Flip(flipdata, gameBoard);
-                } while (validMove(y, x, gameBoard, playerTurn));
+                } while (validMove(y, x, gameBoard));
                 gameBoard[y][x] = P2.GetPiece();
                 P2.SetPlayerTurn(false);
                 P1.SetPlayerTurn(true);
-                //System.out.println("Black score:" + GetScoreBlack());
-                //System.out.println("White score:" + GetScoreWhite());
-				if (P1.GetPiece().getColour().equals("black")) {
-					System.out.println(P1.GetPlayerName()+"(BLACK)'s Turn");
-				} else {
-					System.out.println(P1.GetPlayerName()+"(WHITE)'s Turn");
-				}
                 return gameBoard;
             }
 
         }
 
-		System.out.println("Non-valid move");
+		//System.out.println("Non-valid move");
         return gameBoard;
     }
 
-    private boolean validMove(int y, int x, GamePiece[][] gameBoard, boolean playerturn) { // check valid move here (OTHELLO CORE)
+    private boolean validMove(int y, int x, GamePiece[][] gameBoard) { // check valid move here (OTHELLO CORE)
 
         if (gameBoard[y][x] == null) {
             int searchX, searchY;
@@ -272,11 +206,11 @@ public class Othello {
             }
         }
 		        if (scoreBlack == scoreWhite) {
-		            System.out.println("draw");
+		            JOptionPane.showMessageDialog(null,"draw");
 		        } else if ((scoreWhite > scoreBlack && P1.GetPiece().getColour().equals("white"))|| (scoreBlack > scoreWhite && P1.GetPiece().getColour().equals("black"))){
-		               System.out.println(P1.GetPlayerName()+" wins");
+		               JOptionPane.showMessageDialog(null,P1.GetPlayerName()+" wins");
 		        } else {
-		               System.out.println(P2.GetPlayerName()+" wins");
+		               JOptionPane.showMessageDialog(null,P2.GetPlayerName()+" wins");
 		        }
         return true;
 
