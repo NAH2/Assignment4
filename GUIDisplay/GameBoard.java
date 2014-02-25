@@ -241,14 +241,9 @@ public class GameBoard extends javax.swing.JFrame {
         return scoreWhite;
     }
 
-	private void clearOthello() {
-		if(initialP1Turn == true) {                                 
-        	P1.SetPlayerTurn(true);
-			P2.SetPlayerTurn(false);
-		} else {
-			P1.SetPlayerTurn(false);
-			P2.SetPlayerTurn(true);
-		}
+	private void clearOthello() {                                
+        P1.SetPlayerTurn(initialP1Turn);
+		P2.SetPlayerTurn(!initialP1Turn);
 		scoreWhite = initialScore;
 		scoreBlack = initialScore;
 		
