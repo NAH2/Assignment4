@@ -26,6 +26,7 @@ public class GameBoard extends javax.swing.JFrame {
     private HumanPlayer P1;
     private HumanPlayer P2;
 	Font f = new Font("Dialog", Font.PLAIN, 18);
+	private Boolean initialP1Turn;
 
     public GameBoard(String game, HumanPlayer P1, HumanPlayer P2) throws IOException {
         initComponents();
@@ -46,7 +47,8 @@ public class GameBoard extends javax.swing.JFrame {
 	        boardSizeX = othelloGame.GetBoardSizeX();
 	        gamePanel.setPreferredSize(new Dimension(800, 800)); // Hard Code 
 	        gamePanel.setLayout(new GridLayout(boardSizeY, boardSizeX));
-
+			initialP1Turn = P1.GetPlayerTurn();
+			
         squareBoard = new JPanel[boardSizeY][boardSizeX];
         gameBoard = new OthelloPiece[boardSizeY][boardSizeX];
         for (int i = 0; i < boardSizeY; i++) {    //use for loop to make a 8*8 game board 
@@ -198,16 +200,17 @@ public class GameBoard extends javax.swing.JFrame {
             }
         }
         SetScore();
-            if(P1.GetPlayerTurn()) {
-			playerTurnIcon.setIcon(P1.GetPiece().getIcon());
-		} else {
-			playerTurnIcon.setIcon(P2.GetPiece().getIcon());
-		}
 		blackPieces.setText(GetScoreBlack()+"");
 		whitePieces.setText(GetScoreWhite()+"");
        // System.out.println("Black score:" + GetScoreBlack());
        // System.out.println("White score:" + GetScoreWhite());
-        othelloGame.winningCondition();
+        if(othelloGame.winningCondition()==false){
+	        if(P1.GetPlayerTurn()) {
+				playerTurnIcon.setIcon(P1.GetPiece().getIcon());
+			} else {
+				playerTurnIcon.setIcon(P2.GetPiece().getIcon());
+			}
+		}
     }
 
     private void SetScore() {
@@ -321,9 +324,14 @@ public class GameBoard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void restartMouseReleased(java.awt.event.MouseEvent evt) {                                      
-        		P1.SetPlayerTurn(false);
-		P2.SetPlayerTurn(true);
+    private void restartMouseReleased(java.awt.event.MouseEvent evt) {    
+		if(initialP1Turn == true) {                                 
+        	P1.SetPlayerTurn(true);
+			P2.SetPlayerTurn(false);
+		} else {
+			P1.SetPlayerTurn(false);
+			P2.SetPlayerTurn(true);
+		}
 		scoreWhite = initialScore;
 		scoreBlack = initialScore;
 		
