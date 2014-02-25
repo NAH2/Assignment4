@@ -27,12 +27,14 @@ public class GameBoard extends javax.swing.JFrame {
     private HumanPlayer P2;
 	Font f = new Font("Dialog", Font.PLAIN, 18);
 	private Boolean initialP1Turn;
+	private String game;
 
     public GameBoard(String game, HumanPlayer P1, HumanPlayer P2) throws IOException {
         initComponents();
         this.P1 = P1;
         this.P2 = P2;
-
+		this.game = game;
+		
         if (game.equals("Othello")) {
             drawOthello();
         } else {
@@ -239,6 +241,33 @@ public class GameBoard extends javax.swing.JFrame {
         return scoreWhite;
     }
 
+	private void clearOthello() {
+		if(initialP1Turn == true) {                                 
+        	P1.SetPlayerTurn(true);
+			P2.SetPlayerTurn(false);
+		} else {
+			P1.SetPlayerTurn(false);
+			P2.SetPlayerTurn(true);
+		}
+		scoreWhite = initialScore;
+		scoreBlack = initialScore;
+		
+        for (int i = 0; i < boardSizeY; i++) {    //use for loop to make a 8*8 game board 
+            for (int j = 0; j < boardSizeX; j++) {
+	                if ((i == 3 && j == 3) || (i == 4 && j == 4)) {       // initial the game board, start with 2 black pieces and 2 white piece
+	                    gameBoard[i][j] = P2.GetPiece();
+	                } else if ((i == 4 && j == 3) || (i == 3 && j == 4)) {
+	                    gameBoard[i][j] = P1.GetPiece();
+					} else {
+						gameBoard[i][j] = null;
+					}	
+			}
+    	}
+		try{
+			Update(gameBoard);
+		} catch (IOException e4) {} 
+	}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -325,30 +354,11 @@ public class GameBoard extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void restartMouseReleased(java.awt.event.MouseEvent evt) {    
-		if(initialP1Turn == true) {                                 
-        	P1.SetPlayerTurn(true);
-			P2.SetPlayerTurn(false);
+       if (game.equals("Othello")) {
+			clearOthello();
 		} else {
-			P1.SetPlayerTurn(false);
-			P2.SetPlayerTurn(true);
-		}
-		scoreWhite = initialScore;
-		scoreBlack = initialScore;
-		
-        for (int i = 0; i < boardSizeY; i++) {    //use for loop to make a 8*8 game board 
-            for (int j = 0; j < boardSizeX; j++) {
-	                if ((i == 3 && j == 3) || (i == 4 && j == 4)) {       // initial the game board, start with 2 black pieces and 2 white piece
-	                    gameBoard[i][j] = P2.GetPiece();
-	                } else if ((i == 4 && j == 3) || (i == 3 && j == 4)) {
-	                    gameBoard[i][j] = P1.GetPiece();
-					} else {
-						gameBoard[i][j] = null;
-					}	
-			}
-    	}
-		try{
-			Update(gameBoard);
-		} catch (IOException e4) {}        // TODO add your handling code here:
+			System.out.println("Clear Connect4");
+		}// TODO add your handling code here:
     }                                     
 
     /**
