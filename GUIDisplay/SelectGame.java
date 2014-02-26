@@ -9,8 +9,6 @@ import java.awt.*;
 
 public class SelectGame {
 	
-	private Selection s = new Selection();
-	
 	private JFrame display;
 	private JButton othello_Button;	
 	private JButton connectFour_Button;
@@ -72,12 +70,16 @@ public class SelectGame {
 			 
 			
 			if (event.getSource()==othello_Button){
-				s.setGameType("othello");
+				
+				Selection s1 = new Selection();
+				s1.draw();
+				othelloController x = new othelloController();
 				display.dispose();
 			}
 			
 			if (event.getSource()==connectFour_Button){
-				s.setGameType("connectFour");
+				Selection s2 = new Selection();
+				s2.draw();
 				display.dispose();
 			}
 		}
