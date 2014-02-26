@@ -14,6 +14,8 @@
 
 public class HumanPlayer extends Player{
 
+	/** No argument constructor for testing purposes*/
+	private HumanPlayer(){}
    /**
     * This is the constructor for the player
     * calls to set the player name, turn and piece colour
@@ -53,6 +55,10 @@ public class HumanPlayer extends Player{
      * sets the players name in the Player class.
      */
     public void SetPlayerName(String settingPlayerName) {
+    	boolean test = true;
+        if (settingPlayerName.isEmpty() && (test == true)) {
+        	 System.err.println("*** Warning HumanPlayer::SetPlayerName() name set to empty string.");
+        }
         m_playerName = settingPlayerName;
     }
 
@@ -61,9 +67,21 @@ public class HumanPlayer extends Player{
      * An accessor method to set the players game piece colour.
      * \param gamePiece parameter comes from the constructor
      * sets the players piece colour in the Player class.
+     * Has if statement to make sure that there are only 4 possible inputs
      */
     public void SetPieceColor(String gamePiece) {
-        m_pieceColor = gamePiece;
+    	boolean test = true;
+        if (gamePiece.isEmpty() && (test == true)) {
+        	 System.err.println("*** Warning HumanPlayer::SetPlayerName() gamePiece set to empty string.");
+        }
+        if(gamePiece.equalsIgnoreCase("red")|| 
+        		gamePiece.equalsIgnoreCase("yellow")||
+        		gamePiece.equalsIgnoreCase("black")||
+        		gamePiece.equalsIgnoreCase("white")){
+        	m_pieceColor = gamePiece.toLowerCase();
+        }else{
+        	System.err.println("Invalid Entry, only red,yellow,black or White. Entered: " +gamePiece);
+        }
     }
     
     
@@ -71,11 +89,34 @@ public class HumanPlayer extends Player{
 
     
     /**
-     * For testing purposes have a main method.
+     * Testing in the main method.
      */
     public static void main(String args[]){
-    	HumanPlayer humanPlayer = new HumanPlayer("Player","yellow");
-    	System.out.println(humanPlayer.GetPlayerName());
-    	System.out.println(humanPlayer.GetPiece());
+    	 boolean test = true;
+         if (test == true) {
+            System.out.println("HumanPlayer::main() BEGIN unit test");
+         }
+    	/**Invalid Entry:*/
+    	HumanPlayer humanPlayer = new HumanPlayer();
+    	humanPlayer.SetPlayerName("");
+    	humanPlayer.SetPlayerName("Proper Name Player");
+    	/**invalid entries of piece Color*/
+    	humanPlayer.SetPieceColor("1,2");
+    	humanPlayer.SetPieceColor("yellow 1");
+    	humanPlayer.SetPieceColor("");
+    	/**Valid Entries:*/
+    	humanPlayer.SetPieceColor("yellow");
+    	/**Print statements to test setting of piece colour*/
+    	System.out.println("HumanPlayer test:: Piece: " + humanPlayer.GetPiece());
+    	humanPlayer.SetPieceColor("red");
+    	System.out.println("HumanPlayer test:: Piece: " + humanPlayer.GetPiece());
+    	humanPlayer.SetPieceColor("black");
+    	System.out.println("HumanPlayer test:: Piece: " + humanPlayer.GetPiece());
+    	humanPlayer.SetPieceColor("white");
+    	System.out.println("HumanPlayer test:: Piece: " + humanPlayer.GetPiece());
+    	System.out.println("HumanPlayer test:: PlayerName: " + humanPlayer.GetPlayerName());
+    	if (test == true) {
+            System.out.println("HumanPlayer::main() END unit test");
+         }
     }
 }
