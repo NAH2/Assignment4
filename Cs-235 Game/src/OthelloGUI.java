@@ -1,5 +1,7 @@
 
 import java.awt.Color;
+
+import javax.swing.BorderFactory;
 import javax.swing.UIManager;
 import boardGame.*;
 
@@ -15,10 +17,11 @@ public class OthelloGUI extends GUI {
         Color defCol = new Color(170,150,100);
         for (int y = 0; y < getBoard().getHeight(); ++y) {
             for (int x = 0; x < getBoard().getWidth(); ++x) {
+            	  panels[x][y].setBorder(BorderFactory.createLineBorder(Color.black));
                 if (availableMoves[x][y] == 'O') {
-                    m_panels[x][y].setBackground(Color.cyan);
+                    panels[x][y].setBackground(Color.cyan);
                 } else {
-                    m_panels[x][y].setBackground(defCol);
+                    panels[x][y].setBackground(defCol);
                 }
             }
         }
