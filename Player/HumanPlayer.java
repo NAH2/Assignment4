@@ -1,5 +1,5 @@
 /**
- * \file -Player.java 
+ * \file -HumanPlayer.java 
  * \author -Mathew Lloyd 711293 
  * \date -20th Feb 14
  * 
