@@ -3,38 +3,54 @@ package boardGame;
 import piece.*;
 
 public class Othello extends BoardGame {
-
-	final int boardHigh = 8, boardWide = 8;
+/* no need for these variables, you can call getHeight() and getWidth() to retrieve this data from the super class, 
+ * i used find and replace to change them for you
+ */
+	//final int boardWide = 8, boardHigh = 8;
 	private int counter, scoreWhite, scoreBlack;
 	private int[] flipdata;
 	private char[][] availableMov;
 
-	public Othello(int w, int h) {
-		super(w, h);
+	public Othello() {
+		super(8, 8);
+		initialGame();
 	}
 	
+	private void initialGame(){
+	  this.setPiece(3,3,"black");
+	  this.setPiece(4,4,"black");
+	  this.setPiece(4,3,"white");
+	  this.setPiece(3,4,"white");
+	}
+	
+
+	
+	/* this method gets called by the event handler, so handle the move from here, maybe call Move(x, y, col) from here? */
 	public boolean setPiece(int x, int y, String col){
-		board[y][x] = new OthelloPiece(col);
+	    /* i switched x and y here, you had board[y][x]. it should be board[x][y] every time
+	     * or the board goes on its side. i havn't switched any others, just did this one to show you
+	     */
+		board[x][y] = new OthelloPiece(col);
+		
 		return true;
 	}
 
-	public boolean Move(int y, int x, String col) { // move action
-		if (validMove(y, x, col) == true) { // check whether the move is valid
-											// or not.
+	public boolean Move(int x, int y, String col) { // move action
+		if (validMove(x, y, col) == true) { // check whether the move is valid
 			do {
 				Flip(flipdata, col); // do the flip action here
-			} while (validMove(y, x, col)); // while it is valid move
-			board[y][x] = new OthelloPiece(col); // add the piece into gameBoard
+			} while (validMove(x, y, col)); // while it is valid move
+			board[x][y] = new OthelloPiece(col); // add the piece into gameBoard
 			return true;
 		} else
 			return false;
 	}
 
-	private boolean validMove(int y, int x, String col) { // check valid move
+	private boolean validMove(int x, int y, String col) { // check valid move
 															// here (OTHELLO
 															// CORE)
 
-		if (board[y][x] == null) {
+		if (board[x][y] == null) {
 			int searchX, searchY;
 			GamePiece searchValue;
 
@@ -46,15 +62,15 @@ public class Othello extends BoardGame {
 					boolean found = false;
 					searchY = y + i;
 					searchX = x + j;
-					if ((searchX >= boardWide || searchX < 0)
-							|| (searchY >= boardHigh || searchY < 0)) {
-						// System.out.println("Over bound! Y:" + searchY +
-						// " X: " + searchX + " i:" + i + " j: " + j);
+					if ((searchX >= getWidth() || searchX < 0)
+							|| (searchY >= getHeight() || searchY < 0)) {
+						 System.out.println("Over bound! Y:" + searchY +
+						" X: " + searchX + " i:" + i + " j: " + j);
 						// Debug message
 						continue;
 
 					} else {
-						searchValue = board[searchY][searchX];
+						searchValue = board[searchX][searchY];
 					}
 					// skip the search if i and j is 0.
 					// skip the search if one of the direction is empty
@@ -67,24 +83,33 @@ public class Othello extends BoardGame {
 					counter = 1;
 					// Searching along the direction
 					while (!found) {
-						// System.out.println("Looping..");
+						 System.out.println("Looping..");
 						// Debug message
 						searchX += j;
 						searchY += i;
 
 						// prevent out of bound, if over 8, exit the while loop
 						// and stop searching this direction
-						if ((searchX >= boardWide || searchX < 0)
-								|| (searchY >= boardHigh || searchY < 0)) {
+						if ((searchX >= getWidth() || searchX < 0)
+								|| (searchY >= getHeight() || searchY < 0)) {
 							found = true;
 						} else {
-							searchValue = board[searchY][searchX];
+							searchValue = board[searchX][searchY];
+							// System.out.println(searchValue.getColour());
 						}
-						// System.out.println(playerColor.getColour());
+				
+						
 						// if find the same color is along to direction
-						if (searchValue.getColour() == col) {
+						 if (searchValue == null) {
 							found = true;
-							flipdata = new int[] { searchY, searchX, i, j,
+							// System.out.println("empty : true, Y:" + searchY +
+							// ", X:" + searchX);
+							// Debug message
+						}
+						 else if (searchValue.getColour() == col) {
+							
+							found = true;
+							flipdata = new int[] { searchX, searchY, j, i,
 									counter }; // store the piece and ready to
 												// flip
 							// this.playerColor = playerColor;
@@ -96,12 +121,7 @@ public class Othello extends BoardGame {
 							return true;
 						} // If end of the direction is empty , then stop search
 							// this direction.
-						else if (searchValue.getColour() == null) {
-							found = true;
-							// System.out.println("empty : true, Y:" + searchY +
-							// ", X:" + searchX);
-							// Debug message
-						}
+					
 						counter++;
 					}
 				}
@@ -126,13 +146,13 @@ public class Othello extends BoardGame {
 	public char[][] AvailableMove(String col) { // check available move and
 												// return the char array.
 		// 'O' means available move.
-		availableMov = new char[boardHigh][boardWide];
-		for (int i = 0; i < boardHigh; i++) {
-			for (int j = 0; j < boardWide; j++) {
+		availableMov = new char[getHeight()][getWidth()];
+		for (int i = 0; i < getHeight(); i++) {
+			for (int j = 0; j < getWidth(); j++) {
 				if (validMove(i, j, col)) {
-					availableMov[i][j] = 'O'; // Location of Available Move
+					availableMov[j][i] = 'O'; // Location of Available Move
 				} else {
-					availableMov[i][j] = 'X';
+					availableMov[j][i] = 'X';
 				}
 			}
 		}
@@ -144,9 +164,9 @@ public class Othello extends BoardGame {
 										// available move , pass the turn to
 										// opponent.
 		boolean passTurn = true;
-		for (int i = 0; i < boardHigh; i++) {
-			for (int j = 0; j < boardWide; j++) {
-				if (availableMov[i][j] == 'O') { // Check the AvailableMov in
+		for (int i = 0; i < getHeight(); i++) {
+			for (int j = 0; j < getWidth(); j++) {
+				if (availableMov[j][i] == 'O') { // Check the AvailableMov in
 													// array
 					passTurn = false; // if there is AvailableMov , then no need
 										// to pass the turn to opponent
@@ -157,8 +177,8 @@ public class Othello extends BoardGame {
 	}
 
 	// public boolean winningCondition() {
-	// for (int x = 0; x < boardWide; x++) {
-	// for (int y = 0; y < boardHigh; y++) {
+	// for (int x = 0; x < getWidth(); x++) {
+	// for (int y = 0; y < getHeight(); y++) {
 	// if (availableMov[y][x] == 'O') {
 	// return false;
 	// }
