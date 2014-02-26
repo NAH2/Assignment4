@@ -1,3 +1,4 @@
+package Player;
 /**
  * \file -Player.java 
  * \author -Mathew Lloyd 711293 
@@ -11,7 +12,6 @@
  * This abstract class is the parent object for the different types of players,
  * it contains accessor methods for player data and abstract method declarations
  */
-package Player;
 
 public abstract class Player {
 
