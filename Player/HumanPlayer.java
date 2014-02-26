@@ -23,9 +23,8 @@ public class HumanPlayer extends Player{
     * \param gamePiece sets the players piece colour
     * 
     */
-    public HumanPlayer(String playName, boolean playerTurn, String gamePiece) {
+    public HumanPlayer(String playName, String gamePiece) {
         SetPlayerName(playName);
-        SetPlayerTurn(playerTurn);
         SetPieceColor(gamePiece);
     }
 
@@ -47,19 +46,6 @@ public class HumanPlayer extends Player{
     public String GetPiece() {
         return m_pieceColor;
     }
-    
-    /** 
-     * An accessor method to retrieve whether it's the
-     *  players turn or not
-     *  \return m_playerTurn (true = players turn, false = not players turn)
-     * retrieves from Player class
-     */
-    public boolean GetPlayerTurn() {
-    	return m_playerTurn;
-    }
-    
-    
-    
 
     /**
      * An accessor method to set the players name.
@@ -70,14 +56,6 @@ public class HumanPlayer extends Player{
         m_playerName = settingPlayerName;
     }
 
-    /**
-     * An accessor method to set the players turn.
-     * \param settingPlayerTurn parameter sets the whether it's
-     * the players turn in the Player class.
-     */
-    public void SetPlayerTurn(boolean settingPlayerTurn) {
-        m_playerTurn = settingPlayerTurn;
-    }
 
     /**
      * An accessor method to set the players game piece colour.
@@ -96,10 +74,8 @@ public class HumanPlayer extends Player{
      * For testing purposes have a main method.
      */
     public static void main(String args[]){
-    	HumanPlayer humanPlayer = new HumanPlayer("Player", true,"yellow");
+    	HumanPlayer humanPlayer = new HumanPlayer("Player","yellow");
     	System.out.println(humanPlayer.GetPlayerName());
     	System.out.println(humanPlayer.GetPiece());
-    	System.out.println(humanPlayer.GetPlayerTurn());
-    	
     }
 }
