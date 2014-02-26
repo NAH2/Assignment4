@@ -83,6 +83,7 @@ public class GUI extends JFrame {
                 
                 if (p != null) {
                     m_labels[x][y].setIcon(p.getIcon());
+                    m_panels[x][y].removeAll();
                 }
                 m_panels[x][y].add(m_labels[x][y]);
             }
