@@ -27,7 +27,7 @@ public class Selection implements ActionListener {
 	 * @param chosenGame a String for the chosen game.
 	 */
 	public Selection(String chosenGame) {
-		this.m_chosenGame = chosenGame;
+		setGameType(chosenGame);
 		draw();
 	}
 
@@ -152,7 +152,7 @@ public class Selection implements ActionListener {
 		if (e.getSource() == btn_play) {
 
 			/**this if statement checks if the chosenGame is Othello*/
-			if (m_chosenGame.equalsIgnoreCase(opponentOthello)) {
+			if (m_currentGameType.equalsIgnoreCase(opponentOthello)) {
 				/**then the first human player is set to the piece colour black*/
 				HumanPlayer HuPlay = new HumanPlayer(m_p1Text, m_black);
 
@@ -178,7 +178,7 @@ public class Selection implements ActionListener {
 			}
 
 			/**this else if statement checks whether the chosen game is Connect Four*/
-			else if (m_chosenGame.equalsIgnoreCase(opponentConnectFour)) {
+			else if (m_currentGameType.equalsIgnoreCase(opponentConnectFour)) {
 				/**then the first human player is set to the piece colour red*/
 				HumanPlayer HuPlay = new HumanPlayer(m_p1Text, m_red);
 
@@ -208,25 +208,51 @@ public class Selection implements ActionListener {
 		Selection selectClass = new Selection(opponentOthello); // TEST CASE
 		selectClass.draw();
 	}
-
-	private String m_currentGameType;
-	private String m_chosenGame;
+	
+	/**The JFrame name for displaying.*/
+    private JFrame displaySelection;
+	/**value for the display frame width*/
 	private final int FRAME_WIDTH = 300;
+	/**value for the display frame Height*/
 	private final int FRAME_HEIGHT = 125;
-	private final int FIELD_SIZE = 10;
-	private JFrame displaySelection;
+	
+	/**The Panels to keep all elements on in the JFrame*/
 	private JPanel btnPanel,selectPanel, comboPanel;
-	private String[] opponentList = { "Human", "AI" };
-	private String m_opponentType = "Human";
-	private String m_p1Text = "playerOne";
-	private String m_p2Text = "playerTwo";
-	private static String opponentOthello = "Othello";
-	private static String opponentConnectFour = "ConnectFour";
-	private String m_black = "black";
-	private String m_white = "white";
-	private String m_yellow = "yellow";
-	private String m_red = "red";
-	private JButton btn_cancel, btn_play;
-	private JTextField playerOne, playerTwo;
+	
+	/**The JComboBox */
 	private JComboBox selectOpponent;
+	/**The list of values for the JComboBox*/
+	private String[] opponentList = { "Human", "AI" };
+	/**Initialising the opponent type in case the player doesn's select an option from the JComboBox */
+	private String m_opponentType = "Human";
+	
+	
+	/**The String of the black piece stored*/
+	private String m_black = "black";
+	/**The String of the white piece stored*/
+	private String m_white = "white";
+	/**The String of the yellow piece stored*/
+	private String m_yellow = "yellow";
+	/**The String of the red piece stored*/
+	private String m_red = "red";
+	
+	/**The JButtons used in the display*/
+	private JButton btn_cancel, btn_play;
+	/**The JTextFields used in the display */
+	private JTextField playerOne, playerTwo;
+	
+	
+	/**Number of character spaces in JTextField*/
+	private final int FIELD_SIZE = 10;
+	/**Initialising text to pass as parameter if user doesn't change the value in JTextField*/
+	private String m_p1Text = "playerOne";
+	/**Initialising text to pass as parameter if user doesn't change the value in JTextField*/
+	private String m_p2Text = "playerTwo";
+	
+	/**Stores the game type that is passed through from SelectGame.java*/
+	private String m_currentGameType;
+	/**The Othello String used throughout the class*/
+	private static String opponentOthello = "Othello";
+	/**The Connect Four String used throughout the class*/
+	private static String opponentConnectFour = "ConnectFour";
 }

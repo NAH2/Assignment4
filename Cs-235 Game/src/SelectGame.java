@@ -30,9 +30,9 @@ public class SelectGame {
 	private JButton connectFour_Button;
 	/**
 	* content is a JPanel to hold buttons and labels. content will use GridBagLayout.
-	* look at http://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
-	* http://docs.oracle.com/javase/7/docs/api/java/awt/GridBagLayout.html
-	* http://www.macs.hw.ac.uk/guidebook/?name=Layouts&page=7
+	* \see http://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
+	* \see http://docs.oracle.com/javase/7/docs/api/java/awt/GridBagLayout.html
+	* \see http://www.macs.hw.ac.uk/guidebook/?name=Layouts&page=7
 	* for more information on GridBagLayout.
 	*/
 	private JPanel content;
@@ -46,7 +46,8 @@ public class SelectGame {
 	private final int FONT_SIZE = 15;
 	/**
 	* fontSettings is a Font object to store the font settings, 
-	* look at http://docs.oracle.com/javase/7/docs/api/java/awt/Font.html for more informatin on Font objects
+	* \see http://docs.oracle.com/javase/7/docs/api/java/awt/Font.html 
+	* for more informatin on Font objects
 	*/
 	private Font fontSettings = new Font ("Dialog", Font.PLAIN, FONT_SIZE);
 
@@ -55,11 +56,11 @@ public class SelectGame {
 	*/
 	private final int LBL_MES_WIDTH=2;
 	/**
-	* LBL_MES_X sets postion x of message_Label. Using GridBagLayout
+	* LBL_MES_X sets position x of message_Label. Using GridBagLayout
 	*/
 	private final int LBL_MES_X=0;
 	/**
-	* LBL_MES_X sets postion y of message_Label. Using GridBagLayout
+	* LBL_MES_X sets position y of message_Label. Using GridBagLayout
 	*/
 	private final int LBL_MES_Y=0;
 	
@@ -68,19 +69,19 @@ public class SelectGame {
 	*/
 	private final int BTN_WIDTH = 1;
 	/**
-	* BTN_OTHELLO_X sets postion x of othello_Button. Using GridBagLayout
+	* BTN_OTHELLO_X sets position x of othello_Button. Using GridBagLayout
 	*/
 	private final int BTN_OTHELLO_X = 0;
 	/**
-	* BTN_OTHELLO_Y sets postion y of othello_Button. Using GridBagLayout
+	* BTN_OTHELLO_Y sets position y of othello_Button. Using GridBagLayout
 	*/
 	private final int BTN_OTHELLO_Y = 1;
 	/**
-	* BTN_CONNECT4_X sets postion x of connectFour_Button. Using GridBagLayout
+	* BTN_CONNECT4_X sets position x of connectFour_Button. Using GridBagLayout
 	*/
 	private final int BTN_CONNECT4_X = 1;
 	/**
-	* BTN_CONNECT4_Y sets postion y of connectFour_Button. Using GridBagLayout
+	* BTN_CONNECT4_Y sets position y of connectFour_Button. Using GridBagLayout
 	*/
 	private final int BTN_CONNECT4_Y = 1;
 	
@@ -134,7 +135,7 @@ public class SelectGame {
 	}
 	
 	/**
-    * A private class to hold the event listener. The class implments ActionListener
+    * A private class to hold the event listener. The class implements ActionListener
  	*/
 	private class guiEventHandler implements ActionListener {
 		
@@ -145,15 +146,13 @@ public class SelectGame {
 			 			
 			if (event.getSource()==othello_Button){
 
-				Selection s1 = new Selection("othello");
-				s1.draw();				
+				Selection s1 = new Selection("othello");			
 				display.dispose();
 			}
 			
 			if (event.getSource()==connectFour_Button){
 	
 				Selection s2 = new Selection("connectFour");
-				s2.draw();
 				display.dispose();
 			}
 		}
