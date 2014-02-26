@@ -1,3 +1,17 @@
+/**
+ * \file -ConnectFour.java 
+ * \author -
+ * \date -21th Feb 14
+ * 
+ * \see BoardGame.java
+ * 
+ * \brief ConnectFour is used to store the game rules and control the game board . 
+ * extends BoardGame.java
+ * 
+ * This class extends from the BoardGame class. It will check the whether a column is full when 
+ * the player place the pieces.
+ */
+ 
 package boardGame;
 
 import piece.*;
@@ -10,15 +24,35 @@ public class ConnectFour extends BoardGame {
 	int w = 10;
 	int h = 7;
 
+        /**
+        * This is the constructor for the Othello
+        * It passes the height and the width to the BoardGame class for constructing the game board.
+        *  
+        */
+        
 	public ConnectFour() {
 		super(10, 7);
 	}
 
+        /**
+        * Place the ConnectFour piece on the game board 
+        * \param x   the x axis in the game board.
+        * \param y   the y axis in the game board.
+        * \param col the color of the game piece.
+        * \return boolean  return true if the action complete.
+        */
 	public boolean setPiece(int x, int y, String col) {
 		board[x][y] = new ConnectFourPiece(col);
 		return true;
 	}
 
+	/**
+        *  If the move is valid, place the piece on the game board and check the winning condition.
+        * \param x   the x axis in the game board.
+        * \param y   the y axis in the game board.
+        * \param col the color of the game piece.
+        * \return boolean return true if the move is valid and the piece has been placed on the game board.
+        */
 	public boolean move(int x, int y, String col) {
 		int index = 0;
 		if (board[x][0] == null) {
