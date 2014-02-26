@@ -144,7 +144,7 @@ public class ConnectFour extends BoardGame {
     }
 
     /**
-     *  Set the winning color for access from other class.
+     *  Set the winning color for access from superclass.
      *  \return boolean return true if one of the players wins the game, false if the game is on.
      */ 
     @Override
