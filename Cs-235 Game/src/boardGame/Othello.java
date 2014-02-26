@@ -3,10 +3,12 @@ package boardGame;
 import piece.*;
 
 public class Othello extends BoardGame {
-/* no need for these variables, you can call getHeight() and getWidth() to retrieve this data from the super class, 
- * i used find and replace to change them for you
- */
-	//final int boardWide = 8, boardHigh = 8;
+	/*
+	 * no need for these variables, you can call getHeight() and getWidth() to
+	 * retrieve this data from the super class, i used find and replace to
+	 * change them for you
+	 */
+	// final int boardWide = 8, boardHigh = 8;
 	private int counter, scoreWhite, scoreBlack;
 	private int[] flipdata;
 	private char[][] availableMov;
@@ -15,32 +17,61 @@ public class Othello extends BoardGame {
 		super(8, 8);
 		initialGame();
 	}
-	
-	private void initialGame(){
-	  this.setPiece(3,3,"black");
-	  this.setPiece(4,4,"black");
-	  this.setPiece(4,3,"white");
-	  this.setPiece(3,4,"white");
-	}
-	
 
-	
-	/* this method gets called by the event handler, so handle the move from here, maybe call Move(x, y, col) from here? */
-	public boolean setPiece(int x, int y, String col){
-	    /* i switched x and y here, you had board[y][x]. it should be board[x][y] every time
-	     * or the board goes on its side. i havn't switched any others, just did this one to show you
-	     */
+	private void initialGame() {
+		this.setPiece(3, 3, "black");
+		this.setPiece(4, 4, "black");
+		this.setPiece(4, 3, "white");
+		this.setPiece(3, 4, "white");
+	}
+
+	private void countScore() {
+		scoreBlack = 0;
+		scoreWhite = 0;
+		for (int i = 0; i < getHeight(); i++) {
+			for (int j = 0; j < getWidth(); j++) {
+				if (board[j][i] != null) {
+				
+					if (board[j][i].getColour() == "black") {
+						scoreBlack++;
+					} else if (board[j][i].getColour() == "white")
+						scoreWhite++;
+				}
+			}
+		}
+		System.out.println("Black Score:" + scoreBlack + " White Score:"
+				+ scoreWhite);
+	}
+   public int GetBlackScore(){
+       return scoreBlack;
+   }
+   
+   public int GetWhiteScore(){
+       return scoreWhite;
+   }
+	/*
+	 * this method gets called by the event handler, so handle the move from
+	 * here, maybe call Move(x, y, col) from here?
+	 */
+	public boolean setPiece(int x, int y, String col) {
+		/*
+		 * i switched x and y here, you had board[y][x]. it should be
+		 * board[x][y] every time or the board goes on its side. i havn't
+		 * switched any others, just did this one to show you
+		 */
 		board[x][y] = new OthelloPiece(col);
+
 		return true;
 	}
-	
-	public boolean move(int x, int y, String col) { // move action
+
+	public boolean Move(int x, int y, String col) { // move action
 		if (validMove(x, y, col) == true) { // check whether the move is valid
 			do {
 				Flip(flipdata, col); // do the flip action here
 			} while (validMove(x, y, col)); // while it is valid move
-			//board[x][y] = new OthelloPiece(col); // add the piece into gameBoard
-			setPiece(x,y,col);
+			board[x][y] = new OthelloPiece(col); // add the piece into gameBoard
+			countScore();
+			winningCondition();
 			return true;
 		} else
 			return false;
@@ -64,8 +95,8 @@ public class Othello extends BoardGame {
 					searchX = x + j;
 					if ((searchX >= getWidth() || searchX < 0)
 							|| (searchY >= getHeight() || searchY < 0)) {
-						 System.out.println("Over bound! Y:" + searchY +
-						" X: " + searchX + " i:" + i + " j: " + j);
+						System.out.println("Over bound! Y:" + searchY + " X: "
+								+ searchX + " i:" + i + " j: " + j);
 						// Debug message
 						continue;
 
@@ -83,7 +114,7 @@ public class Othello extends BoardGame {
 					counter = 1;
 					// Searching along the direction
 					while (!found) {
-						 System.out.println("Looping..");
+						System.out.println("Looping..");
 						// Debug message
 						searchX += j;
 						searchY += i;
@@ -97,17 +128,15 @@ public class Othello extends BoardGame {
 							searchValue = board[searchX][searchY];
 							// System.out.println(searchValue.getColour());
 						}
-				
-						
+
 						// if find the same color is along to direction
-						 if (searchValue == null) {
+						if (searchValue == null) {
 							found = true;
 							// System.out.println("empty : true, Y:" + searchY +
 							// ", X:" + searchX);
 							// Debug message
-						}
-						 else if (searchValue.getColour() == col) {
-							
+						} else if (searchValue.getColour() == col) {
+
 							found = true;
 							flipdata = new int[] { searchX, searchY, j, i,
 									counter }; // store the piece and ready to
@@ -121,7 +150,7 @@ public class Othello extends BoardGame {
 							return true;
 						} // If end of the direction is empty , then stop search
 							// this direction.
-					
+
 						counter++;
 					}
 				}
@@ -139,17 +168,17 @@ public class Othello extends BoardGame {
 		for (int a = 0; a < flipdata[4]; a++) {
 			flipdata[1] -= flipdata[3];
 			flipdata[0] -= flipdata[2];
-			board[flipdata[0]][flipdata[1]].setColour(col); //= new OthelloPiece(col);
+			board[flipdata[0]][flipdata[1]] = new OthelloPiece(col);
 		}
 	}
 
-	public char[][] availableMove(String col) { // check available move and
+	public char[][] AvailableMove(String col) { // check available move and
 												// return the char array.
 		// 'O' means available move.
 		availableMov = new char[getHeight()][getWidth()];
 		for (int i = 0; i < getHeight(); i++) {
 			for (int j = 0; j < getWidth(); j++) {
-				if (validMove(j, i, col)) {
+				if (validMove(i, j, col)) {
 					availableMov[j][i] = 'O'; // Location of Available Move
 				} else {
 					availableMov[j][i] = 'X';
@@ -176,25 +205,24 @@ public class Othello extends BoardGame {
 		return passTurn;
 	}
 
-	// public boolean winningCondition() {
-	// for (int x = 0; x < getWidth(); x++) {
-	// for (int y = 0; y < getHeight(); y++) {
-	// if (availableMov[y][x] == 'O') {
-	// return false;
-	// }
-	// }
-	// }
-	// if (scoreBlack == scoreWhite) {
-	// JOptionPane.showMessageDialog(null,"draw");
-	// } else if ((scoreWhite > scoreBlack &&
-	// P1.GetPiece().getColour().equals("white"))|| (scoreBlack > scoreWhite &&
-	// P1.GetPiece().getColour().equals("black"))){
-	// JOptionPane.showMessageDialog(null,P1.GetPlayerName()+" wins");
-	// } else {
-	// JOptionPane.showMessageDialog(null,P2.GetPlayerName()+" wins");
-	// }
-	// return true;
-	//
-	// }
+	public boolean winningCondition() {
+		for (int x = 0; x < getWidth(); x++) {
+			for (int y = 0; y < getHeight(); y++) {
+				if (board[x][y] == null && scoreBlack !=0 && scoreWhite !=0 ) {
+					return false;
+				}
+			}
+		}
+		if (scoreBlack == scoreWhite) {
+			// JOptionPane.showMessageDialog(null, "draw");
+			System.out.println("draw");
+		} else if (scoreWhite > scoreBlack)
+			System.out.println("White win");
+		else {
+			System.out.println("Black win");
+		}
+		return true;
+
+	}
 
 }
