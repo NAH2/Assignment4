@@ -63,7 +63,7 @@ public class ConnectFour extends BoardGame {
 				}
 			}
 			setPiece(x, index, col);
-			checkWin(x, index, col);
+			checkWin(col);
 
 			return true;
 		} else {
@@ -80,11 +80,10 @@ public class ConnectFour extends BoardGame {
      * \param col the color of the game piece.
      * \return boolean return true if there is a sequence of four pieces of the same color, false while the game is on.
      */
-	private boolean checkWin(int x, int index, String col) { 
-
+	private boolean checkWin(String col) { 
 		GamePiece searchPiece;
-		
-
+		for(int x=0;x<=getWidth();x++){
+			for(int index=0;index<=getHeight();index++){		
 		// Search each direction (total : 8 direction)
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
@@ -92,7 +91,7 @@ public class ConnectFour extends BoardGame {
 				// boolean found = false;
 				searchY = index + i;
 				searchX = x + j;
-				counter = 1;
+				counter = 0;
 				while (found) {
 
 					if ((searchX >= getWidth() || searchX < 0)
@@ -126,8 +125,9 @@ public class ConnectFour extends BoardGame {
 				
 			}
 		}
-		return false;
-
+			}
+		}
+return false;
 	}
 
     /**
