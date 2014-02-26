@@ -18,9 +18,8 @@ import piece.*;
 
 public class Othello extends BoardGame {
     
-    private int counter, scoreWhite, scoreBlack;
-    private int[] flipdata;
-    private char[][] availableMov;
+	private int counter, scoreWhite, scoreBlack, searchX, searchY, i_diff ,j_diff;
+	private char[][] availableMov;
 
       /**
         * This is the constructor for the Othello
@@ -108,7 +107,7 @@ public class Othello extends BoardGame {
     public boolean move(int x, int y, String col) { // move action
         if (validMove(x, y, col) == true) { // check whether the move is valid
             do {
-                Flip(flipdata, col); // do the flip action here
+                Flip(col); // do the flip action here
             } while (validMove(x, y, col)); // while it is valid move
             setPiece(x,y,col);  // add the piece into gameBoard
             countScore();
@@ -131,7 +130,6 @@ public class Othello extends BoardGame {
                                                             // CORE)
 
         if (board[x][y] == null) {
-            int searchX, searchY;
             GamePiece searchPiece;
 
             counter = 1;
@@ -188,10 +186,9 @@ public class Othello extends BoardGame {
                         } else if (searchPiece.getColour() == col) {
 
                             found = true;
-                            flipdata = new int[] { searchX, searchY, j, i,
-                                    counter }; // store the piece and ready to
+							j_diff = j;
+							i_diff = i;
                                                 // flip
-                            // this.playerColor = playerColor;
 
                             // System.out.println("found : true, Y:" + searchY +
                             // ", X:" + searchX + ", newp value:" +
@@ -219,13 +216,13 @@ public class Othello extends BoardGame {
      * \param col the color of the game piece.
      */
 
-    private void Flip(int[] flipdata, String col) {
-        for (int a = 0; a < flipdata[4]; a++) {
-            flipdata[1] -= flipdata[3];
-            flipdata[0] -= flipdata[2];
-            board[flipdata[0]][flipdata[1]] = new OthelloPiece(col);
-        }
-    }
+	private void Flip(String col) {
+		for (int a = 0; a < counter; a++) {
+			searchY -= i_diff;
+			searchX -= j_diff;
+			board[searchX][searchY].setColour(col);
+		}
+	}
 
      /**
       *  check the game board where is the available move, then store all the available move in char array.
