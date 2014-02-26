@@ -1,5 +1,5 @@
 /**
- * \file -Player.java 
+ * \file -SelectGame.java 
  * \author -Tyrone Bramwell 710981 
  * \date -20th Feb 14
  * \brief SelectGame, used to select the game which the player wants to play. Part of the GUI package
@@ -141,20 +141,16 @@ public class SelectGame {
 		* Method  to perform events.
 		*/
 		public void actionPerformed(ActionEvent event) {
-			 
-			
+			 			
 			if (event.getSource()==othello_Button){
-				
-			
+
 				Selection s1 = new Selection("othello");
-				s1.draw();
-				
+				s1.draw();				
 				display.dispose();
 			}
 			
 			if (event.getSource()==connectFour_Button){
-				
-			
+	
 				Selection s2 = new Selection("connectFour");
 				s2.draw();
 				display.dispose();
