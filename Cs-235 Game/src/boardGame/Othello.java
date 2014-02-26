@@ -6,10 +6,10 @@
  * \see BoardGame.java
  * 
  * \brief Othello is used to store the game rules and control the game board . 
- * extends GameBoard.java
+ * extends BoardGame.java
  * 
- * This class extends from the GameBoard class. It will check the valid move when 
- * player place the places and return the feedback.
+ * This class extends from the BoardGame class. It will check the valid move when the
+ * player place the pieces and return the feedback.
  */
 
 package boardGame;
@@ -22,8 +22,8 @@ public class Othello extends BoardGame {
 	private char[][] availableMov;
 
       /**
-        * This is the constructor for the Othello
-        * It pass the high and wide to GameBoard class, in order to draw the game board.
+        * This is the constructor for the Othello.
+        * It passes the height and the width to BoardGame class for constructing the game board.
         *  
         */
     public Othello() {
@@ -32,7 +32,7 @@ public class Othello extends BoardGame {
     }
 
       /**
-        * Initial the game. It should be four pieces in the central.        
+        * Initialize the game. Four pieces are centered.        
         */
     private void initialGame() {
         this.setPiece(3, 3, "black");
@@ -63,7 +63,7 @@ public class Othello extends BoardGame {
     }
 
       /**
-        * Public method,It  pass the score to GUI class.
+        * Public method,It passes the score to GUI class.
         * \return scoreBlack the black player score.
         */
     
@@ -73,7 +73,7 @@ public class Othello extends BoardGame {
 
 
       /**
-        * Public method,It  pass the score to GUI class.
+        * Public method,It passes the score to GUI class.
         * \return scoreWhite the white player score
         */
     
@@ -83,11 +83,11 @@ public class Othello extends BoardGame {
 
 
        /**
-        * Place the Othello piece in the game board 
+        * Place the Othello piece on the game board 
         * \param x   the x axis in the game board.
         * \param y   the y axis in the game board.
-        * \param col the color of the game piece
-        * \return boolean  return true if the action complete.
+        * \param col the color of the game piece.
+        * \return boolean  return true if the action completes.
         */
     public boolean setPiece(int x, int y, String col) {
     
@@ -97,11 +97,11 @@ public class Othello extends BoardGame {
     }
     
       /**
-        *  If the move is valid, place the piece into the game board and check the winning condition.
+        *  If the move is valid, place the piece on the game board and check the winning condition.
         * \param x   the x axis in the game board.
         * \param y   the y axis in the game board.
-        * \param col the color of the game piece
-        * \return boolean return true if the move is valid move and place the piece in the gameBoard.
+        * \param col the color of the game piece.
+        * \return boolean return true if the move is valid and the piece has been placed on the game board.
         */
 
     public boolean move(int x, int y, String col) { // move action
@@ -118,11 +118,11 @@ public class Othello extends BoardGame {
     }
 
      /**
-      *  Check the move whether is valid or not , It will search 8 direction of the new piece.
+      *  Check whether the move is valid or not , It will search through 8 directions of the new piece.
       * \param x   the x axis in the game board.
       * \param y   the y axis in the game board.
-      * \param col the color of the game piece
-      * \return boolean return true if the move is valid move.
+      * \param col the color of the game piece.
+      * \return boolean return true if the move is valid.
       */
     
     private boolean validMove(int x, int y, String col) { // check valid move
@@ -211,7 +211,7 @@ public class Othello extends BoardGame {
     }
     
      /**
-      *  Flip the piece if this is valid move 
+      *  Flip the piece if it is a valid move 
      * \param col the color of the game piece.
      */
 
@@ -224,9 +224,9 @@ public class Othello extends BoardGame {
 	}
 
      /**
-      *  check the game board where is the available move, then store all the available move in char array.
+      *  Calculate all the available positions on the game board, then store them in a char array.
       *  \param col the color of the game piece.
-      *  \return availableMov return the char array that store all the available move.
+      *  \return availableMov return the char array that store all the available moves.
       */
     
     public char[][] availableMove(String col) { // check available move and
@@ -248,8 +248,8 @@ public class Othello extends BoardGame {
 
     
     /**
-     *  check the player if he has no any available move , pass the turn to opponent.
-     *  \return boolean return the char array that store all the available move.
+     *  check if the player do not have any available move , pass the turn to opponent.
+     *  \return boolean return the char array that store all the available moves.
      */ 
     public boolean checkPassTurn() {
         boolean passTurn = true;
@@ -267,7 +267,7 @@ public class Othello extends BoardGame {
 
 
     /**
-     *  checking the winning condition, if the board has empty space or more than one black/white pieces on the board , the game keep go on.
+     *  checking the winning condition, if the board has empty space or more than one black/white pieces on the board , the game keeps go on.
      *  \return boolean return true if the player win the game.
      */ 
     
