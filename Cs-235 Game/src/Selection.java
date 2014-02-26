@@ -13,11 +13,14 @@
  */
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import Player.HumanPlayer;
 
 import java.awt.event.*;
 import java.awt.*;
+import java.util.EventObject;
 
 public class Selection implements ActionListener {
 
@@ -122,7 +125,6 @@ public class Selection implements ActionListener {
 		displaySelection.setLocationRelativeTo(null);
 	}
 
-	@Override
 	/** Sets up the action listeners for the objects needed for Listeners */
 	public void actionPerformed(ActionEvent e) {
 	     if (e.getSource() == btn_cancel) {
@@ -136,21 +138,12 @@ public class Selection implements ActionListener {
 			m_opponentType = (String) selectOpponent.getSelectedItem();
 		}
 
-		/**This if statement implements a action listener for the first JTextField for player one*/
-		if (e.getSource() == playerOne) {
-			/**setting the Player one name to what is typed into the text field*/
-			setPlayerNameOne(playerOne.getText());
-		}
-
-		/**This if statement implements a action listener for the second JTextField for player two*/
-		if (e.getSource() == playerTwo) {
-			/**setting the Player two name to what is typed into the text field*/
-			setPlayerNameTwo(playerTwo.getText());
-		}
-
 		/**The if statement implements a action listener for the JButton btn_play*/
 		if (e.getSource() == btn_play) {
-
+			/**setting the Player one name to what is typed into the text field*/
+			setPlayerNameOne(playerOne.getText());
+			/**setting the Player two name to what is typed into the text field*/
+			setPlayerNameTwo(playerTwo.getText());
 			/**this if statement checks if the chosenGame is Othello*/
 			if (m_currentGameType.equalsIgnoreCase(opponentOthello)) {
 				/**then the first human player is set to the piece colour black*/
@@ -171,9 +164,7 @@ public class Selection implements ActionListener {
 
 				else {
 					/**displaySelections a error message dialog box, explaining that AI can't be played in current version*/
-					JOptionPane.showMessageDialog(null,
-							"AI not available in this version.", "Error",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,"AI not available in this version.", "Error",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 
@@ -193,21 +184,15 @@ public class Selection implements ActionListener {
 					System.out.println("create c4");
 				} else {
 					/**displaySelections a error message dialog box, explaining that AI can't be played in current version*/
-					JOptionPane.showMessageDialog(null,
-						"AI not available in this version.", "Error",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,	"AI not available in this version.", "Error",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
 	}
-
-	/**
-	 * Will be used for testing
-	 */
-	public static void main(String args[]) {
-	
-		Selection selectClass = new Selection(opponentOthello); // TEST CASE
-		selectClass.draw();
+	public static void main(String args[]){
+		Selection select = new Selection(opponentOthello);
 	}
+
 	
 	/**The JFrame name for displaying.*/
     private JFrame displaySelection;
