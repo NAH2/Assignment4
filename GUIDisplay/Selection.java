@@ -1,39 +1,51 @@
-import javax.swing.*;
+/**
+ * \@file -Selection.java
+ * \@author -Thomas Letheby 659204 
+ * \@date -25th Feb 14
+ * 
+ * \see SelectGame.java
+ * \see something
+ * 
+ * \brief Selection class, used to allow the user to select opponent names, opponent types 
+ * 
+ * The class is a user interface to select name and opponent type
+ */
 
+
+import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
 public class Selection implements ActionListener {
 
     private String currentGameType;
-    private String currentPlayerName;
-    private Boolean currentPlayerTurn;
     private String chosenGame;
+    private Boolean currentPlayerTurn;
     private int FRAME_WIDTH = 250;
     private int FRAME_HEIGHT = 250;
     private JFrame display;
     private JPanel btnPanel;
     private JPanel selectPanel;
     private String[] opponentList = {"Human", "AI"};
-    private String opponentType = "human";
+    private String opponentType = "Human";
     private String p1Text = "playerOne";
     private String p2Text = "playerTwo";
+    private static String opponentOthello = "Othello";
+    private static String opponentConnectFour = "ConnectFour";
     private JButton btn_cancel, btn_play;
     private JTextField playerOne, playerTwo;
     private JComboBox selectOpponent;
 
-    public void Selection(String chosenGame) {
+    /**
+     * constructor of Selection, 
+     * @param chosenGame a String to 
+     */
+    
+    
+    public Selection(String chosenGame) {
         this.chosenGame = chosenGame;
-        if (chosenGame.equalsIgnoreCase("othello")) {
-            setGameType("othello");
-        } else if (chosenGame.equalsIgnoreCase("connectFour")) {
-            setGameType("connectFour");
-        } else {
-			//SelectGame sg = new SelectGame();
-            //sg.draw();
-        }
-    }
-
+      }
+ 
     public String getGameType() {
         return currentGameType;
     }
@@ -106,7 +118,7 @@ public class Selection implements ActionListener {
     
 public static void main(String args[]) {
 		
-		Selection selectClass = new Selection();
+		Selection selectClass = new Selection(opponentOthello); //test case
 		selectClass.draw();
 		}
 
@@ -127,10 +139,32 @@ public void actionPerformed(ActionEvent e) {
 	if (e.getSource()== btn_cancel) {
 		display.dispose();
 	}
+	
 	if (e.getSource()== btn_play) {
-		//to pass information to some location.
-		display.dispose();
+		if (chosenGame.equalsIgnoreCase(opponentOthello)) {
+			//HumanPlayer HuPlay = new HumanPlayer(p1Text,"black");
+			if (opponentType.equals("Human")){
+				//HumanPlayer HuPlayOpponent = new HumanPlayer(p2Text,"white");
+				display.dispose();
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "AI not available in this version.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			}
+		else if (chosenGame.equalsIgnoreCase(opponentConnectFour)) {
+			//HumanPlayer HuPlay = new HumanPlayer(p1Text,"red");
+			if (opponentType.equals("Human")){
+				//HumanPlayer HuPlayOpponent = new HumanPlayer(p2Text,"yellow");
+				display.dispose();
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "AI not available in this version.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			}
 	}
+	
+	
+	
 }
 		
 		
