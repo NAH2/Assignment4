@@ -88,13 +88,11 @@ public class Selection implements ActionListener {
 		/**sets up the players one and two JTextFields and adds the actionlistener + mouse listener to both, clears contents currently in JTextField*/
 		playerOne = new JTextField("Player One Name:", FIELD_SIZE);
 		playerTwo = new JTextField("Player Two Name:", FIELD_SIZE);
-		playerOne.addActionListener(this);
 		playerOne.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				playerOne.setText("");
 			}
 		});
-		playerTwo.addActionListener(this);
 		playerTwo.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				playerTwo.setText("");
@@ -159,9 +157,7 @@ public class Selection implements ActionListener {
 					GameController gameCont = new GameController(opponentOthello, HuPlay, HuPlayOpponent);
 	                System.out.println("Othello BOOM");
 	                displaySelection.dispose();
-
-				}
-
+	                }
 				else {
 					/**displaySelections a error message dialog box, explaining that AI can't be played in current version*/
 					JOptionPane.showMessageDialog(null,"AI not available in this version.", "Error",JOptionPane.ERROR_MESSAGE);
