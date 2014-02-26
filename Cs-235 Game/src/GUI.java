@@ -91,10 +91,15 @@ public class GUI extends JFrame {
     }
     
     public void showWinningBox() {
-        
-        JOptionPane.showMessageDialog(m_frame,
+        if(m_board.getWinningColour().equals("draw")){
+            JOptionPane.showMessageDialog(m_frame,
+                    "GAME DRAWN", "Winner",
+                    JOptionPane.OK_OPTION, m_icon);
+        } else {
+        	JOptionPane.showMessageDialog(m_frame,
                 m_game.getPlayerName(m_board.getWinningColour()) + "   WINS!!!!", "Winner",
                 JOptionPane.OK_OPTION, m_icon);
+        }
         
        //System.exit(0);
         SelectGame sg = new SelectGame();
