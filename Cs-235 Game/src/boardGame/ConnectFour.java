@@ -22,8 +22,6 @@ public class ConnectFour extends BoardGame {
 	int searchY, searchX;
 	int counter;
 	String winningColour;
-	int w = 10;
-	int h = 7;
 
     /**
     * This is the constructor for the Othello
@@ -95,8 +93,8 @@ public class ConnectFour extends BoardGame {
 				counter = 1;
 				while (found) {
 
-					if ((searchX >= w || searchX < 0)
-							|| (searchY >= h || searchY < 0)) {
+					if ((searchX >= getWidth() || searchX < 0)
+							|| (searchY >= getHeight() || searchY < 0)) {
 						found = false;
 					} else {
 						searchPiece = board[searchX][searchY];

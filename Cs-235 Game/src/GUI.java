@@ -7,108 +7,99 @@ import boardGame.*;
 import piece.*;
 
 public class GUI extends JFrame {
-    private BoardGame board;
-    private GameController game;
-    protected JPanel[][] panels;
-    private int width;
-    private int height;
-    private JLabel[][] labels;
-    private JFrame frame;
-    JButton passMove;
-    private Icon m_icon;
-    private String m_iconURL = "icon.png";
+    
+    public GameController getGame() {
+        return m_game;
+    }
+    
+    public BoardGame getBoard() {
+        return m_board;
+    }
+    
+    public JPanel[][] getPanels() {
+        return m_panels;
+    }
+    
+    public boolean setPassButton() {
+        m_passMove.setVisible(true);
+        m_frame.pack();
+        
+        return true;
+    }
     
     public GUI(BoardGame b, GameController g) {
-        board = b;
-        game = g;
-        width = board.getWidth();
-        height = board.getHeight();
-        panels = new JPanel[width][height];
-        labels = new JLabel[width][height];
+        m_board = b;
+        m_game = g;
+        m_width = m_board.getWidth();
+        m_height = m_board.getHeight();
+        m_panels = new JPanel[m_width][m_height];
+        m_labels = new JLabel[m_width][m_height];
         m_icon = new ImageIcon(getClass().getResource(m_iconURL));
         draw();
-        
     }
     
     public void draw() {
-        frame = new JFrame("Game");
+        m_frame = new JFrame("Game");
         JPanel mainPanel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 1;
         
-        JPanel gamePanel = new JPanel(new GridLayout(height,width));
+        JPanel gamePanel = new JPanel(new GridLayout(m_height,m_width));
         mainPanel.add(gamePanel,c);
         
-        passMove = new JButton("Pass");
+        m_passMove = new JButton("Pass");
         c.gridx = 1;
         c.gridy = 2;
-        mainPanel.add(passMove,c);
-        passMove.setVisible(false);
+        mainPanel.add(m_passMove,c);
+        m_passMove.setVisible(false);
         
         GUIHandler handler = new GUIHandler();
-        for (int y = 0; y < height; ++y) {
-            for (int x = 0; x < width; ++x) {
-                panels[x][y] = new JPanel();
-                panels[x][y].setPreferredSize(new Dimension(70,70));
-                panels[x][y].setBorder(BorderFactory.createLineBorder(Color.black));
-                labels[x][y] = new JLabel();
-                panels[x][y].addMouseListener(handler);
-                gamePanel.add(panels[x][y]);
+        for (int y = 0; y < m_height; ++y) {
+            for (int x = 0; x < m_width; ++x) {
+                m_panels[x][y] = new JPanel();
+                m_panels[x][y].setPreferredSize(new Dimension(70,70));
+                m_panels[x][y].setBorder(BorderFactory.createLineBorder(Color.black));
+                m_labels[x][y] = new JLabel();
+                m_panels[x][y].addMouseListener(handler);
+                gamePanel.add(m_panels[x][y]);
             }
         }
-        passMove.addActionListener(handler);
+        m_passMove.addActionListener(handler);
         
-        frame.add(mainPanel);
+        m_frame.add(mainPanel);
         //frame.setLocationRelativeTo(null);
         
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        m_frame.pack();
+        m_frame.setVisible(true);
+        m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public void drawPieces() {
-        for (int y  = 0; y < height; ++y) {
-            for (int x = 0; x < width; ++x) {
-                GamePiece p = board.getPiece(x,y);
+        for (int y  = 0; y < m_height; ++y) {
+            for (int x = 0; x < m_width; ++x) {
+                GamePiece p = m_board.getPiece(x,y);
                 
                 if (p != null) {
-                    labels[x][y].setIcon(p.getIcon());
+                    m_labels[x][y].setIcon(p.getIcon());
                 }
-                panels[x][y].add(labels[x][y]);
+                m_panels[x][y].add(m_labels[x][y]);
             }
         }
-        //System.out.println("pieces drawn");
-        SwingUtilities.updateComponentTreeUI(frame);    
-    }
-    
-    public GameController getGame() {
-        return game;
-    }
-    
-    public BoardGame getBoard() {
-        return board;
-    }
-    
-    public JPanel[][] getPanels() {
-        return panels;
-    }
-    
-    public boolean setPassButton() {
-        passMove.setVisible(true);
-        frame.pack();
-        
-        return true;
+        SwingUtilities.updateComponentTreeUI(m_frame);    
     }
     
     public void showWinningBox() {
         
-        JOptionPane.showMessageDialog(frame,
-                game.getPlayerName(board.getWinningColour()) + "   WINS!!!!", "Winner",
+        JOptionPane.showMessageDialog(m_frame,
+                m_game.getPlayerName(m_board.getWinningColour()) + "   WINS!!!!", "Winner",
                 JOptionPane.OK_OPTION, m_icon);
         
-       System.exit(0);
+       //System.exit(0);
+        SelectGame sg = new SelectGame();
+        sg.Draw();
+        m_frame.dispose();
     }
     
     private class GUIHandler implements MouseListener, ActionListener {
@@ -120,35 +111,43 @@ public class GUI extends JFrame {
         
         public void mouseReleased(MouseEvent e) {
             boolean moveComplete = false;
-            if (game.getGamOn()) {
-                for (int y = 0; y < height; y++) {
-                    for (int x = 0; x < width; ++x) {
-                        if (e.getSource() == panels[x][y]) {
-                            //System.out.println("Clicked: panels[" + x + "][" + y +"]");
-                            moveComplete = board.move(x, y, game.getCurrent());
+            if (m_game.getGamOn()) {
+                for (int y = 0; y < m_height; y++) {
+                    for (int x = 0; x < m_width; ++x) {
+                        if (e.getSource() == m_panels[x][y]) {
+                            moveComplete = m_board.move(x, y, m_game.getCurrent());
                         }
                     }
                 }
                 if (moveComplete) {
-                    game.alternate();
+                    m_game.alternate();
                     drawPieces();
-                    if (game.checkWin()) {
+                    if (m_game.checkWin()) {
                         //setWinnerLabel();
                         showWinningBox();
                     }
-                    System.out.println(board.toString());
+                    //System.out.println(m_board.toString());
                 }
             }
         }
-        @Override
+        
         public void actionPerformed(ActionEvent e) {
-            if (game.getGamOn()) {
-                if (((Othello) board).checkPassTurn()) {
-                    game.alternate();
+            if (m_game.getGamOn()) {
+                if (((Othello) m_board).checkPassTurn()) {
+                    m_game.alternate();
                 }
-                System.out.println(game.getCurrent());
             }
-            
         }
     }
+    
+    private BoardGame m_board;
+    private GameController m_game;
+    protected JPanel[][] m_panels;
+    private int m_width;
+    private int m_height;
+    private JLabel[][] m_labels;
+    private JFrame m_frame;
+    private JButton m_passMove;
+    private Icon m_icon;
+    private String m_iconURL = "icon.png";
 }

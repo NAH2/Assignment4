@@ -16,9 +16,9 @@ public class OthelloGUI extends GUI {
         for (int y = 0; y < getBoard().getHeight(); ++y) {
             for (int x = 0; x < getBoard().getWidth(); ++x) {
                 if (availableMoves[x][y] == 'O') {
-                    panels[x][y].setBackground(Color.cyan);
+                    m_panels[x][y].setBackground(Color.cyan);
                 } else {
-                    panels[x][y].setBackground(defCol);
+                    m_panels[x][y].setBackground(defCol);
                 }
             }
         }
