@@ -155,7 +155,6 @@ public class Selection implements ActionListener {
 					
 					/**creates a new gameController object*/
 					GameController gameCont = new GameController(opponentOthello, HuPlay, HuPlayOpponent);
-	                System.out.println("Othello BOOM");
 	                displaySelection.dispose();
 	                }
 				else {
@@ -177,7 +176,6 @@ public class Selection implements ActionListener {
 					displaySelection.dispose();
 					/**creates a new gameController object*/
 					GameController gameCont = new GameController(opponentConnectFour, HuPlay, HuPlayOpponent);
-					System.out.println("create c4");
 				} else {
 					/**displaySelections a error message dialog box, explaining that AI can't be played in current version*/
 					JOptionPane.showMessageDialog(null,	"AI not available in this version.", "Error",JOptionPane.ERROR_MESSAGE);
