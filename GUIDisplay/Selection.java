@@ -11,7 +11,6 @@
  * The class is a user interface to select name and opponent type
  */
 
-
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -20,7 +19,6 @@ public class Selection implements ActionListener {
 
     private String currentGameType;
     private String chosenGame;
-    private Boolean currentPlayerTurn;
     private int FRAME_WIDTH = 250;
     private int FRAME_HEIGHT = 250;
     private JFrame display;
@@ -37,21 +35,27 @@ public class Selection implements ActionListener {
     private JComboBox selectOpponent;
 
     /**
-     * constructor of Selection, 
-     * @param chosenGame a String to 
+     * constructor of Selection, receives the type of game, ready for later.
+     * @param chosenGame a String for the chosen game.
      */
-    
-    
     public Selection(String chosenGame) {
         this.chosenGame = chosenGame;
       }
  
-    public String getGameType() {
-        return currentGameType;
-    }
-
+    /**
+     * Accessor method to set the current game type 
+     * @param GameType a string for the current game type
+     */
     private void setGameType(String GameType) {
         currentGameType = GameType;
+    }
+    
+    /**
+     * Accessor method to get the current game type
+     * @return currentGameType a String of what the current game type is
+     */    
+    public String getGameType() {
+        return currentGameType;
     }
 
     private void setPlayerNameOne(String playerName) {
@@ -60,14 +64,6 @@ public class Selection implements ActionListener {
 
     private void setPlayerNameTwo(String playerName){
     	p2Text=playerName;
-    }
-
-    public boolean getPlayerTurn() {
-        return currentPlayerTurn;
-    }
-
-    private void setPlayerTurn(Boolean PlayerTurn) {
-        currentPlayerTurn = PlayerTurn;
     }
     
    
@@ -141,11 +137,13 @@ public void actionPerformed(ActionEvent e) {
 	}
 	
 	if (e.getSource()== btn_play) {
+		GameController gameCont = new GameController();
 		if (chosenGame.equalsIgnoreCase(opponentOthello)) {
 			//HumanPlayer HuPlay = new HumanPlayer(p1Text,"black");
 			if (opponentType.equals("Human")){
 				//HumanPlayer HuPlayOpponent = new HumanPlayer(p2Text,"white");
 				display.dispose();
+				GameController gameCont = new GameController(opponentOthello, huPlay, huPlayOpponent);
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "AI not available in this version.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -156,6 +154,7 @@ public void actionPerformed(ActionEvent e) {
 			if (opponentType.equals("Human")){
 				//HumanPlayer HuPlayOpponent = new HumanPlayer(p2Text,"yellow");
 				display.dispose();
+				GameController gameCont = new GameController(opponentConnectFour, huPlay, huPlayOpponent);
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "AI not available in this version.", "Error", JOptionPane.ERROR_MESSAGE);
