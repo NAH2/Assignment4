@@ -118,9 +118,9 @@ public class Selection implements ActionListener {
 		/** adds the selectPanel to the JFrame and sets the JFrame to be visible*/
 		displaySelection.add(selectPanel, BorderLayout.CENTER);
 		/** sets the displaySelection JFrame displaySelection to be visible, so that it can't be resized and to centre the JFrame*/
+	    displaySelection.setLocationRelativeTo(null);
 		displaySelection.setVisible(true);
 		displaySelection.setResizable(false);
-		displaySelection.setLocationRelativeTo(null);
 	}
 
 	/** Sets up the action listeners for the objects needed for Listeners */
