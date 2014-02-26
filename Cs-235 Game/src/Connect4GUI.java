@@ -22,10 +22,10 @@ public class Connect4GUI extends GUI {
 			for (int x = 0; x < getBoard().getWidth(); ++x) {
 
 				// set to images later
-				panels[x][y].removeAll();
-				panels[x][y].add(new JLabel((m_empty)));
+				m_panels[x][y].removeAll();
+				m_panels[x][y].add(new JLabel((m_empty)));
 
-				panels[x][y].setBackground(Color.BLUE);
+				m_panels[x][y].setBackground(Color.BLUE);
 			}
 		}
 

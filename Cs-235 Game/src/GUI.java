@@ -60,7 +60,7 @@ public class GUI extends JFrame {
             for (int x = 0; x < m_width; ++x) {
                 m_panels[x][y] = new JPanel();
                 m_panels[x][y].setPreferredSize(new Dimension(70,70));
-                m_panels[x][y].setBorder(BorderFactory.createLineBorder(Color.black));
+             //   m_panels[x][y].setBorder(BorderFactory.createLineBorder(Color.black));
                 m_labels[x][y] = new JLabel();
                 m_panels[x][y].addMouseListener(handler);
                 gamePanel.add(m_panels[x][y]);
