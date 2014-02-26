@@ -11,7 +11,7 @@ public class OthelloGUI extends GUI {
     
     public boolean setPanelColour() {
         char[][] availableMoves = ((Othello) getBoard()).availableMove(getGame().getCurrent());
-        Color defCol = UIManager.getColor ( "Panel.background" );
+        Color defCol = new Color(170,150,100);
         for (int y = 0; y < getBoard().getHeight(); ++y) {
             for (int x = 0; x < getBoard().getWidth(); ++x) {
                 if (availableMoves[x][y] == 'O') {
