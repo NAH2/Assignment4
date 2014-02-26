@@ -212,7 +212,6 @@ public class Othello extends BoardGame {
     
      /**
       *  Flip the piece if this is valid move 
-      * \param flipdata store the location of the pieces that will be flipped. 
      * \param col the color of the game piece.
      */
 
