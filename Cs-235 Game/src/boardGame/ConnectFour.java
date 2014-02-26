@@ -148,7 +148,8 @@ public class ConnectFour extends BoardGame {
         	} 
         }
         if (m_draw == true){
-        	System.out.println("GAME DRAWN");
+        	winningColour = "draw";
+        	setWinner();
         	return true;
         }
         return false;
