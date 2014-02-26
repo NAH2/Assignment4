@@ -40,6 +40,10 @@ public class GUI extends JFrame {
         JPanel gamePanel = new JPanel(new GridLayout(height,width));
         mainPanel.add(gamePanel,c);
         
+        JButton passMove = new JButton("Pass");
+        c.gridx = 2;
+        c.gridy = 2;
+        
         GUIHandler handler = new GUIHandler();
         for (int y = 0; y < height; ++y) {
             for (int x = 0; x < width; ++x) {
