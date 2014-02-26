@@ -1,9 +1,5 @@
 /**
-<<<<<<< HEAD
- * \file -Player.java 
-=======
  * \file -SelectGame.java 
->>>>>>> FETCH_HEAD
  * \author -Tyrone Bramwell 710981 
  * \date -20th Feb 14
  * \brief SelectGame, used to select the game which the player wants to play. Part of the GUI package
@@ -66,7 +62,6 @@ public class SelectGame {
 	* LBL_MES_X sets postion y of message_Label. Using GridBagLayout
 	*/
 	private final int LBL_MES_Y=0;
-<<<<<<< HEAD
 	
 	/**
 	* BTN_WIDTH sets width of othello_Button, connectFour_Button. Using GridBagLayout
@@ -90,31 +85,6 @@ public class SelectGame {
 	private final int BTN_CONNECT4_Y = 1;
 	
 	/**
-=======
-	
-	/**
-	* BTN_WIDTH sets width of othello_Button, connectFour_Button. Using GridBagLayout
-	*/
-	private final int BTN_WIDTH = 1;
-	/**
-	* BTN_OTHELLO_X sets postion x of othello_Button. Using GridBagLayout
-	*/
-	private final int BTN_OTHELLO_X = 0;
-	/**
-	* BTN_OTHELLO_Y sets postion y of othello_Button. Using GridBagLayout
-	*/
-	private final int BTN_OTHELLO_Y = 1;
-	/**
-	* BTN_CONNECT4_X sets postion x of connectFour_Button. Using GridBagLayout
-	*/
-	private final int BTN_CONNECT4_X = 1;
-	/**
-	* BTN_CONNECT4_Y sets postion y of connectFour_Button. Using GridBagLayout
-	*/
-	private final int BTN_CONNECT4_Y = 1;
-	
-	/**
->>>>>>> FETCH_HEAD
 	* A method to draw GUI for SelectGame.
     */
 	public void Draw() {	
@@ -159,6 +129,7 @@ public class SelectGame {
 		display.add(content);
 
 		display.pack();	
+		display.setLocationRelativeTo(null);
 		display.setVisible(true);
 	}
 	
@@ -175,12 +146,7 @@ public class SelectGame {
 			if (event.getSource()==othello_Button){
 
 				Selection s1 = new Selection("othello");
-<<<<<<< HEAD
-				s1.draw();
-				
-=======
 				s1.draw();				
->>>>>>> FETCH_HEAD
 				display.dispose();
 			}
 			
