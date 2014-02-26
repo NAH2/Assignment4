@@ -31,7 +31,7 @@ public class Selection implements ActionListener {
 	 */
 	public Selection(String chosenGame) {
 		setGameType(chosenGame);
-		draw();
+		//draw();
 	}
 
 	/**
@@ -233,7 +233,7 @@ public class Selection implements ActionListener {
 	/**Stores the game type that is passed through from SelectGame.java*/
 	private String m_currentGameType;
 	/**The Othello String used throughout the class*/
-	private static String opponentOthello = "Othello";
+	private static String opponentOthello = "othello";
 	/**The Connect Four String used throughout the class*/
-	private static String opponentConnectFour = "ConnectFour";
+	private static String opponentConnectFour = "connectFour";
 }
