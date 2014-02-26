@@ -252,7 +252,7 @@ public class Othello extends BoardGame {
      *  check the player if he has no any available move , pass the turn to opponent.
      *  \return boolean return the char array that store all the available move.
      */ 
-    private boolean checkPassTurn() {
+    public boolean checkPassTurn() {
         boolean passTurn = true;
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < getWidth(); j++) {
@@ -280,16 +280,21 @@ public class Othello extends BoardGame {
                 }
             }
         }
-        if (scoreBlack == scoreWhite) {
-            // JOptionPane.showMessageDialog(null, "draw");
-            System.out.println("draw");
-        } else if (scoreWhite > scoreBlack)
-            System.out.println("White win");
-        else {
-            System.out.println("Black win");
-        }
+        setWinner();
         return true;
 
+    }
+    
+    public boolean setWinner() {
+        if (scoreBlack == scoreWhite) {
+            setWinningColour("draw");
+        } else if (scoreWhite > scoreBlack)
+            setWinningColour("white");
+        else {
+            setWinningColour("black");
+        }
+        
+        return true;
     }
 
 }
