@@ -20,10 +20,10 @@ public class Selection implements ActionListener {
 
 	private String currentGameType;
 	private String chosenGame;
-	private int FRAME_WIDTH = 250;
-	private int FRAME_HEIGHT = 250;
-	private int FIELD_SIZE = 10;
-	private int FIELD_SIZE2 = 10;
+	private final int FRAME_WIDTH = 250;
+	private final int FRAME_HEIGHT = 250;
+	private final int FIELD_SIZE = 10;
+	private final int FIELD_SIZE2 = 10;
 	private JFrame display;
 	private JPanel btnPanel;
 	private JPanel selectPanel;
