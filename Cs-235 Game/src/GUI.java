@@ -55,6 +55,12 @@ public class GUI extends JFrame {
         mainPanel.add(m_passMove,c);
         m_passMove.setVisible(false);
         
+        m_newGame = new JButton("New Game");
+        c.gridx = 1;
+        c.gridy = 0;
+        mainPanel.add(m_newGame,c);
+        m_newGame.setVisible(true);
+        
         GUIHandler handler = new GUIHandler();
         for (int y = 0; y < m_height; ++y) {
             for (int x = 0; x < m_width; ++x) {
@@ -66,11 +72,12 @@ public class GUI extends JFrame {
             }
         }
         m_passMove.addActionListener(handler);
+        m_newGame.addActionListener(handler);
         
         m_frame.add(mainPanel);
-        //frame.setLocationRelativeTo(null);
         
         m_frame.pack();
+        m_frame.setLocationRelativeTo(null);
         m_frame.setVisible(true);
         m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -93,7 +100,7 @@ public class GUI extends JFrame {
     public void showWinningBox() {
         if(m_board.getWinningColour().equals("draw")){
             JOptionPane.showMessageDialog(m_frame,
-                    "GAME DRAWN", "Winner",
+                    "GAME DRAWN", "Draw",
                     JOptionPane.OK_OPTION, m_icon);
         } else {
         	JOptionPane.showMessageDialog(m_frame,
@@ -136,10 +143,18 @@ public class GUI extends JFrame {
         }
         
         public void actionPerformed(ActionEvent e) {
-            if (m_game.getGamOn()) {
-                if (((Othello) m_board).checkPassTurn()) {
-                    m_game.alternate();
+            if (e.getSource() == m_passMove) {
+                if (m_game.getGamOn()) {
+                    if (((Othello) m_board).checkPassTurn()) {
+                        m_game.alternate();
+                    }
                 }
+            }
+            
+            if (e.getSource() == m_newGame) {
+                SelectGame sg = new SelectGame();
+                sg.Draw();
+                m_frame.dispose();
             }
         }
     }
@@ -152,6 +167,7 @@ public class GUI extends JFrame {
     private JLabel[][] m_labels;
     private JFrame m_frame;
     private JButton m_passMove;
+    private JButton m_newGame;
     private Icon m_icon;
     private String m_iconURL = "icon.png";
 }
