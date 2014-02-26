@@ -20,19 +20,21 @@ public class Selection implements ActionListener {
 
 	private String currentGameType;
 	private String chosenGame;
-	private final int FRAME_WIDTH = 250;
-	private final int FRAME_HEIGHT = 250;
+	private final int FRAME_WIDTH = 300;
+	private final int FRAME_HEIGHT = 125;
 	private final int FIELD_SIZE = 10;
-	private final int FIELD_SIZE2 = 10;
 	private JFrame display;
-	private JPanel btnPanel;
-	private JPanel selectPanel;
+	private JPanel btnPanel,selectPanel, comboPanel;
 	private String[] opponentList = { "Human", "AI" };
 	private String opponentType = "Human";
 	private String p1Text = "playerOne";
 	private String p2Text = "playerTwo";
 	private static String opponentOthello = "Othello";
 	private static String opponentConnectFour = "ConnectFour";
+	private String black = "black";
+	private String white = "white";
+	private String yellow = "yellow";
+	private String red = "red";
 	private JButton btn_cancel, btn_play;
 	private JTextField playerOne, playerTwo;
 	private JComboBox selectOpponent;
@@ -99,20 +101,21 @@ public class Selection implements ActionListener {
 
 		// / Sets up the JPanels within the JFrame and set their flow layout to
 		// center
-		JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JPanel selectPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		btnPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		selectPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		comboPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
 		// / Sets up a JComboBox and adds it to the selectPanel JPanel, also
 		// adds the action listener
 		selectOpponent = new JComboBox(opponentList);
 		selectOpponent.setSelectedIndex(0);
 		selectOpponent.addActionListener(this);
-		selectPanel.add(selectOpponent);
+		comboPanel.add(selectOpponent);
 
 		// /sets up the players one and two JTextFields and adds the action
-		// listener + mouse listener to both
-		playerOne = new JTextField("player one name:", FIELD_SIZE);
-		playerTwo = new JTextField("player two name:", FIELD_SIZE2);
+		// listener + mouse listener to both, clears contents currently in JTextField
+		playerOne = new JTextField("Player One Name:", FIELD_SIZE);
+		playerTwo = new JTextField("Player Two Name:", FIELD_SIZE);
 		playerOne.addActionListener(this);
 		playerOne.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -141,12 +144,15 @@ public class Selection implements ActionListener {
 		selectPanel.add(playerOne);
 		selectPanel.add(playerTwo);
 
-		// /adds the btnPanel to the JFrame and aligns it to the lower part of
-		// the frame
+		display.add(comboPanel, BorderLayout.NORTH);
+		// /adds the btnPanel to the JFrame and aligns it to SOUTH of frame
 		display.add(btnPanel, BorderLayout.SOUTH);
 		// /adds the selectPanel to the JFrame and sets the JFrame to be visible
-		display.add(selectPanel);
+		display.add(selectPanel, BorderLayout.CENTER);
+		
 		display.setVisible(true);
+		display.setResizable(false);
+		display.setLocationRelativeTo(null);
 	}
 
 	// /Will be used for testing
@@ -196,7 +202,7 @@ public class Selection implements ActionListener {
 			// /this if statement checks if the chosenGame is Othello
 			if (chosenGame.equalsIgnoreCase(opponentOthello)) {
 				// /then the first human player is set to the piece colour black
-				HumanPlayer HuPlay = new HumanPlayer(p1Text, "black");
+				HumanPlayer HuPlay = new HumanPlayer(p1Text, black);
 
 				// /this if statement checks if the opponentType is a Human
 				// player
@@ -204,12 +210,11 @@ public class Selection implements ActionListener {
 					// /then the second human player is set to the piece colour
 					// white
 					HumanPlayer HuPlayOpponent = new HumanPlayer(p2Text,
-							"white");
+							white);
 					// /closes the JFrame display entirely
 					display.dispose();
 					// /creates a new gameController object
-					GameController gameCont = new GameController(
-							opponentOthello, huPlay, huPlayOpponent);
+					GameController gameCont = new GameController(opponentOthello, huPlay, huPlayOpponent);
 				}
 
 				else {
@@ -225,7 +230,7 @@ public class Selection implements ActionListener {
 			// Four
 			else if (chosenGame.equalsIgnoreCase(opponentConnectFour)) {
 				// /then the first human player is set to the piece colour red
-				HumanPlayer HuPlay = new HumanPlayer(p1Text, "red");
+				HumanPlayer HuPlay = new HumanPlayer(p1Text, red);
 
 				// /this if statement checks if the opponentType is a human
 				// player
@@ -233,12 +238,11 @@ public class Selection implements ActionListener {
 					// /then the second human player is set to the piece colour
 					// yellow
 					HumanPlayer HuPlayOpponent = new HumanPlayer(p2Text,
-							"yellow");
+							yellow);
 					// /closes the JFrame display entirely
 					display.dispose();
 					// /creates a new gameController object
-					GameController gameCont = new GameController(
-							opponentConnectFour, huPlay, huPlayOpponent);
+					GameController gameCont = new GameController(opponentConnectFour, huPlay, huPlayOpponent);
 				} else {
 					// /displays a error message dialog box, explaining that AI
 					// can't be played in current version
