@@ -71,14 +71,15 @@ public class SelectGame {
 			
 			if (event.getSource()==othello_Button){
 				
-				Selection s1 = new Selection();
+				Selection s1 = new Selection("othello");
 				s1.draw();
 				othelloController x = new othelloController();
 				display.dispose();
+				//display.setVisible(false);
 			}
 			
 			if (event.getSource()==connectFour_Button){
-				Selection s2 = new Selection();
+				Selection s2 = new Selection("connectFour");
 				s2.draw();
 				display.dispose();
 			}
