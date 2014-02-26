@@ -73,13 +73,14 @@ public class SelectGame {
 				
 				Selection s1 = new Selection("othello");
 				s1.draw();
-				othelloController x = new othelloController();
+				GameController x = new GameController("othello");
 				display.dispose();
 				//display.setVisible(false);
 			}
 			
 			if (event.getSource()==connectFour_Button){
 				Selection s2 = new Selection("connectFour");
+				GameController x = new GameController("connectFour");
 				s2.draw();
 				display.dispose();
 			}
