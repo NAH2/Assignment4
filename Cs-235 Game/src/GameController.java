@@ -3,23 +3,22 @@ import boardGame.*;
 
 //this is rough as hell, no where near finished
 public class GameController {
-    String connectFour = "connectFour";
-    String othello = "othello";
-    String red = "red";
-    String yellow = "yellow";
-    String white = "white";
-    String black = "black";
-    String current = "black";
-    Connect4GUI c4GUI;
-    OthelloGUI othelloGUI;
-    String gameType;
+    private final String connectFour = "connectFour";
+    private final String othello = "othello";
+    private Connect4GUI c4GUI;
+    private OthelloGUI othelloGUI;
+    private Othello othelloBoard;
+    private ConnectFour connectFourBoard;
+    private String gameType;
+    boolean gameOn = true;
     
-    HumanPlayer p1;
-    HumanPlayer p2;
-    HumanPlayer currentPlayer;
+    private HumanPlayer p1;
+    private HumanPlayer p2;
+    private HumanPlayer currentPlayer;
     
     public static void main(String[] args) {
-        GameController a = new GameController("othello");
+        GameController a = new GameController("connectFour");
+        //GameController b = new GameController("othello");
     }
     
     
@@ -53,13 +52,13 @@ public class GameController {
         System.out.println(getCurrent());
         
         if (gameType.equals(othello)) {
-            Othello board = new Othello();
-            othelloGUI = new OthelloGUI(board, this);
+            othelloBoard = new Othello();
+            othelloGUI = new OthelloGUI(othelloBoard, this);
             othelloGUI.drawPieces();
             othelloGUI.setPanelColour();
         } else if (gameType.equals(connectFour)) {
-            ConnectFour board = new ConnectFour();
-            c4GUI = new Connect4GUI(board, this);
+            connectFourBoard = new ConnectFour();
+            c4GUI = new Connect4GUI(connectFourBoard, this);
             c4GUI.drawPieces();
             c4GUI.setPanelColour();
         }
@@ -79,6 +78,38 @@ public class GameController {
         }
     }
     
+    public boolean checkWin() {
+        boolean win = false;
+        if (gameType.equals(othello)) {
+            win = othelloBoard.winningCondition();
+        } else if (gameType.equals(connectFour)) {
+            win = connectFourBoard.winningCondition();
+        }
+        setGameOn(win);
+        return win;
+    }
+    
+    public boolean getGamOn() {
+        return gameOn;
+    }
+    
+    public boolean setGameOn(boolean win) {
+        if (win) {
+            gameOn = false;
+        } else {
+            gameOn = true;
+        }
+        return true;
+    }
+    
+    public String getPlayerName(String colour) {
+        if (p1.GetPiece().equals(colour)) {
+            return p1.GetPlayerName();
+        } else {
+            return p2.GetPlayerName();
+        }
+    }
+
     public String getCurrent() {
         return currentPlayer.GetPiece();
     }

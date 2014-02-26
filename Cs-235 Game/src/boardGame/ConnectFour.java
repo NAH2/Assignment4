@@ -1,17 +1,3 @@
-/**
- * \file -ConnectFour.java 
- * \author -
- * \date -21th Feb 14
- * 
- * \see BoardGame.java
- * 
- * \brief ConnectFour is used to store the game rules and control the game board . 
- * extends BoardGame.java
- * 
- * This class extends from the BoardGame class. It will check the whether a column is full when 
- * the player place the pieces.
- */
- 
 package boardGame;
 
 import piece.*;
@@ -21,38 +7,19 @@ public class ConnectFour extends BoardGame {
 	String red = "red";
 	int searchY, searchX;
 	int counter;
+	String winningColour;
 	int w = 10;
 	int h = 7;
 
-        /**
-        * This is the constructor for the Othello
-        * It passes the height and the width to the BoardGame class for constructing the game board.
-        *  
-        */
-        
 	public ConnectFour() {
 		super(10, 7);
 	}
 
-        /**
-        * Place the ConnectFour piece on the game board 
-        * \param x   the x axis in the game board.
-        * \param y   the y axis in the game board.
-        * \param col the color of the game piece.
-        * \return boolean  return true if the action complete.
-        */
 	public boolean setPiece(int x, int y, String col) {
 		board[x][y] = new ConnectFourPiece(col);
 		return true;
 	}
 
-	/**
-        *  If the move is valid, place the piece on the game board and check the winning condition.
-        * \param x   the x axis in the game board.
-        * \param y   the y axis in the game board.
-        * \param col the color of the game piece.
-        * \return boolean return true if the move is valid and the piece has been placed on the game board.
-        */
 	public boolean move(int x, int y, String col) {
 		int index = 0;
 		if (board[x][0] == null) {
@@ -64,7 +31,7 @@ public class ConnectFour extends BoardGame {
 				}
 			}
 			setPiece(x, index, col);
-			winningCondition(x, index, col);
+			checkWin(x, index, col);
 
 			return true;
 		} else {
@@ -74,23 +41,23 @@ public class ConnectFour extends BoardGame {
 
 	}
 
-	private boolean winningCondition(int x, int index, String col) { 
+	private boolean checkWin(int x, int index, String col) { 
 
 		GamePiece searchPiece;
 
 		// Search each direction (total : 8 direction)
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
-				boolean found = false;
+				boolean found = true;
 				// boolean found = false;
 				searchY = index + i;
 				searchX = x + j;
 				counter = 1;
-				while (!found) {
+				while (found) {
 
 					if ((searchX >= w || searchX < 0)
 							|| (searchY >= h || searchY < 0)) {
-						found = true;
+						found = false;
 					} else {
 						searchPiece = board[searchX][searchY];
 
@@ -100,11 +67,12 @@ public class ConnectFour extends BoardGame {
 						// piece
 						if ((i == 0 && j == 0) || searchPiece == null
 								|| searchPiece.getColour() != col) {
-							found = true; 
-						} else if (searchPiece.getColour() == col) {
 							found = false; 
+						} else if (searchPiece.getColour() == col) {
+							found = true; 
 							counter++;
 							if (counter == 4) {
+							    winningColour = col;
 								System.out.println(col+" wins");
 								return true;
 							}
@@ -121,6 +89,21 @@ public class ConnectFour extends BoardGame {
 		return false;
 
 	}
+
+    @Override
+    public boolean winningCondition() {
+        if (counter >= 4) {
+            setWinner();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean setWinner() {
+        setWinningColour(winningColour);
+        return false;
+    }
 
 
 }

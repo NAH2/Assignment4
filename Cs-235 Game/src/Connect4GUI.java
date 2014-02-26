@@ -1,4 +1,4 @@
-
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -19,9 +19,8 @@ public class Connect4GUI extends GUI {
         
         for (int y = 0; y < getBoard().getHeight(); ++y) {
             for (int x = 0; x < getBoard().getWidth(); ++x) {
-                if (x == left && y == top) {
-                    //System.out.println("Boom");
-                } 
+                //set to images later
+                panels[x][y].setBackground(Color.blue);
             }
         }
         

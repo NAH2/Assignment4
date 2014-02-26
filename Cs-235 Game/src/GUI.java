@@ -1,6 +1,3 @@
-
-
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -17,7 +14,10 @@ public class GUI extends JFrame {
     private int height;
     private JLabel[][] labels;
     private JFrame frame;
-
+    JButton passMove;
+    private Icon m_icon;
+    private String m_iconURL = "icon.png";
+    
     public GUI(BoardGame b, GameController g) {
         board = b;
         game = g;
@@ -25,6 +25,7 @@ public class GUI extends JFrame {
         height = board.getHeight();
         panels = new JPanel[width][height];
         labels = new JLabel[width][height];
+        m_icon = new ImageIcon(getClass().getResource(m_iconURL));
         draw();
         
     }
@@ -40,9 +41,11 @@ public class GUI extends JFrame {
         JPanel gamePanel = new JPanel(new GridLayout(height,width));
         mainPanel.add(gamePanel,c);
         
-        JButton passMove = new JButton("Pass");
-        c.gridx = 2;
+        passMove = new JButton("Pass");
+        c.gridx = 1;
         c.gridy = 2;
+        mainPanel.add(passMove,c);
+        passMove.setVisible(false);
         
         GUIHandler handler = new GUIHandler();
         for (int y = 0; y < height; ++y) {
@@ -55,9 +58,10 @@ public class GUI extends JFrame {
                 gamePanel.add(panels[x][y]);
             }
         }
+        passMove.addActionListener(handler);
         
         frame.add(mainPanel);
-        frame.setLocationRelativeTo(null);
+        //frame.setLocationRelativeTo(null);
         
         frame.pack();
         frame.setVisible(true);
@@ -91,28 +95,60 @@ public class GUI extends JFrame {
         return panels;
     }
     
-    private class GUIHandler implements MouseListener {
+    public boolean setPassButton() {
+        passMove.setVisible(true);
+        frame.pack();
+        
+        return true;
+    }
+    
+    public void showWinningBox() {
+        
+        JOptionPane.showMessageDialog(frame,
+                game.getPlayerName(board.getWinningColour()) + "   WINS!!!!", "Winner",
+                JOptionPane.OK_OPTION, m_icon);
+        
+       System.exit(0);
+    }
+    
+    private class GUIHandler implements MouseListener, ActionListener {
      // these methods had to be declared as MouseListener is abstract
         public void mousePressed(MouseEvent e){    }
-        public void mouseReleased(MouseEvent e) {    }
+        public void mouseClicked(MouseEvent e) {    }
         public void mouseEntered(MouseEvent e) {    }
         public void mouseExited(MouseEvent e) {    }
         
-        public void mouseClicked(MouseEvent e) {
+        public void mouseReleased(MouseEvent e) {
             boolean moveComplete = false;
-            for (int y = 0; y < height; y++) {
-                for (int x = 0; x < width; ++x) {
-                    if (e.getSource() == panels[x][y]) {
-                        //System.out.println("Clicked: panels[" + x + "][" + y +"]");
-                        moveComplete = board.move(x, y, game.getCurrent());
+            if (game.getGamOn()) {
+                for (int y = 0; y < height; y++) {
+                    for (int x = 0; x < width; ++x) {
+                        if (e.getSource() == panels[x][y]) {
+                            //System.out.println("Clicked: panels[" + x + "][" + y +"]");
+                            moveComplete = board.move(x, y, game.getCurrent());
+                        }
                     }
                 }
+                if (moveComplete) {
+                    game.alternate();
+                    drawPieces();
+                    if (game.checkWin()) {
+                        //setWinnerLabel();
+                        showWinningBox();
+                    }
+                    System.out.println(board.toString());
+                }
             }
-            if (moveComplete) {
-                game.alternate();
-                drawPieces();
-                System.out.println(board.toString());
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (game.getGamOn()) {
+                if (((Othello) board).checkPassTurn()) {
+                    game.alternate();
+                }
+                System.out.println(game.getCurrent());
             }
+            
         }
     }
 }

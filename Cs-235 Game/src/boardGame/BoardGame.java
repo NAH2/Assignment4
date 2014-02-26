@@ -6,6 +6,7 @@ public abstract class BoardGame {
     protected GamePiece[][] board;
     private final int width;
     private final int height;
+    private String winningColour;
     
     
     public BoardGame(int x, int y) {
@@ -42,10 +43,19 @@ public abstract class BoardGame {
         return count;
     }
     
+    public boolean setWinningColour(String winner) {
+        winningColour = winner;
+        return true;
+    }
+    
+    public String getWinningColour() {
+        return winningColour;
+    }
     public abstract boolean setPiece(int x, int y, String col);
     public abstract boolean move(int x, int y, String col);
+    public abstract boolean winningCondition();
+    public abstract boolean setWinner();
     
-    // needs more abstract methods e.g. valid moves, win conditions.
     
     public String toString() {
         String boardStateString = "";
