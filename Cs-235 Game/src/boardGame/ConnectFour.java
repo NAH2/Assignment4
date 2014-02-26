@@ -17,6 +17,7 @@ package boardGame;
 import piece.*;
 
 public class ConnectFour extends BoardGame {
+	private boolean m_draw;
 	String yellow = "yellow";
 	String red = "red";
 	int searchY, searchX;
@@ -82,6 +83,7 @@ public class ConnectFour extends BoardGame {
 	private boolean checkWin(int x, int index, String col) { 
 
 		GamePiece searchPiece;
+		
 
 		// Search each direction (total : 8 direction)
 		for (int i = -1; i <= 1; i++) {
@@ -137,6 +139,17 @@ public class ConnectFour extends BoardGame {
         if (counter >= 4) {
             setWinner();
             return true;
+        }
+        m_draw = true;
+        for (int x=0; x<getWidth(); x++){
+        	if(board[x][0] == null){
+        		m_draw = false;
+        		return m_draw;
+        	} 
+        }
+        if (m_draw == true){
+        	System.out.println("GAME DRAWN");
+        	return true;
         }
         return false;
     }
