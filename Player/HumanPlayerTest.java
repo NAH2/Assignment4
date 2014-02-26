@@ -15,7 +15,7 @@ class HumanPlayerTest {
 				System.out.println("test 2: fail: Data not what is expected ");
 			}
 		} catch(Exception e){
-			System.out.println("test 3: fail: Code provided exception");
+			System.out.println("test 2: fail: Code provided exception");
 		}
 		
 		try{
@@ -91,7 +91,7 @@ class HumanPlayerTest {
 					System.out.println("test 3: pass:");
 				}
 			} catch(Exception e){
-				System.out.println("test 2: fail: Code could not run ");
+				System.out.println("test 3: fail: Code could not run ");
 			}	
 			
 		}

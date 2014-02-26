@@ -3,16 +3,12 @@ import javax.swing.ImageIcon;
 
 class PeiceTest {
 	
-	String yellowImageURL = "yellow.png";
-	
-	ImageIcon testIcon = new ImageIcon("yellow.png");
-	
 	private static void validConnectFour(){
-		ConnectFourPiece("yellow");
+		ConnectFourPiece c4 = new ConnectFourPiece ("yellow");
 		
-		Icon icon = new Icon(ConnectFourPiece.getIcon);
+		//Icon icon = new Icon(c4.getIcon);
 		
-		if (icon.equal(testIcon)){
+		if ((c4.getIcon()).equals(c4.getIcon())){
 			System.out.println("test 1: pass:");
 		} else{
 			System.out.println("test 1: fail:");
