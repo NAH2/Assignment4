@@ -30,8 +30,10 @@ public class Selection implements ActionListener {
 	 * @param chosenGame a String for the chosen game.
 	 */
 	public Selection(String chosenGame) {
-		setGameType(chosenGame);
 		draw();
+		if(chosenGame.equalsIgnoreCase("othello") || chosenGame.equalsIgnoreCase("connectfour"))
+		setGameType(chosenGame);
+		else System.err.println("Selection::Selection() can only be Othello or ConnectFour.");
 	}
 
 	/**
@@ -118,9 +120,9 @@ public class Selection implements ActionListener {
 		/** adds the selectPanel to the JFrame and sets the JFrame to be visible*/
 		displaySelection.add(selectPanel, BorderLayout.CENTER);
 		/** sets the displaySelection JFrame displaySelection to be visible, so that it can't be resized and to centre the JFrame*/
-	    displaySelection.setLocationRelativeTo(null);
 		displaySelection.setVisible(true);
 		displaySelection.setResizable(false);
+		displaySelection.setLocationRelativeTo(null);
 	}
 
 	/** Sets up the action listeners for the objects needed for Listeners */
@@ -155,6 +157,7 @@ public class Selection implements ActionListener {
 					
 					/**creates a new gameController object*/
 					GameController gameCont = new GameController(opponentOthello, HuPlay, HuPlayOpponent);
+	                System.out.println("Othello BOOM");
 	                displaySelection.dispose();
 	                }
 				else {
@@ -176,6 +179,7 @@ public class Selection implements ActionListener {
 					displaySelection.dispose();
 					/**creates a new gameController object*/
 					GameController gameCont = new GameController(opponentConnectFour, HuPlay, HuPlayOpponent);
+					System.out.println("create c4");
 				} else {
 					/**displaySelections a error message dialog box, explaining that AI can't be played in current version*/
 					JOptionPane.showMessageDialog(null,	"AI not available in this version.", "Error",JOptionPane.ERROR_MESSAGE);
@@ -193,7 +197,7 @@ public class Selection implements ActionListener {
 	/**value for the display frame width*/
 	private final int FRAME_WIDTH = 300;
 	/**value for the display frame Height*/
-	private final int FRAME_HEIGHT = 135;
+	private final int FRAME_HEIGHT = 125;
 	
 	/**The Panels to keep all elements on in the JFrame*/
 	private JPanel btnPanel,selectPanel, comboPanel;
