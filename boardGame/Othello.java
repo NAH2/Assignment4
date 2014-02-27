@@ -245,6 +245,10 @@ public class Othello extends BoardGame {
         if (test || m_test) {
             System.out.println("Othello :: Move() BEGIN");
         }
+        if (x > GetWidth() || x < 0 || y > GetHeight() || y < 0) {
+        	System.out.println("Othello :: Move() END");
+			return false;
+			}
 
 		if (validMove(x, y, col) == true) { // check whether the move is valid
 			do {
