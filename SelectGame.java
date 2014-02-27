@@ -1,6 +1,6 @@
 /**
  * \file -SelectGame.java 
- * \author -Tyrone Bramwell 
+ * \author -Tyrone Bramwell 710981 
  * \date -20th Feb 14
  * \brief SelectGame, used to select the game which the player wants to play. Part of the GUI package
  */
@@ -20,47 +20,47 @@ public class SelectGame {
 		if (test || m_test){
 			System.out.println("SelectGame :: Draw() BEGIN");
 		}
-		display = new JFrame("Select Game");
+		m_display = new JFrame("Select Game");
 	
-		display.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		m_display.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	
-		othello_Button = new JButton("Othello");
+		m_othello_Button = new JButton("Othello");
 	
-		connectFour_Button = new JButton("Connect Four");
+		m_connectFour_Button = new JButton("Connect Four");
 	
-		content = new JPanel(new GridBagLayout());
+		m_content = new JPanel(new GridBagLayout());
 	
 		GridBagConstraints c = new GridBagConstraints();
 	
-		message_Label = new JLabel("Please Select a Game");
+		m_message_Label = new JLabel("Please Select a Game");
 	
-		message_Label.setFont(fontSettings);
+		m_message_Label.setFont(m_fontSettings);
 	
 		c.gridwidth = LBL_MES_WIDTH;
 		c.anchor = GridBagConstraints.PAGE_START;
 		c.gridx = LBL_MES_X;
 		c.gridy = LBL_MES_Y;
-		content.add(message_Label, c);
+		m_content.add(m_message_Label, c);
 	
 		c.gridwidth = BTN_WIDTH;
 	
 		c.gridx = BTN_OTHELLO_X;
 		c.gridy = BTN_OTHELLO_Y;
-		content.add(othello_Button, c);
+		m_content.add(m_othello_Button, c);
 	
 		c.gridx = BTN_CONNECT4_X;
 		c.gridy = BTN_CONNECT4_Y;
-		content.add(connectFour_Button, c);
+		m_content.add(m_connectFour_Button, c);
 	
 		guiEventHandler handler = new guiEventHandler();
 	
-		othello_Button.addActionListener(handler);
-		connectFour_Button.addActionListener(handler);
-		display.add(content);
+		m_othello_Button.addActionListener(handler);
+		m_connectFour_Button.addActionListener(handler);
+		m_display.add(m_content);
 	
-		display.pack();
-		display.setLocationRelativeTo(null);
-		display.setVisible(true);
+		m_display.pack();
+		m_display.setLocationRelativeTo(null);
+		m_display.setVisible(true);
 		
 		if (test || m_test){
 			System.out.println("SelectGame :: Draw() END");
@@ -81,19 +81,19 @@ public class SelectGame {
 			if (test || m_test){
 				System.out.println("SelectGame :: actionPerformed() BEGIN");
 			}
-			if (event.getSource() == othello_Button) {
+			if (event.getSource() == m_othello_Button) {
 	
 				Selection s1 = new Selection("othello");
-				display.dispose();
+				m_display.dispose();
 				if (test || m_test){
 					System.out.println("SelectGame :: actionPerformed() END");
 				}
 			}
 	
-			if (event.getSource() == connectFour_Button) {
+			if (event.getSource() == m_connectFour_Button) {
 	
 				Selection s2 = new Selection("connectFour");
-				display.dispose();
+				m_display.dispose();
 				
 				if (test || m_test){
 					System.out.println("SelectGame :: actionPerformed() END");
@@ -117,15 +117,15 @@ public class SelectGame {
 	/**
 	 * display is a JFrame for the GUI
 	 */
-	private JFrame display;
+	private JFrame m_display;
 	/**
 	 * othello_Button is a JButton to select othello game
 	 */
-	private JButton othello_Button;
+	private JButton m_othello_Button;
 	/**
 	 * connectFour_Button is a JButton to select Connect Four game
 	 */
-	private JButton connectFour_Button;
+	private JButton m_connectFour_Button;
 	/**
 	 * content is a JPanel to hold buttons and labels. content will use
 	 * GridBagLayout. 
@@ -134,11 +134,11 @@ public class SelectGame {
 	 * \see http://www.macs.hw.ac.uk/guidebook/?name=Layouts&page=7 
 	 * for more information on GridBagLayout.
 	 */
-	private JPanel content;
+	private JPanel m_content;
 	/**
 	 * message_Label is JLabel used to tell the player to pick a game
 	 */
-	private JLabel message_Label;
+	private JLabel m_message_Label;
 	/**
 	 * FONT_SIZE sets the pt size of the font object
 	 */
@@ -148,7 +148,7 @@ public class SelectGame {
 	 * \see http://docs.oracle.com/javase/7/docs/api/java/awt/Font.html 
 	 * for more informatin on Font objects
 	 */
-	private Font fontSettings = new Font("Dialog", Font.PLAIN, FONT_SIZE);
+	private Font m_fontSettings = new Font("Dialog", Font.PLAIN, FONT_SIZE);
 
 	/**
 	 * LBL_MES_WIDTH sets width of message_Label. Using GridBagLayout
