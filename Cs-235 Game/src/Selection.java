@@ -197,7 +197,7 @@ public class Selection implements ActionListener {
 	/**value for the display frame width*/
 	private final int FRAME_WIDTH = 300;
 	/**value for the display frame Height*/
-	private final int FRAME_HEIGHT = 125;
+	private final int FRAME_HEIGHT = 135;
 	
 	/**The Panels to keep all elements on in the JFrame*/
 	private JPanel btnPanel,selectPanel, comboPanel;
