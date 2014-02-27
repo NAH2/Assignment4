@@ -10,9 +10,10 @@ public class Connect4GUI extends GUI {
 	public Connect4GUI(BoardGame b, GameController g) {
 		super(b, g);
 		setImages();
+		setConnectFourInfo();
 	}
 
-	public boolean setPanelColour() {
+	public boolean SetPanelColour() {
 		
 		for (int y = 0; y < getBoard().GetHeight(); ++y) {
 			for (int x = 0; x < getBoard().GetWidth(); ++x) {
