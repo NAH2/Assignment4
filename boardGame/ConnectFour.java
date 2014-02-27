@@ -23,7 +23,16 @@ public class ConnectFour extends BoardGame {
 	 * 
 	 */
 	public ConnectFour() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: ConnectFour() BEGIN");
+        }
+        
 		super(INITIAL_X, INITIAL_Y);
+        
+        if (test || m_test) {
+            System.out.println("ConnectFour :: ConnectFour() END");
+        }
 	}
 
 	/**
@@ -32,8 +41,16 @@ public class ConnectFour extends BoardGame {
 	 * of the game piece. \return boolean return true if the action complete.
 	 */
 	public boolean SetPiece(int x, int y, String col) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: SetPiece() BEGIN");
+        }
+
 		board[x][y] = new ConnectFourPiece(col);
 		return true;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: SetPiece() END");
+        }
 	}
 
 	/**
@@ -44,6 +61,11 @@ public class ConnectFour extends BoardGame {
 	 * same color, false while the game is on.
 	 */
 	private boolean checkWin(String col) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: checkWin() BEGIN");
+        }
+
 		GamePiece searchPiece;
 		for (int x = 0; x <= GetWidth(); x++) {
 			for (int index = 0; index <= GetHeight(); index++) {
@@ -94,6 +116,9 @@ public class ConnectFour extends BoardGame {
 			}
 		}
 		return false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: checkWin() END");
+        }
 	}
 
 	/**
@@ -104,6 +129,11 @@ public class ConnectFour extends BoardGame {
 	 * the game board, false if the column is full.
 	 */
 	public boolean Move(int x, int y, String col) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: Move() BEGIN");
+        }
+
 		int index = 0;
 		if (board[x][0] == null) {
 			for (int h = 0; h < GetHeight() - 1; ++h) {
@@ -121,7 +151,9 @@ public class ConnectFour extends BoardGame {
 			System.out.println("Space Occupied");
 			return false;
 		}
-	
+        if (test || m_test) {
+            System.out.println("ConnectFour :: Move() END");
+        }
 	}
 
 	/**
@@ -131,6 +163,11 @@ public class ConnectFour extends BoardGame {
 	 */
 	@Override
 	public boolean WinningCondition() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: WinningCondition() BEGIN");
+        }
+
 		if (m_counter >= NUM_IN_ROW_WIN) {
 			SetWinner();
 			return true;
@@ -148,6 +185,9 @@ public class ConnectFour extends BoardGame {
 			return true;
 		}
 		return false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: WinningCondition() END");
+        }
 	}
 
 	/**
@@ -156,8 +196,16 @@ public class ConnectFour extends BoardGame {
 	 */
 	@Override
 	public boolean SetWinner() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: SetWinner() BEGIN");
+        }
+
 		SetWinningColour(m_winningColour);
 		return true;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: SetWinner() END");
+        }
 	}
 
 	private boolean m_draw;
@@ -170,5 +218,5 @@ public class ConnectFour extends BoardGame {
 	private final static int INITIAL_X = 10;
 	private final static int INITIAL_Y = 7;
 	private final int NUM_IN_ROW_WIN = 4;
-
+    private boolean m_test = false;
 }

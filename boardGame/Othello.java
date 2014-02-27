@@ -24,8 +24,17 @@ public class Othello extends BoardGame {
 	 * 
 	 */
 	public Othello() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: Othello() BEGIN");
+        }
+
 		super(8, 8);
 		initialGame();
+        if (test || m_test) {
+            System.out.println("Othello :: Othello() END");
+        }
+        
 	}
 
 	/**
@@ -34,7 +43,15 @@ public class Othello extends BoardGame {
 	 */
 	
 	public int GetBlackScore() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: GetBlackScore() BEGIN");
+        }
+
 		return m_scoreBlack;
+        if (test || m_test) {
+            System.out.println("Othello :: GetBlackScore() END");
+        }
 	}
 
 	/**
@@ -45,10 +62,17 @@ public class Othello extends BoardGame {
 	 * \return boolean return true if the action completes.
 	 */
 	public boolean SetPiece(int x, int y, String col) {
-	
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: SetPiece() BEGIN");
+        }
+
 		board[x][y] = new OthelloPiece(col);
 	
 		return true;
+        if (test || m_test) {
+            System.out.println("Othello :: SetPiece() END");
+        }
 	}
 
 	/**
@@ -57,7 +81,15 @@ public class Othello extends BoardGame {
 	 */
 	
 	public int GetWhiteScore() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: GetWhiteScore() BEGIN");
+        }
+
 		return m_scoreWhite;
+        if (test || m_test) {
+            System.out.println("Othello :: GetWhiteScore() END");
+        }
 	}
 
 	/**
@@ -71,6 +103,11 @@ public class Othello extends BoardGame {
 	public char[][] AvailableMove(String col) { // check available move and
 		// return the char array.
 		// 'O' means available move.
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: AvailableMove() BEGIN");
+        }
+
 		m_availableMov = new char[GetHeight()][GetWidth()];
 		for (int i = 0; i < GetHeight(); i++) {
 			for (int j = 0; j < GetWidth(); j++) {
@@ -83,6 +120,9 @@ public class Othello extends BoardGame {
 		}
 	
 		return m_availableMov;
+        if (test || m_test) {
+            System.out.println("Othello :: AvailableMove() END");
+        }
 	}
 
 	/**
@@ -91,6 +131,11 @@ public class Othello extends BoardGame {
 	 * \return boolean return the char array that store all the available moves.
 	 */
 	public boolean CheckPassTurn() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: CheckPassTurn() BEGIN");
+        }
+
 		boolean passTurn = true;
 		for (int i = 0; i < GetHeight(); i++) {
 			for (int j = 0; j < GetWidth(); j++) {
@@ -102,12 +147,20 @@ public class Othello extends BoardGame {
 			}
 		}
 		return passTurn;
+        if (test || m_test) {
+            System.out.println("Othello :: CheckPassTurn() END");
+        }
 	}
 
 	/**
 	 * Loop though the game board and count the current score.
 	 */
 	private void countScore() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: countScore() BEGIN");
+        }
+
 		m_scoreBlack = 0;
 		m_scoreWhite = 0;
 		for (int i = 0; i < GetHeight(); i++) {
@@ -121,16 +174,24 @@ public class Othello extends BoardGame {
 				}
 			}
 		}
+        
 		// System.out.println("Black Score:" + scoreBlack + " White Score:"
 		// + scoreWhite);
 	}
-
+    if (test || m_test) {
+        System.out.println("ConnectFourPiece :: countScore() END");
+    }
 	/**
-	 * Flip the piece if it is a valid move 
+	 * Flip the piece if it is a valid move
 	 * \param col the color of the game piece.
 	 */
 	
 	private void flip(String col) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: flip() BEGIN");
+        }
+
 		for (int a = 0; a < m_counter; a++) {
 			m_searchY -= m_i_diff;
 			m_searchX -= m_j_diff;
@@ -142,6 +203,11 @@ public class Othello extends BoardGame {
 	 * Initialize the game. Four pieces are centered.
 	 */
 	private void initialGame() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: flip() BEGIN");
+        }
+
 		this.SetPiece(INTIAL_X, INITIAL_Y, m_black);
 		this.SetPiece(INITIAL_X_TWO, INITIAL_Y_TWO, m_black);
 		this.SetPiece(INITIAL_X_TWO, INITIAL_Y, m_white);
@@ -160,6 +226,11 @@ public class Othello extends BoardGame {
 	 */
 
 	public boolean Move(int x, int y, String col) { // move action
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: ConnectFourPiece() BEGIN");
+        }
+
 		if (validMove(x, y, col) == true) { // check whether the move is valid
 			do {
 				flip(col); // do the flip action here
@@ -173,6 +244,11 @@ public class Othello extends BoardGame {
 	}
 
 	public boolean SetWinner() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: ConnectFourPiece() BEGIN");
+        }
+
 		if (m_scoreBlack == m_scoreWhite) {
 			SetWinningColour("draw");
 		} else if (m_scoreWhite > m_scoreBlack)
@@ -181,6 +257,9 @@ public class Othello extends BoardGame {
 			SetWinningColour("black");
 		}
 		return true;
+        if (test || m_test) {
+            System.out.println("Othello :: setIcons() END");
+        }
 	}
 
 	/**
@@ -192,7 +271,12 @@ public class Othello extends BoardGame {
 	 * \return boolean return true if the move is valid.
 	 */
 
-	private boolean validMove(int x, int y, String col) { 
+	private boolean validMove(int x, int y, String col) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: ConnectFourPiece() BEGIN");
+        }
+
 		// check valid move here (OTHELLO CORE)
 		if (board[x][y] == null) {
 			GamePiece searchPiece;
@@ -272,7 +356,9 @@ public class Othello extends BoardGame {
 			return false;
 		}
 		return false;
-
+        if (test || m_test) {
+            System.out.println("Othello :: setIcons() END");
+        }
 	}
 
 	/**
@@ -282,6 +368,11 @@ public class Othello extends BoardGame {
 	 */
 
 	public boolean WinningCondition() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: ConnectFourPiece() BEGIN");
+        }
+
 		for (int x = 0; x < GetWidth(); x++) {
 			for (int y = 0; y < GetHeight(); y++) {
 				if (board[x][y] == null && m_scoreBlack != 0 && 
@@ -292,7 +383,9 @@ public class Othello extends BoardGame {
 		}
 		SetWinner();
 		return true;
-
+        if (test || m_test) {
+            System.out.println("Othello :: setIcons() END");
+        }
 	}
 
 	private int m_counter;
@@ -311,4 +404,5 @@ public class Othello extends BoardGame {
 	private String m_white = "white";
 	private String m_yellow = "yellow";
 	private String m_red = "red";
+    private boolean m_test = false;
 }
