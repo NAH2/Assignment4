@@ -1,6 +1,6 @@
 /**
  * \file -Selection.java
- * \author -Thomas Letheby 659204 
+ * \author -Thomas Letheby 
  * \date -25th Feb 14
  * 
  * \see SelectGame.java
@@ -20,8 +20,6 @@ import java.awt.event.*;
 import java.awt.*;
 
 public class Selection implements ActionListener {
-
-
 
 	/**
 	 * Accessor method to set the current game type 
@@ -163,7 +161,8 @@ public class Selection implements ActionListener {
 		displaySelection.add(comboPanel, BorderLayout.NORTH);
 		/** adds the btnPanel to the JFrame and aligns it to SOUTH of frame */
 		displaySelection.add(btnPanel, BorderLayout.SOUTH);
-		/** adds the selectPanel to the JFrame and sets the JFrame to be visible */
+		/** adds the selectPanel to the JFrame and 
+		 * sets the JFrame to be visible */
 		displaySelection.add(selectPanel, BorderLayout.CENTER);
 		/**
 		 * sets the displaySelection JFrame displaySelection to be visible, so
@@ -213,7 +212,8 @@ public class Selection implements ActionListener {
 		 * btn_play
 		 */
 		if (e.getSource() == btn_play) {
-			/** setting the Player one name to what is typed into the text field */
+			/** setting the Player one name to what is 
+			 * typed into the text field */
 			if (playerOne.getText().length() <= 20) {
 				if(playerOne.getText().equals(""))
 					setPlayerNameOne(m_p1Text);
@@ -226,7 +226,8 @@ public class Selection implements ActionListener {
 								"of 20 characters.");
 				setPlayerNameOne(playerOne.getText().substring(0, 20));
 			}
-			/** setting the Player two name to what is typed into the text field */
+			/** setting the Player two name to what is typed 
+			 * into the text field */
 			if (playerTwo.getText().length() <= 20) {
 				if(playerTwo.getText().equals(""))
 					setPlayerNameTwo(m_p2Text);
@@ -241,7 +242,8 @@ public class Selection implements ActionListener {
 			}
 			/** this if statement checks if the chosenGame is Othello */
 			if (m_currentGameType.equalsIgnoreCase(m_opponentOthello)) {
-				/** then the first human player is set to the piece colour black */
+				/** then the first human player is set to the 
+				 * piece colour black */
 				HumanPlayer HuPlay = new HumanPlayer(m_p1Text, m_black);
 
 				/**
@@ -279,8 +281,8 @@ public class Selection implements ActionListener {
 			 * this else if statement checks whether the chosen game is Connect
 			 * Four
 			 */
-			else if (m_currentGameType.equalsIgnoreCase(m_opponentConnectFour)) {
-				/** then the first human player is set to the piece colour red */
+			else if (m_currentGameType.equalsIgnoreCase(m_opponentConnectFour)){
+				/** then the first human player is set to the piece colour red*/
 				HumanPlayer HuPlay = new HumanPlayer(m_p1Text, m_red);
 
 				/**

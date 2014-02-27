@@ -1,6 +1,6 @@
 /**
  * \file -Connect4GUI.java 
- * \author -
+ * \author - Chak Yan Lam
  * \date -22nd Feb 14
  * 
  * \see GUI.java
@@ -28,7 +28,8 @@ import piece.OthelloPiece;
 public class Connect4GUI extends GUI {
 
 	 /**
-     * Set the the player names, player turn and the new game button to display on screen.
+     * Set the the player names, player turn and the new game button to 
+     * display on screen.
      * \return boolean  return true if the action complete.
      */
 	public boolean SetConnectFourInfo(){
@@ -49,9 +50,11 @@ public class Connect4GUI extends GUI {
 		ConnectFourPiece yellow = new ConnectFourPiece("yellow");
 		playerTwoIcon.setIcon(yellow.GetIcon());
 		playerTwoIcon.setVisible(true);
-		playerTurnIcon.setIcon(new ConnectFourPiece(m_game.GetCurrent()).GetIcon());
+		playerTurnIcon.setIcon(new ConnectFourPiece(m_game.GetCurrent()).
+		        GetIcon());
 		playerTurnIcon.setVisible(true);
-		playerTurnLabel.setText(m_game.GetPlayerName(m_game.GetCurrent()) + "'s TURN");
+		playerTurnLabel.setText(m_game.GetPlayerName(m_game.GetCurrent()) 
+		        + "'s TURN");
 		playerTurnLabel.setFont(f);
 		playerTurnLabel.setVisible(true);
 		m_frame.pack();
@@ -59,7 +62,6 @@ public class Connect4GUI extends GUI {
 		if (test || m_test){
 			System.out.println("Connect4GUI :: SetConnectFourInfo() END");
 		}
-		
 		return true;
 	}
 	
@@ -112,8 +114,10 @@ public class Connect4GUI extends GUI {
 	}
 	
     /**
-    * Constructor of Connect4GUI, calls the constructor of GUI for constructing the game board and sets the player information.
-    * \param a BoardGame object which is in ConnectFour type, a GameController object.
+    * Constructor of Connect4GUI, calls the constructor of GUI for constructing
+    *  the game board and sets the player information.
+    * \param a BoardGame object which is in ConnectFour type,a GameController 
+    * object.
     */
 	
 	public Connect4GUI(BoardGame b, GameController g) {

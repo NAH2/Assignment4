@@ -1,16 +1,19 @@
 /**
  * \file -OthelloGUI.java 
- * \author -
+ * \author - Jake Daryl Plumley
  * \date -22nd Feb 14
  * 
  * \see GUI.java
  * 
- * \brief OthelloGUI is used to set up and update the background of the Othello game board. 
+ * \brief OthelloGUI is used to set up and update the background of the Othello
+ *  game board. 
  * extends GUI.java
  * 
- * This class extends from the GUI class, it changes the background colors of each square with different available moves.
+ * This class extends from the GUI class, it changes the background colors of 
+ * each square with different available moves.
  * 
- * Due to problems of trying to test in the main. Testing is done in another class
+ * Due to problems of trying to test in the main. 
+ * Testing is done in another class
  */
  
 import java.awt.Color;
@@ -26,7 +29,8 @@ import boardGame.*;
 public class OthelloGUI extends GUI {
 
 	 /**
-     * Set the player names, scores, player turn, the pass and new game button to display on screen.
+     * Set the player names, scores, player turn, the pass and new game button
+     *  to display on screen.
      * \return boolean  return true if the action complete.
      */
 	public boolean SetOthelloInfo() {
@@ -74,7 +78,8 @@ public class OthelloGUI extends GUI {
 	}
 
 	 /**
-     * Set the background colour and border of each square in the game board with regard to available moves of different player. 
+     * Set the background colour and border of each square in the game board 
+     * with regard to available moves of different player. 
      * \return boolean  return true if the action complete.
      */
 	public boolean SetPanelColour() {
@@ -110,8 +115,9 @@ public class OthelloGUI extends GUI {
 	}
 	
     /**
-    * Constructor of OthelloGUI, calls the constructor of GUI for constructing the game board and sets the player information.
-    * \param a BoardGame object which is in Othello type, a GameController object.
+    * Constructor of OthelloGUI, calls the constructor of GUI for constructing 
+    * the game board and sets the player information.
+    * \param a BoardGame object which is in Othello type,a GameController object
     */
 	public OthelloGUI(BoardGame b, GameController g) {
 		super(b, g);

@@ -1,6 +1,6 @@
 /**
  * \file -GameController.java 
- * \author -
+ * \author - Thomas Letheby
  * \date -22nd Feb 14
  * 
  * \brief GameController is used to control the game flow. 
@@ -108,12 +108,14 @@ public class GameController {
         }
 		if (m_currentPlayer == m_p1) {
 			if (test || m_test) {
-	            System.out.println("GameController :: Alternate() END :: " + m_currentPlayer + " " + m_p2);
+	            System.out.println("GameController :: Alternate() END :: " + 
+	                                m_currentPlayer + " " + m_p2);
 	        }
 			m_currentPlayer = m_p2;
 		} else if (m_currentPlayer == m_p2) {
 			if (test || m_test) {
-	            System.out.println("GameController :: Alternate() END :: " + m_currentPlayer + " " + m_p1);
+	            System.out.println("GameController :: Alternate() END :: " + 
+	                                m_currentPlayer + " " + m_p1);
 	        }
 			m_currentPlayer = m_p1;
 		}

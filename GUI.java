@@ -1,6 +1,6 @@
 /**
  * \file -GUI.java 
- * \author -
+ * \author - Jake Daryl Plumley
  * \date -24th Feb 14
  * 
  * \see BoardGame.java
@@ -32,7 +32,8 @@ public class GUI extends JFrame {
 
 	 /**
      * Get the board game object.
-     * \return BoardGame  return the board game object which is either connect4 and othello.
+     * \return BoardGame  return the board game object which is either 
+     * connect4 or othello.
      */
 	public BoardGame GetBoard() {
 		return m_board;
@@ -47,7 +48,8 @@ public class GUI extends JFrame {
 	}
 
     /**
-    * Constructor of GUI, construct the game board and sets the player information.
+    * Constructor of GUI, construct the game board and sets the player 
+    * information.
     * \param a BoardGame object , a GameController object.
     */
 	public GUI(BoardGame b, GameController g) {
@@ -167,7 +169,8 @@ public class GUI extends JFrame {
 	}
 
 	/** These methods had to be declared as MouseListener is abstract. 
-	 * Detect mouse action and button click to pass the information to the BoardGame and GameController class.
+	 * Detect mouse action and button click to pass the information to the 
+	 * BoardGame and GameController class.
 	 */
 	private class GUIHandler implements MouseListener, ActionListener {
 		// these methods had to be declared as MouseListener is abstract
@@ -241,8 +244,8 @@ public class GUI extends JFrame {
 
 	protected Font f = new Font("Dialog", Font.PLAIN, 15);
 	protected JLabel playerOneColor, playerOneIcon, playerTwoColor,
-	playerTwoIcon, playerTurnIcon, playerTurnLabel, whiteIcon,
-	whitePieces, blackIcon, blackPieces;
+	                 playerTwoIcon, playerTurnIcon, playerTurnLabel, whiteIcon,
+	                 whitePieces, blackIcon, blackPieces;
 	protected BoardGame m_board;
 	protected GameController m_game;
 	protected JPanel[][] m_panels;
