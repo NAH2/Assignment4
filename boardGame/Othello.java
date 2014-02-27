@@ -114,9 +114,9 @@ public class Othello extends BoardGame {
 			for (int j = 0; j < GetWidth(); j++) {
 				if (board[j][i] != null) {
 	
-					if (board[j][i].GetColour() == "black") {
+					if (board[j][i].GetColour() == m_black) {
 						m_scoreBlack++;
-					} else if (board[j][i].GetColour() == "white")
+					} else if (board[j][i].GetColour() == m_white)
 						m_scoreWhite++;
 				}
 			}
@@ -176,9 +176,9 @@ public class Othello extends BoardGame {
 		if (m_scoreBlack == m_scoreWhite) {
 			SetWinningColour("draw");
 		} else if (m_scoreWhite > m_scoreBlack)
-			SetWinningColour("white");
+			SetWinningColour(m_white);
 		else {
-			SetWinningColour("black");
+			SetWinningColour(m_black);
 		}
 		return true;
 	}
