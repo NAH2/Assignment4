@@ -14,14 +14,14 @@ public class OthelloGUI extends GUI {
 		SetOthelloInfo();
 	}
 
-	public boolean SetOthelloInfo(){
-		playerOneColor.setText(m_game.GetPlayerName("black")+":");
+	public boolean SetOthelloInfo() {
+		playerOneColor.setText(m_game.GetPlayerName("black") + ":");
 		playerOneColor.setFont(f);
 		playerOneColor.setVisible(true);
 		OthelloPiece black = new OthelloPiece("black");
 		playerOneIcon.setIcon(black.GetIcon());
 		playerOneIcon.setVisible(true);
-		playerTwoColor.setText(m_game.GetPlayerName("white")+":");
+		playerTwoColor.setText(m_game.GetPlayerName("white") + ":");
 		playerTwoColor.setFont(f);
 		playerTwoColor.setVisible(true);
 		OthelloPiece white = new OthelloPiece("white");
@@ -29,24 +29,25 @@ public class OthelloGUI extends GUI {
 		playerTwoIcon.setVisible(true);
 		playerTurnIcon.setIcon(new OthelloPiece(m_game.GetCurrent()).GetIcon());
 		playerTurnIcon.setVisible(true);
-		playerTurnLabel.setText(m_game.GetPlayerName(m_game.GetCurrent()) + "'s TURN");
+		playerTurnLabel.setText(m_game.GetPlayerName(m_game.GetCurrent())
+				+ "'s TURN");
 		playerTurnLabel.setFont(f);
 		playerTurnLabel.setVisible(true);
 		blackIcon.setIcon(black.GetIcon());
 		blackIcon.setVisible(true);
-		blackPieces.setText(((Othello)(m_board)).GetBlackScore()+"");
+		blackPieces.setText(((Othello) (m_board)).GetBlackScore() + "");
 		blackPieces.setFont(f);
 		blackPieces.setVisible(true);
 		whiteIcon.setIcon(white.GetIcon());
 		whiteIcon.setVisible(true);
-		whitePieces.setText(((Othello)(m_board)).GetWhiteScore()+"");
+		whitePieces.setText(((Othello) (m_board)).GetWhiteScore() + "");
 		whitePieces.setFont(f);
 		whitePieces.setVisible(true);
 		m_passMove.setVisible(true);
 		m_frame.pack();
 		return true;
 	}
-	
+
 	public boolean SetPanelColour() {
 		char[][] availableMoves = ((Othello) GetBoard())
 				.AvailableMove(GetGame().GetCurrent());
