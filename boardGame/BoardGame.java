@@ -27,11 +27,13 @@ public abstract class BoardGame {
         }
 
         m_height= y;
-		return true;
         
         if (test || m_test) {
             System.out.println("BoardGame :: SetHeight() END");
         }
+		return true;
+        
+        
 	}
 
 	 /**
@@ -44,12 +46,14 @@ public abstract class BoardGame {
         if (test || m_test) {
             System.out.println("BoardGame :: GetHeight() BEGIN");
         }
-
-	    return m_height;
         
         if (test || m_test) {
             System.out.println("BoardGame :: GetHeight() END");
         }
+        
+	    return m_height;
+        
+        
 
 	}
 
@@ -65,15 +69,17 @@ public abstract class BoardGame {
             System.out.println("BoardGame :: GamePiece() BEGIN");
         }
 
-	    if  (board[x][y] != null) {
+	    if  (board[x][y] != null) {if (test || m_test) {
+            System.out.println("BoardGame :: GamePiece() END");
+        }
 	        return board[x][y];
-	    } else {
+	    } else {if (test || m_test) {
+            System.out.println("BoardGame :: GamePiece() END");
+        }
 	        return null;
 	    }
         
-        if (test || m_test) {
-            System.out.println("BoardGame :: GamePiece() END");
-        }
+        
 
 	}
 
@@ -103,11 +109,13 @@ public abstract class BoardGame {
 	            }
 	        }
 	    }
-	    return count;
-        
-        if (test || m_test) {
+	    if (test || m_test) {
             System.out.println("BoardGame :: GetTotalPieces() END");
         }
+	    
+	    return count;
+        
+       
 
 	}
 
@@ -123,11 +131,13 @@ public abstract class BoardGame {
         }
 
 		m_width = x;
-		return true;
-        
-        if (test || m_test) {
+		
+		if (test || m_test) {
             System.out.println("BoardGame :: SetWidth() END");
         }
+		return true;
+        
+        
 
 	}
 
@@ -142,11 +152,12 @@ public abstract class BoardGame {
             System.out.println("BoardGame :: GetWidth() BEGIN");
         }
 
-	    return m_width;
-        
         if (test || m_test) {
             System.out.println("BoardGame :: GetWidth() END");
         }
+	    return m_width;
+        
+      
 
 	}
 
@@ -163,11 +174,14 @@ public abstract class BoardGame {
         }
 
 	    m_winningColour = winner;
-	    return true;
-        
-        if (test || m_test) {
+	   
+	    if (test || m_test) {
             System.out.println("BoardGame :: SetWinningColour() END");
         }
+	    
+	    return true;
+        
+       
 
 	}
 
@@ -182,11 +196,13 @@ public abstract class BoardGame {
             System.out.println("BoardGame :: GetWinningColour() BEGIN");
         }
 
-	    return m_winningColour;
         
         if (test || m_test) {
             System.out.println("BoardGame :: GetWinningColour() END");
         }
+	    return m_winningColour;
+        
+        
 
 	}
 		 
@@ -258,11 +274,13 @@ public abstract class BoardGame {
 	            }
 	        }
 	    }
-	    return boardStateString;
-        
-        if (test || m_test) {
+	    
+	    if (test || m_test) {
             System.out.println("BoardGame :: toString() END");
         }
+	    return boardStateString;
+        
+        
 
 	}
 
