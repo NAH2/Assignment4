@@ -6,6 +6,7 @@ import boardGame.*;
 import javax.swing.*;
 
 import piece.ConnectFourPiece;
+import piece.GamePiece;
 import piece.OthelloPiece;
 
 public class Connect4GUI extends GUI {
@@ -36,6 +37,22 @@ public class Connect4GUI extends GUI {
 		playerTurnLabel.setVisible(true);
 		m_frame.pack();
 		return true;
+	}
+	
+	public void drawPieces() {
+		for (int y = 0; y < m_height; ++y) {
+			for (int x = 0; x < m_width; ++x) {
+				GamePiece p = m_board.getPiece(x, y);
+
+				if (p != null) {
+					m_labels[x][y].setIcon(p.getIcon());
+					m_panels[x][y].removeAll();
+				}
+				m_panels[x][y].add(m_labels[x][y]);
+			}
+		}
+		SwingUtilities.updateComponentTreeUI(m_frame);
+		updatePlayerTurnIcon(new ConnectFourPiece(m_game.getCurrent()).getIcon());
 	}
 	
 	public boolean SetPanelColour() {
