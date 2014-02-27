@@ -1,5 +1,5 @@
 /**
- * \file -ConnectFour.java 
+ * \\file -ConnectFour.java 
  * \author - Lam Chak Yan 667271
  * \date -21st Feb 14
  * 

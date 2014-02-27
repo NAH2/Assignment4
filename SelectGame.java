@@ -1,7 +1,8 @@
 /**
- * \file -SelectGame.java 
+ * \\file -SelectGame.java 
  * \author -Tyrone Bramwell 710981 
  * \date -20th Feb 14
+ * 
  * \brief SelectGame, used to select the game which the player wants to play.
  *  Part of the GUI package
  */

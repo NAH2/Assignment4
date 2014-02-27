@@ -1,11 +1,12 @@
 /**
- * \file -BoardGame.java 
+ * \\file -BoardGame.java 
  * \author Chun Kit So 742666
  * \date -20nd Feb 14
  * 
- * \brief BoardGame is an abstract class 
  * \see ConnectFour.java
  * \see Othello.java
+ * 
+ * \brief BoardGame is an abstract class 
  * 
  * BoardGame is the superclass of both Othello and Connect Four class
  */

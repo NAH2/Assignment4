@@ -1,5 +1,5 @@
 /**
- * \file   -GamePiece.java
+ * \\file   -GamePiece.java
  * \author -Gavin Bailey 711036
  * \date   -24th Feb 14
  * 

@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 /** This is a testing class
-*
+* \\file -HumanPlayerTestJUnit.java 
+* \author -Mathew Lloyd 711293 
+* \date -20th Feb 14
 * \see HumanPlayer.java, Player.java
 *
 * \brief To test that the player class is working correctly

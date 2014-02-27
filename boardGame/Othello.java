@@ -1,5 +1,5 @@
 /**
- * \file -Othello.java 
+ * \\file -Othello.java 
  * \author -Chun Kit So 742666
  * \date -21th Feb 14
  * 

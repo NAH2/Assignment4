@@ -1,5 +1,5 @@
 /**
- * \file   -ConnectFourPiece.java
+ * \\file   -ConnectFourPiece.java
  * \author -Gavin Bailey 711036
  * \date   -24th Feb 14
  * 

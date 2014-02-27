@@ -1,5 +1,5 @@
 /**
- * \file   -OthelloPiece.java
+ * \\file   -OthelloPiece.java
  * \author -Tyrone Bramwell
  * \date   -24th Feb 14
  * 

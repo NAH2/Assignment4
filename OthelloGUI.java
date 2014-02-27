@@ -7,10 +7,9 @@
  * 
  * \brief OthelloGUI is used to set up and update the background of the Othello
  *  game board. 
- * extends GUI.java
- * 
+ *  
  * This class extends from the GUI class, it changes the background colors of 
- * each square with different available moves.
+ * each square with different available moves.extends GUI.java
  * 
  * Due to problems of trying to test in the main. 
  * Testing is done in another class

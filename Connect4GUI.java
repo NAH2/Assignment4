@@ -1,5 +1,5 @@
 /**
- * \file -Connect4GUI.java 
+ * \\file -Connect4GUI.java 
  * \author - Chak Yan Lam
  * \date -22nd Feb 14
  * 
@@ -9,7 +9,6 @@
  * extends GUI.java
  * 
  * This class extends from the GUI class, it sets up the background of the connect four game board.
- * 
  * Due to problems of trying to test in the main. Testing is done in another class
  */
  

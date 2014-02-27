@@ -1,7 +1,7 @@
 package Player;
 
 /**
- * \file -Player.java 
+ * \\file -Player.java 
  * \author -Mathew Lloyd 711293 
  * \date -20th Feb 14
  * 
