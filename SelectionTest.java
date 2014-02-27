@@ -42,7 +42,7 @@ public class SelectionTest {
 	@Test
 	public void testDraw() {
 		selectTest = new Selection("othello");
-		selectTest.draw();
+		selectTest.Draw();
 	}
 
 
