@@ -1,3 +1,16 @@
+/**
+ * \file -OthelloGUI.java 
+ * \author -
+ * \date -22nd Feb 14
+ * 
+ * \see GUI.java
+ * 
+ * \brief OthelloGUI is used to set up and update the background of the Othello game board. 
+ * extends GUI.java
+ * 
+ * This class extends from the GUI class, it changes the background colors of each square with different available moves.
+ */
+ 
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -9,11 +22,10 @@ import boardGame.*;
 
 public class OthelloGUI extends GUI {
 
-	public OthelloGUI(BoardGame b, GameController g) {
-		super(b, g);
-		SetOthelloInfo();
-	}
-
+	 /**
+     * Set the player names, scores, player turn, the pass and new game button to display on screen.
+     * \return boolean  return true if the action complete.
+     */
 	public boolean SetOthelloInfo() {
 		playerOneColor.setText(m_game.GetPlayerName("black") + ":");
 		playerOneColor.setFont(f);
@@ -48,6 +60,10 @@ public class OthelloGUI extends GUI {
 		return true;
 	}
 
+	 /**
+     * Set the background colour and border of each square in the game board with regard to available moves of different player. 
+     * \return boolean  return true if the action complete.
+     */
 	public boolean SetPanelColour() {
 		char[][] availableMoves = ((Othello) GetBoard())
 				.AvailableMove(GetGame().GetCurrent());
@@ -68,5 +84,14 @@ public class OthelloGUI extends GUI {
 			}
 		}
 		return true;
+	}
+	
+    /**
+    * Constructor of OthelloGUI, calls the constructor of GUI for constructing the game board and sets the player information.
+    * \param a BoardGame object which is in Othello type, a GameController object.
+    */
+	public OthelloGUI(BoardGame b, GameController g) {
+		super(b, g);
+		SetOthelloInfo();
 	}
 }
