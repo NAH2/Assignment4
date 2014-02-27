@@ -253,12 +253,18 @@ public class Othello extends BoardGame {
 			SetPiece(x, y, col); // add the piece into gameBoard
 			countScore();
 			WinningCondition();
+			if (test || m_test) {
+	            System.out.println("Othello :: Move() END");
+	        }
 			return true;
-		} else
+			
+			
+		} else {
+			if (test || m_test) {
+	            System.out.println("Othello :: Move() END");
+	        }
 			return false;
-        if (test || m_test) {
-            System.out.println("Othello :: Move() END");
-        }
+		}
 
 	}
 
@@ -373,13 +379,14 @@ public class Othello extends BoardGame {
 				}
 
 			}
+			if (test || m_test) {
+	            System.out.println("Othello :: validMove() END");
+	        }
 
 			return false;
 		}
 		return false;
-        if (test || m_test) {
-            System.out.println("Othello :: validMove() END");
-        }
+       
 	}
 
 	/**
