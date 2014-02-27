@@ -1,7 +1,9 @@
 package Player;
 
 /**
- * \file -Player.java \author -Mathew Lloyd 711293 \date -20th Feb 14
+ * \file -Player.java 
+ * \author -Mathew Lloyd 711293 
+ * \date -20th Feb 14
  * 
  * \see HumanPlayer.java 
  * \see http://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html

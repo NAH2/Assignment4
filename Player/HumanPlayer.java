@@ -20,7 +20,7 @@ public class HumanPlayer extends Player {
 	 * \return m_playerName returns the player name retrieves from Player class
 	 */
 	public String GetPlayerName() {
-		boolean test = true;
+		boolean test = false;
 		if (test || m_test) {
             System.out.println("HumanPlayer :: GetPlayerName() BEGIN");
             }
@@ -41,7 +41,7 @@ public class HumanPlayer extends Player {
 	 * retrieves from Player class
 	 */
 	public String GetPiece() {
-		boolean test = true;
+		boolean test = false;
 		if (test || m_test) {
             System.out.println("HumanPlayer :: GetPiece() BEGIN");
             }
@@ -61,10 +61,11 @@ public class HumanPlayer extends Player {
 	 * sets the players name in the Player class.
 	 */
 	public boolean SetPlayerName(String settingPlayerName) {
-		boolean test = true;
+		boolean test = false;
 		if (settingPlayerName.isEmpty() && (test == true)) {
 			System.err
-			.println("*** Warning HumanPlayer::SetPlayerName() name set to empty string.");
+			.println("*** Warning HumanPlayer:"
+			        + "  :SetPlayerName() name set to empty string.");
 		}
 		m_playerName = settingPlayerName;
 		return true;
@@ -77,10 +78,11 @@ public class HumanPlayer extends Player {
 	 *  Has if statement to make sure that there are only 4 possible inputs
 	 */
 	public boolean SetPieceColor(String gamePiece) {
-		boolean test = true;
+		boolean test = false;
 		if (gamePiece.isEmpty() && (test == true)) {
 			System.err
-			.println("*** Warning HumanPlayer::SetPlayerName() gamePiece set to empty string.");
+			.println("*** Warning HumanPlayer::SetPlayerName() "
+			                        + "gamePiece set to empty string.");
 		}
 		if (gamePiece.equalsIgnoreCase("red")
 				|| gamePiece.equalsIgnoreCase("yellow")
@@ -133,7 +135,7 @@ public class HumanPlayer extends Player {
 	 * Testing in the main method.
 	 */
 	public static void main(String args[]) {
-		boolean test = true;
+		boolean test = false;
 		if (test == true) {
 			System.out.println("HumanPlayer::main() BEGIN unit test");
 		}
