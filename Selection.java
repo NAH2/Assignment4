@@ -1,7 +1,7 @@
 /**
- * \@file -Selection.java
- * \@author -Thomas Letheby 659204 
- * \@date -25th Feb 14
+ * \file -Selection.java
+ * \author -Thomas Letheby 659204 
+ * \date -25th Feb 14
  * 
  * \see SelectGame.java
  * \see GameController.java
@@ -34,12 +34,12 @@ public class Selection implements ActionListener {
 		if(chosenGame.equalsIgnoreCase("othello") || chosenGame.equalsIgnoreCase("connectfour"))
 	        setGameType(chosenGame);
 	        else System.err.println("Selection::Selection() can only be Othello or ConnectFour.");
-		draw();
+		Draw();
 	}
 
 	/**
 	 * Accessor method to set the current game type
-	 * @param GameType a string for the current game type
+	 * \param GameType a string for the current game type
 	 */
 	private void setGameType(String GameType) {
 		m_currentGameType = GameType;
@@ -47,15 +47,15 @@ public class Selection implements ActionListener {
 
 	/**
 	 * Accessor method to get the current game type
-	 * @return currentGameType a String of what the current game type is
+	 * \return currentGameType a String of what the current game type is
 	 */
-	public String getGameType() {
+	public String GetGameType() {
 		return m_currentGameType;
 	}
 
 	/**
 	 * Accessor method to set the player ones name
-	 * @param playerName a String for the players name
+	 * \param playerName a String for the players name
 	 */
 	private void setPlayerNameOne(String playerName) {
 		m_p1Text = playerName;
@@ -63,14 +63,14 @@ public class Selection implements ActionListener {
 
 	/**
 	 * Accessor method to set the player twos name
-	 * @param playerName a String for the players name
+	 * \param playerName a String for the players name
 	 */
 	private void setPlayerNameTwo(String playerName) {
 		m_p2Text = playerName;
 	}
 
 	/** The method that sets up and draws the JFrame and its corresponding elements*/
-	public void draw() {
+	public void Draw() {
 		/** sets up JFrame*/
 		displaySelection = new JFrame();
 		displaySelection.setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -156,7 +156,7 @@ public class Selection implements ActionListener {
 				setPlayerNameTwo(playerTwo.getText().substring(0, 20));
 			}
 			/**this if statement checks if the chosenGame is Othello*/
-			if (m_currentGameType.equalsIgnoreCase(opponentOthello)) {
+			if (m_currentGameType.equalsIgnoreCase(m_opponentOthello)) {
 				/**then the first human player is set to the piece colour black*/
 				HumanPlayer HuPlay = new HumanPlayer(m_p1Text, m_black);
 
@@ -167,7 +167,7 @@ public class Selection implements ActionListener {
 					/**closes the JFrame displaySelection entirely*/
 					
 					/**creates a new gameController object*/
-					GameController gameCont = new GameController(opponentOthello, HuPlay, HuPlayOpponent);
+					GameController gameCont = new GameController(m_opponentOthello, HuPlay, HuPlayOpponent);
 	                displaySelection.dispose();
 	                }
 				else {
@@ -177,7 +177,7 @@ public class Selection implements ActionListener {
 			}
 
 			/**this else if statement checks whether the chosen game is Connect Four*/
-			else if (m_currentGameType.equalsIgnoreCase(opponentConnectFour)) {
+			else if (m_currentGameType.equalsIgnoreCase(m_opponentConnectFour)) {
 				/**then the first human player is set to the piece colour red*/
 				HumanPlayer HuPlay = new HumanPlayer(m_p1Text, m_red);
 
@@ -188,7 +188,7 @@ public class Selection implements ActionListener {
 					/**closes the JFrame displaySelection entirely*/
 					displaySelection.dispose();
 					/**creates a new gameController object*/
-					GameController gameCont = new GameController(opponentConnectFour, HuPlay, HuPlayOpponent);
+					GameController gameCont = new GameController(m_opponentConnectFour, HuPlay, HuPlayOpponent);
 				} else {
 					/**displaySelections a error message dialog box, explaining that AI can't be played in current version*/
 					JOptionPane.showMessageDialog(null,	"AI not available in this version.", "Error",JOptionPane.ERROR_MESSAGE);
@@ -197,7 +197,7 @@ public class Selection implements ActionListener {
 		}
 	}
 	public static void main(String args[]){
-		Selection select = new Selection(opponentOthello);
+		Selection select = new Selection("othello");
 	}
 
 	
@@ -244,7 +244,7 @@ public class Selection implements ActionListener {
 	/**Stores the game type that is passed through from SelectGame.java*/
 	private String m_currentGameType;
 	/**The Othello String used throughout the class*/
-	private static String opponentOthello = "othello";
+	private String m_opponentOthello = "othello";
 	/**The Connect Four String used throughout the class*/
-	private static String opponentConnectFour = "connectFour";
+	private String m_opponentConnectFour = "connectFour";
 }
