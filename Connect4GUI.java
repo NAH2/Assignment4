@@ -14,10 +14,10 @@ public class Connect4GUI extends GUI {
 	public Connect4GUI(BoardGame b, GameController g) {
 		super(b, g);
 		setImages();
-		setConnectFourInfo();
+		SetConnectFourInfo();
 	}
 
-	public boolean setConnectFourInfo(){
+	public boolean SetConnectFourInfo(){
 		playerOneColor.setText(m_game.GetPlayerName("red")+":");
 		playerOneColor.setFont(f);
 		playerOneColor.setVisible(true);
