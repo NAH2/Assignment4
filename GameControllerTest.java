@@ -3,7 +3,15 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Player.HumanPlayer;
-
+/** This is a test class
+*
+* \see GameController.java
+*
+* \brief Testing the GameController class
+*
+* Sets up a new GameController and tests it. Manipulates the object
+* by using the inbuilt methods, much like a fully functioning game from the user would.
+*/
 
 public class GameControllerTest {
 
