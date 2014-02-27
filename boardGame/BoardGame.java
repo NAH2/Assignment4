@@ -1,6 +1,6 @@
 /**
  * \file -BoardGame.java 
- * \author -
+ * \author Chun Kit So 742666
  * \date -20nd Feb 14
  * 
  * \brief BoardGame is an abstract class 
