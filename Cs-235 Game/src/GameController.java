@@ -69,7 +69,7 @@ public class GameController {
         } else if (m_gameType.equals(m_connectFour)) {
             m_connectFourBoard = new ConnectFour();
             m_c4GUI = new Connect4GUI(m_connectFourBoard, this);
-            m_c4GUI.setPanelColour();
+            m_c4GUI.SetPanelColour();
         }
     }
     
@@ -83,7 +83,7 @@ public class GameController {
         if (m_gameType.equals(m_othello)) {
             m_othelloGUI.setPanelColour();
         } else if (m_gameType.equals(m_connectFour)) {
-            m_c4GUI.setPanelColour();
+            m_c4GUI.SetPanelColour();
         }
     }
     
