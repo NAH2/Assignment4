@@ -1,9 +1,9 @@
 /**
- * @file   -ConnectFourPiece.java
- * @author -Gavin Bailey 711036
- * @date   -24th Feb 14
+ * \file   -ConnectFourPiece.java
+ * \author -Gavin Bailey 711036
+ * \date   -24th Feb 14
  * 
- * /brief Connect Four game piece used in a game of Connect Four,
+ * \brief Connect Four game piece used in a game of Connect Four,
  * extends GamePiece.java
  * 
  * This is an extension of the GamePiece class, where the icons
@@ -18,7 +18,7 @@ public class ConnectFourPiece extends GamePiece {
     
     /**
      * Constructor of ConnectFourPiece, calls  setColour() and setIcons()
-     * @param col a String to set colour using setColour() of the superclass
+     * \param col a String to set colour using setColour() of the superclass
      */
     public ConnectFourPiece(String col) {
         boolean test = false;
@@ -36,7 +36,7 @@ public class ConnectFourPiece extends GamePiece {
     
     /**
      * Accessor method to retrieve the ImageIcon of the piece
-     * @return Icon depending on piece colour
+     * \return Icon depending on piece colour
      */
     public Icon GetIcon() {
         boolean test = false;
@@ -61,8 +61,8 @@ public class ConnectFourPiece extends GamePiece {
     
     /**
      * Accessor method to set the ImageIcons of a piece
-     * @return boolean on success
-     * @throws NullPointerException
+     * \return boolean on success
+     * \throws NullPointerException
      */
     public boolean SetIcons() throws NullPointerException {
         boolean test = false;
