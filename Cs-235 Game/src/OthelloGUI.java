@@ -7,6 +7,7 @@ public class OthelloGUI extends GUI {
 	public OthelloGUI(BoardGame b, GameController g) {
 		super(b, g);
 		setPassButton();
+		setOthelloInfo();
 	}
 
 	public boolean setPanelColour() {
