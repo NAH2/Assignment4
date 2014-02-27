@@ -47,12 +47,12 @@ public class Othello extends BoardGame {
         if (test || m_test) {
             System.out.println("Othello :: GetBlackScore() BEGIN");
         }
-
-		return m_scoreBlack;
         if (test || m_test) {
             System.out.println("Othello :: GetBlackScore() END");
         }
-	}
+
+		return m_scoreBlack;
+        	}
 
 	/**
 	 * Place the Othello piece on the game board 
@@ -68,11 +68,11 @@ public class Othello extends BoardGame {
         }
 
 		board[x][y] = new OthelloPiece(col);
-	
-		return true;
         if (test || m_test) {
             System.out.println("Othello :: SetPiece() END");
         }
+		return true;
+        
 	}
 
 	/**
@@ -85,12 +85,12 @@ public class Othello extends BoardGame {
         if (test || m_test) {
             System.out.println("Othello :: GetWhiteScore() BEGIN");
         }
-
-		return m_scoreWhite;
         if (test || m_test) {
             System.out.println("Othello :: GetWhiteScore() END");
         }
-	}
+
+		return m_scoreWhite;
+       	}
 
 	/**
 	 * Calculate all the available positions on the game board, then store them
@@ -114,17 +114,18 @@ public class Othello extends BoardGame {
 			for (int j = 0; j < GetWidth(); j++) {
 				if (validMove(j, i, col)) {
 					m_availableMov[j][i] = 'O'; // Location of Available Move
-				} else {
+                    
+                } else {
 					m_availableMov[j][i] = 'X';
 				}
 			}
 		}
-	
-		return m_availableMov;
         if (test || m_test) {
             System.out.println("Othello :: AvailableMove() END");
         }
-	}
+
+		return m_availableMov;
+    }
 
 	/**
 	 * check if the player do not have any available move , pass the turn to
@@ -147,11 +148,11 @@ public class Othello extends BoardGame {
 				}
 			}
 		}
-		return passTurn;
         if (test || m_test) {
             System.out.println("Othello :: CheckPassTurn() END");
         }
-	}
+		return passTurn;
+    }
 
 	/**
 	 * Loop though the game board and count the current score.
@@ -266,16 +267,18 @@ public class Othello extends BoardGame {
 
 		if (m_scoreBlack == m_scoreWhite) {
 			SetWinningColour("draw");
+
 		} else if (m_scoreWhite > m_scoreBlack)
 			SetWinningColour(m_white);
 		else {
 			SetWinningColour(m_black);
 		}
-		return true;
         if (test || m_test) {
             System.out.println("Othello :: SetWinner() END");
         }
-	}
+
+		return true;
+        	}
 
 	/**
 	 * Check whether the move is valid or not , It will search through 8
@@ -397,11 +400,28 @@ public class Othello extends BoardGame {
 			}
 		}
 		SetWinner();
-		return true;
         if (test || m_test) {
             System.out.println("Othello :: WinningCondition() END");
         }
+		return true;
+        
 	}
+    /** main method for tests */
+    public static void main(String[] args) {
+        Othello a = new Othello ();
+        a.GetBlackScore();
+        a.SetPiece(2,3,"white");
+        a.GetWhiteScore();
+        a.AvailableMove("black");
+        a.CheckPassTurn();
+        a.countScore();
+        a.flip("white");
+        a.initialGame();
+        a.Move(2,2,"black");
+        a.SetWinner();
+        a.validMove(4,4,"red");
+        a.WinningCondition();
+        
 
 	private int m_counter;
 	private int m_scoreWhite;
