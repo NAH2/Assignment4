@@ -105,9 +105,9 @@ public class ConnectFour extends BoardGame {
 						// skip the search if one of the direction is same color
 						// piece
 						if ((i == 0 && j == 0) || searchPiece == null
-								|| searchPiece.getColour() != col) {
+								|| searchPiece.GetColour() != col) {
 							found = false; 
-						} else if (searchPiece.getColour() == col) {
+						} else if (searchPiece.GetColour() == col) {
 							found = true; 
 							counter++;
 							if (counter == 4) {
