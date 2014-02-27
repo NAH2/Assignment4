@@ -1,3 +1,16 @@
+/**
+ * \file -Connect4GUI.java 
+ * \author -
+ * \date -22nd Feb 14
+ * 
+ * \see GUI.java
+ * 
+ * \brief Connect4GUI is used to set up the background of the game board. 
+ * extends GUI.java
+ * 
+ * This class extends from the GUI class, it sets up the background of the connect four game board.
+ */
+ 
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -11,12 +24,10 @@ import piece.OthelloPiece;
 
 public class Connect4GUI extends GUI {
 
-	public Connect4GUI(BoardGame b, GameController g) {
-		super(b, g);
-		setImages();
-		SetConnectFourInfo();
-	}
-
+	 /**
+     * Set the the player names, player turn and the new game button to display on screen.
+     * \return boolean  return true if the action complete.
+     */
 	public boolean SetConnectFourInfo(){
 		playerOneColor.setText(m_game.GetPlayerName("red")+":");
 		playerOneColor.setFont(f);
@@ -39,6 +50,10 @@ public class Connect4GUI extends GUI {
 		return true;
 	}
 	
+		 /**
+     * Set the background colour of the connect four game board. 
+     * \return boolean  return true if the action complete.
+     */
 	public boolean SetPanelColour() {
 		
 		for (int y = 0; y < GetBoard().GetHeight(); ++y) {
@@ -51,6 +66,10 @@ public class Connect4GUI extends GUI {
 		return true;
 	}
 
+	 /**
+     * Set the image as the empty square in the game board. 
+     * \return boolean  return true if the action complete.
+     */
 	public boolean setImages() {
 		try {
 			m_empty = new ImageIcon(getClass().getResource("empty.png"));
@@ -59,6 +78,16 @@ public class Connect4GUI extends GUI {
 		}
 
 		return true;
+	}
+	
+    /**
+    * Constructor of Connect4GUI, calls the constructor of GUI for constructing the game board and sets the player information.
+    * \param a BoardGame object which is in ConnectFour type, a GameController object.
+    */
+	public Connect4GUI(BoardGame b, GameController g) {
+		super(b, g);
+		setImages();
+		SetConnectFourInfo();
 	}
 
 	private ImageIcon m_empty;
