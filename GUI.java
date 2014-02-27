@@ -5,6 +5,8 @@
  * 
  * \see BoardGame.java
  * \see GameController.java
+ * \see OthelloGUI.java
+ * \see Connect4GUI.java
  * 
  * \brief GUI is used to set up and update the display for game board and the information. 
  * 
