@@ -1,5 +1,7 @@
+import Player.*;
+import boardGame.*;
 /**
- * \file -GameController.java 
+ * \\file -GameController.java 
  * \author - Thomas Letheby
  * \date -22nd Feb 14
  * 
@@ -8,10 +10,6 @@
  * This class monitor the game status, it checks the winning condition and change the player turn.
  * There are tests that cannot be run due to problems in the class.
  */
- 
-import Player.*;
-import boardGame.*;
-
 public class GameController {
 
 		 /**
@@ -259,16 +257,27 @@ public class GameController {
 	
 	}
 
+	/**The default String for the ConnectFour game*/
 	private final String m_connectFour = "connectFour";
+	/**The default String for the Othello game*/
 	private final String m_othello = "othello";
+	/**Identifier for the Connect4GUI*/
 	private Connect4GUI m_c4GUI;
+	/**Identifier for the Othello4GUI*/
 	private OthelloGUI m_othelloGUI;
+	/**Identifier for the Othello Gameboard*/
 	private Othello m_othelloBoard;
+	/**Identifier for the Connect4 Gameboard*/
 	private ConnectFour m_connectFourBoard;
+	/**Stores the gameType (connectFour or Othello).*/
 	private String m_gameType;
+	/**Available for a boolean test to check whether the game is still in session*/
 	private boolean m_gameOn = true;
+	/**Identifier for first player object*/
 	private HumanPlayer m_p1;
+	/**Identifier for second player object*/
 	private HumanPlayer m_p2;
+	/**Identifier to store which player object is the current turn*/
 	private HumanPlayer m_currentPlayer;
 	/** Indicates whether to run tests */
     private boolean m_test = false;

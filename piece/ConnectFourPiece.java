@@ -1,18 +1,17 @@
+package piece;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 /**
- * \\file   -ConnectFourPiece.java
+ * \\file -ConnectFourPiece.java
  * \author -Gavin Bailey 711036
- * \date   -24th Feb 14
+ * \date -24th Feb 14
  * 
- * \brief Connect Four game piece used in a game of Connect Four,
- * extends GamePiece.java
+ * \brief Connect Four game piece used in a game of Connect Four,extends GamePiece.java
  * 
  * This is an extension of the GamePiece class, where the icons
  * differ from other piece types.
  */
-package piece;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 public class ConnectFourPiece extends GamePiece {
     

@@ -6,6 +6,9 @@ import Player.HumanPlayer;
 import boardGame.Othello;
 /** 
 * This is a test class
+* \\file -OthelloGUITest.java 
+* \author - Jake Daryl Plumley
+* \date -22nd Feb 14
 * \see OthelloGUI.java, GUI.java
 *
 * \brief The testing class for the OthelloGUI.java

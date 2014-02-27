@@ -1,3 +1,6 @@
+package piece;
+
+import javax.swing.Icon;
 /**
  * \\file   -GamePiece.java
  * \author -Gavin Bailey 711036
@@ -10,10 +13,6 @@
  *  it contains accessor methods for piece data and abstract 
  *  method declarations
  */
-package piece;
-
-import javax.swing.Icon;
-
 public abstract class GamePiece {
     
     /**

@@ -1,3 +1,6 @@
+package boardGame;
+
+import piece.*;
 /**
  * \\file -Othello.java 
  * \author -Chun Kit So 742666
@@ -11,11 +14,6 @@
  * This class extends from the BoardGame class. It will check the valid move 
  * when the player place the pieces and return the feedback.
  */
-
-package boardGame;
-
-import piece.*;
-
 public class Othello extends BoardGame {
 
 	/**
@@ -436,22 +434,38 @@ public class Othello extends BoardGame {
         a.WinningCondition();
     }
   //The following two int's are static due to calling the BoardGame in method.
+    /**Sets the Size in BoardGame (is static due to calling the BoardGame in method*/
     private final static int INITIAL_W = 8;
+    /**Sets the Size in BoardGame (is static due to calling the BoardGame in method*/
     private final static int INITIAL_H = 8;
+    /**Counts the current pieces in a sequence to check for a win*/
 	private int m_counter;
+	/**Stores current score for white counter*/
 	private int m_scoreWhite;
+	/**Stores current score for black counter*/
 	private int m_scoreBlack;
+	/** integers to store the values to search next on the board for the winning conditions*/
 	private int m_searchX;
+	/** integers to store the values to search next on the board for the winning conditions*/
 	private int m_searchY;
+	/**Gets the number of pieces to flip*/
 	private int m_i_diff;
+	/**Gets the number of pieces to flip*/
 	private int m_j_diff;
+	/**Stores where the available moves are*/
 	private char[][] m_availableMov;
+	/**Setting up the initial piece positions*/
 	private final int INTIAL_X = 3;
+	/**Setting up the initial piece positions*/
 	private final int INITIAL_X_TWO = 4;
+	/**Setting up the initial piece positions*/
 	private final int INITIAL_Y = 3;
+	/**Setting up the initial piece positions*/
 	private final int INITIAL_Y_TWO = 4;
+	/**The string representation of the counter*/
 	private String m_black = "black";
+	/**The string representation of the counter*/
 	private String m_white = "white";
-
+	/**For testing purposes*/
     private boolean m_test = false;
 }

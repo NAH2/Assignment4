@@ -1,3 +1,6 @@
+package boardGame;
+
+import piece.*;
 /**
  * \\file -ConnectFour.java 
  * \author - Lam Chak Yan 667271
@@ -11,11 +14,6 @@
  * This class extends from the BoardGame class. It will check the whether a 
  * column is full when the player place the pieces.
  */
-
-package boardGame;
-
-import piece.*;
-
 public class ConnectFour extends BoardGame {
 	/**
 	 * This is the constructor for the ConnectFour It passes the height and the
@@ -134,7 +132,7 @@ public class ConnectFour extends BoardGame {
 				} else if (searchPiece.GetColour() == col) {
 					found = true;
 					m_counter++;
-					if (m_counter == 4) {
+					if (m_counter ==  NUM_IN_ROW_WIN) {
 						m_winningColour = col;
 						System.out.println(col + " wins");
 				        if (test || m_test) {
@@ -303,13 +301,21 @@ public class ConnectFour extends BoardGame {
         a.SetWinner();
     }
 
+    /**checks to see if there is available space to draw a piece, draw means no winner (true = draw)*/
 	private boolean m_draw;
+	/** integers to store the values to search next on the board for the winning conditions*/
 	private int m_searchY, m_searchX;
+	/**Counts the current pieces in a sequence to check for a win*/
 	private int m_counter;
+	/**Stores the winning colour to output on the message dialogue*/
 	private String m_winningColour;
 	//The following two int's are static due to calling the BoardGame in method.
+	/**Sets the Size in BoardGame (is static due to calling the BoardGame in method*/
 	private final static int INITIAL_X = 10;
+	/**Sets the Size in BoardGame (is static due to calling the BoardGame in method*/
 	private final static int INITIAL_Y = 7;
+	/**The number of pieces in a row required to have a win*/
 	private final int NUM_IN_ROW_WIN = 4;
+	/**Used for testing purposes*/
     private boolean m_test = false;
 }

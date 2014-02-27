@@ -4,10 +4,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import org.junit.Test;
 /**
-* \\file -SelectGameTest.java 
-* \author -Tyrone Bramwell 710981 
-* \date -20th Feb 14
-* \see SelectGameTest.java
+ * \\file SelectGameTest.java
+ * \author Tyrone Bramwell 710981 
+ * \date 20th Feb 14
+*  \see SelectGame.java
 *
 * \brief To test the SelectGame.java class
 *

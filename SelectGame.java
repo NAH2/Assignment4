@@ -1,3 +1,7 @@
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
 /**
  * \\file -SelectGame.java 
  * \author -Tyrone Bramwell 710981 
@@ -6,12 +10,6 @@
  * \brief SelectGame, used to select the game which the player wants to play.
  *  Part of the GUI package
  */
-
-import javax.swing.*;
-
-import java.awt.event.*;
-import java.awt.*;
-
 public class SelectGame {
 
 	/**

@@ -1,3 +1,6 @@
+package boardGame;
+
+import piece.*;
 /**
  * \\file -BoardGame.java 
  * \author Chun Kit So 742666
@@ -10,10 +13,6 @@
  * 
  * BoardGame is the superclass of both Othello and Connect Four class
  */
- package boardGame;
-
-import piece.*;
-
 public abstract class BoardGame {
 	
 	 /**
@@ -257,9 +256,14 @@ public abstract class BoardGame {
 	    return boardStateString;
 	}
 
+	/**The piece position on the board*/
 	protected GamePiece[][] board;
+	/**The board width*/
     private int m_width;
+    /**The board height*/
     private int m_height;
+    /**The winning colour string value is stored here*/
     private String m_winningColour;
+    /**For testing purposes*/
     private boolean m_test = false;
 }

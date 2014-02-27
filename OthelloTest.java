@@ -11,6 +11,9 @@ import Player.HumanPlayer;
 import boardGame.*;
 
 /** This is a testing class
+*\\file -OthelloTest.java 
+* \author -Chun Kit So 742666
+* \date -21th Feb 14
 * \see Othello.java
 *
 * \brief The following class tests the Othello Game 

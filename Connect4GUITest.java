@@ -8,12 +8,16 @@ import Player.HumanPlayer;
 
 /** 
 * This is a test class
-* \see Connect4GUI.java, GUI.java
+* \\file Connect4GUITest.java
+* \author Chak Yan Lam
+* \date 22nd Feb 14
 *
-* \brief The testing class for the Connect4GUI.java
+* \see Connect4GUI, GUI
+*
+* \brief The testing class for the Connect4GUI
 *
 * New players are simulated and the test is to make sure that information about the players
-* can be set. This class also tests the GUI.java class as Connect4GUI inherits from this therefore 
+* can be set. This class also tests the GUI class as Connect4GUI inherits from this therefore 
 * is tested here.
 * 
 */

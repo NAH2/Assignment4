@@ -1,3 +1,7 @@
+package piece;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 /**
  * \\file   -OthelloPiece.java
  * \author -Tyrone Bramwell
@@ -9,11 +13,6 @@
  * This is an extension of the GamePiece class, where the icons
  * differ from other piece types.
  */
-package piece;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 public class OthelloPiece extends GamePiece{
     
     /**

@@ -4,7 +4,10 @@ import org.junit.Test;
 
 import Player.HumanPlayer;
 /** This is a test class
-*
+* 
+* \\file -GameControllerTest.java 
+* \author - Thomas Letheby
+* \date -22nd Feb 14
 * \see GameController.java
 *
 * \brief Testing the GameController class

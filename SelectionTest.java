@@ -2,6 +2,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 /**
+* \\file -SelectionTest.java
+* \author -Thomas Letheby 
+* \date -25th Feb 14
 *\see Selection.java
 *
 *\brief Selection.java test

@@ -1,5 +1,11 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import boardGame.*;
+import piece.*;
+
 /**
- * \file -GUI.java 
+ * \\file -GUI.java 
  * \author - Jake Daryl Plumley
  * \date -24th Feb 14
  * 
@@ -11,15 +17,6 @@
  * \brief GUI is used to set up and update the display for game board and the information. 
  * 
  */
- 
-import java.awt.*;
-import java.awt.event.*;
-
-import javax.swing.*;
-
-import boardGame.*;
-import piece.*;
-
 public class GUI extends JFrame {
 
 	 /**
@@ -242,19 +239,32 @@ public class GUI extends JFrame {
 		}
 	}
 
+	/**Setting the default font face*/
 	protected Font f = new Font("Dialog", Font.PLAIN, 15);
+	/**Setting up all of the JLabels for the GUI*/
 	protected JLabel playerOneColor, playerOneIcon, playerTwoColor,
 	                 playerTwoIcon, playerTurnIcon, playerTurnLabel, whiteIcon,
 	                 whitePieces, blackIcon, blackPieces;
+	/**The gameBoard*/
 	protected BoardGame m_board;
+	/**setting up the GameController to interact with for each game*/
 	protected GameController m_game;
+	/**The panel to display the board*/
 	protected JPanel[][] m_panels;
+	/**The width of the gameboard*/
 	protected int m_width;
+	/**The height of the gameboard*/
 	protected int m_height;
+	/**An array of labels to set the piece upon*/
 	protected JLabel[][] m_labels;
+	/**The JFrame to display the board*/
 	protected JFrame m_frame;
+	/**The pass move button*/
 	protected JButton m_passMove;
+	/**The new game button*/
 	private JButton m_newGame;
+	/**The Icon on which the piece is equal to*/
 	private Icon m_icon;
+	/**The image location for the initial image on the gameboard*/
 	private String m_iconURL = "icon.png";
 }

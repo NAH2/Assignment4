@@ -1,5 +1,13 @@
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.SwingUtilities;
+import piece.GamePiece;
+import piece.OthelloPiece;
+import boardGame.*;
+
 /**
- * \file -OthelloGUI.java 
+ * \\file -OthelloGUI.java 
  * \author - Jake Daryl Plumley
  * \date -22nd Feb 14
  * 
@@ -14,17 +22,6 @@
  * Due to problems of trying to test in the main. 
  * Testing is done in another class
  */
- 
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.SwingUtilities;
-
-import piece.GamePiece;
-import piece.OthelloPiece;
-import boardGame.*;
-
 public class OthelloGUI extends GUI {
 
 	 /**

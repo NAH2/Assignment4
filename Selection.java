@@ -1,3 +1,8 @@
+import javax.swing.*;
+import Player.HumanPlayer;
+import java.awt.event.*;
+import java.awt.*;
+
 /**
  * \\file -Selection.java
  * \author -Thomas Letheby 
@@ -11,14 +16,6 @@
  * 
  * The class is a user interface to select name and opponent type
  */
-
-import javax.swing.*;
-
-import Player.HumanPlayer;
-
-import java.awt.event.*;
-import java.awt.*;
-
 public class Selection implements ActionListener {
 
 	/**

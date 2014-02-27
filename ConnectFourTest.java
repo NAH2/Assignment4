@@ -7,7 +7,9 @@ import org.junit.Test;
 import Player.HumanPlayer;
 import boardGame.*;
 /** This is a test class
-*
+* \\file -ConnectFourTest.java 
+* \author - Lam Chak Yan 667271
+* \date -21st Feb 14
 * \see ConnectFour.java
 *
 * \brief Testing the ConnectFour game class

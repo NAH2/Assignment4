@@ -1,29 +1,25 @@
-/**
- * \\file -Connect4GUI.java 
- * \author - Chak Yan Lam
- * \date -22nd Feb 14
- * 
- * \see GUI.java
- * 
- * \brief Connect4GUI is used to set up the background of the game board. 
- * extends GUI.java
- * 
- * This class extends from the GUI class, it sets up the background of the connect four game board.
- * Due to problems of trying to test in the main. Testing is done in another class
- */
- 
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
-
 import boardGame.*;
-
 import javax.swing.*;
-
 import piece.ConnectFourPiece;
 import piece.GamePiece;
 import piece.OthelloPiece;
 
+/**
+* \\file connect4GUI.java
+* \author Chak Yan Lam
+* \date 22nd Feb 14
+* 
+* \see GUI.java
+* 
+* \brief Connect4GUI is used to set up the background of the game board.Extends GUI.
+* 
+* This class extends from the GUI class, it sets up the background of the connect four game board.
+* Due to problems of trying to test in the main. Testing is done in another class
+
+*/
 public class Connect4GUI extends GUI {
 
 	 /**

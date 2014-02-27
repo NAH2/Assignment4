@@ -5,10 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /** This is a test class
-*\\file   -OthelloPieceTest.java
+* \\file   -OthelloPieceTest.java
 * \author -Mathew Lloyd 711293
 * \date   -24th Feb 14
-* \see OthelloPiece.java , GamePiece.java
+*  \see OthelloPiece.java , GamePiece.java
 *
 * \brief This class tests the Othello Piece
 *

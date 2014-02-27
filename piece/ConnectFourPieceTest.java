@@ -4,9 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 /** This is a test class
-* \\file   -ConnectFourPieceTest.java
-* \author -Gavin Bailey 711036
-* \date   -24th Feb 14
+* \\file ConnectFourPieceTest.java
+* \author Gavin Bailey 711036
+* \date 24th Feb 14
+* 
 *  \see ConnectFourPiece.java , GamePiece.java
 *
 * \brief This class tests the ConnectFourPiece
