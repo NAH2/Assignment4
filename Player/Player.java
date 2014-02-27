@@ -11,6 +11,8 @@ package Player;
  * 
  * This abstract class is the parent object for the different types of players,
  * it contains accessor methods for player data and abstract method declarations
+ *
+ *Testing of this class is done through the tests in HumanPlayer.java
  */
 
 public abstract class Player {
