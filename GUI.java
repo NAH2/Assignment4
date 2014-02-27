@@ -8,26 +8,20 @@ import piece.*;
 
 public class GUI extends JFrame {
 
-	public GameController getGame() {
+	public GameController GetGame() {
 		return m_game;
 	}
 
-	public BoardGame getBoard() {
+	public BoardGame GetBoard() {
 		return m_board;
 	}
 
-	public JPanel[][] getPanels() {
+	public JPanel[][] GetPanels() {
 		return m_panels;
 	}
 	
-	public boolean updatePlayerTurnIcon(Icon picon){
+	public boolean UpdatePlayerTurnIcon(Icon picon){
 		playerTurnIcon.setIcon(picon);
-		return true;
-	}
-	
-	public boolean updateScore(int black, int white){
-		blackPieces.setText(black+"");
-		whitePieces.setText(white+"");
 		return true;
 	}
 
@@ -39,10 +33,10 @@ public class GUI extends JFrame {
 		m_panels = new JPanel[m_width][m_height];
 		m_labels = new JLabel[m_width][m_height];
 		m_icon = new ImageIcon(getClass().getResource(m_iconURL));
-		draw();
+		Draw();
 	}
 
-	public void draw() {
+	public void Draw() {
 		m_frame = new JFrame("Game");
 		JPanel mainPanel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -53,18 +47,6 @@ public class GUI extends JFrame {
 
 		JPanel gamePanel = new JPanel(new GridLayout(m_height, m_width));
 		mainPanel.add(gamePanel, c);
-
-		/*m_passMove = new JButton("Pass");
-		c.gridx = 1;
-		c.gridy = 2;
-		mainPanel.add(m_passMove, c);
-		m_passMove.setVisible(false);
-
-		m_newGame = new JButton("New Game");
-		c.gridx = 1;
-		c.gridy = 0;
-		mainPanel.add(m_newGame, c);
-		m_newGame.setVisible(true);*/
 		
         JPanel infoPanel = new JPanel(new GridLayout(6,2));
         playerOneColor = new JLabel();
@@ -130,34 +112,28 @@ public class GUI extends JFrame {
 		m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	public void drawPieces() {
+	public void DrawPieces() {
 		for (int y = 0; y < m_height; ++y) {
 			for (int x = 0; x < m_width; ++x) {
-				GamePiece p = m_board.getPiece(x, y);
+				GamePiece p = m_board.GetPiece(x, y);
 
 				if (p != null) {
-					m_labels[x][y].setIcon(p.getIcon());
+					m_labels[x][y].setIcon(p.GetIcon());
 					m_panels[x][y].removeAll();
 				}
 				m_panels[x][y].add(m_labels[x][y]);
 			}
 		}
 		SwingUtilities.updateComponentTreeUI(m_frame);
-		if(m_board instanceof Othello){
-			updatePlayerTurnIcon(new OthelloPiece(m_game.getCurrent()).getIcon());
-			updateScore(((Othello)(m_board)).GetBlackScore(),((Othello)(m_board)).GetWhiteScore());
-		} else {
-			updatePlayerTurnIcon(new ConnectFourPiece(m_game.getCurrent()).getIcon());
-		}
 	}
 
-	public void showWinningBox() {
-		if (m_board.getWinningColour().equals("draw")) {
+	public void ShowWinningBox() {
+		if (m_board.GetWinningColour().equals("draw")) {
 			JOptionPane.showMessageDialog(m_frame, "GAME DRAWN", "Draw",
 					JOptionPane.OK_OPTION, m_icon);
 		} else {
 			JOptionPane.showMessageDialog(m_frame,
-					m_game.getPlayerName(m_board.getWinningColour())
+					m_game.GetPlayerName(m_board.GetWinningColour())
 							+ "   WINS!!!!", "Winner", JOptionPane.OK_OPTION,
 					m_icon);
 		}
@@ -189,15 +165,15 @@ public class GUI extends JFrame {
 					for (int x = 0; x < m_width; ++x) {
 						if (e.getSource() == m_panels[x][y]) {
 							moveComplete = m_board.Move(x, y,
-									m_game.getCurrent());
+									m_game.GetCurrent());
 						}
 					}
 				}
 				if (moveComplete) {
 					m_game.alternate();
-					drawPieces();
+					DrawPieces();
 					if (m_game.checkWin()) {
-						showWinningBox();
+						ShowWinningBox();
 					}
 					// System.out.println(m_board.toString());
 				}
@@ -209,7 +185,7 @@ public class GUI extends JFrame {
 				if (m_game.getGamOn()) {
 					if (((Othello) m_board).CheckPassTurn()) {
 						m_game.alternate();
-						updatePlayerTurnIcon(new OthelloPiece(m_game.getCurrent()).getIcon());
+						UpdatePlayerTurnIcon(new OthelloPiece(m_game.GetCurrent()).GetIcon());
 					}
 				}
 			}
@@ -224,13 +200,13 @@ public class GUI extends JFrame {
 	
 	protected Font f = new Font("Dialog", Font.PLAIN, 15);
 	protected JLabel playerOneColor, playerOneIcon, playerTwoColor, playerTwoIcon, playerTurnIcon, 
-	playerTurnLabel, whiteIcon, whitePieces, blackIcon, blackPieces;
+	                 playerTurnLabel, whiteIcon, whitePieces, blackIcon, blackPieces;
 	protected BoardGame m_board;
 	protected GameController m_game;
 	protected JPanel[][] m_panels;
-	private int m_width;
-	private int m_height;
-	private JLabel[][] m_labels;
+	protected int m_width;
+	protected int m_height;
+	protected JLabel[][] m_labels;
 	protected JFrame m_frame;
 	protected JButton m_passMove;
 	private JButton m_newGame;

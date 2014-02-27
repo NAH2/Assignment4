@@ -1,3 +1,4 @@
+package Player;
 /**
  * \file -HumanPlayer.java 
  * \author -Mathew Lloyd 711293 

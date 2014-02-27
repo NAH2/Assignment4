@@ -7,7 +7,7 @@ public class GameController {
         return m_gameOn;
     }
     
-    public boolean setGameOn(boolean win) {
+    public boolean SetGameOn(boolean win) {
         if (win) {
             m_gameOn = false;
         } else {
@@ -16,7 +16,7 @@ public class GameController {
         return true;
     }
     
-    public String getPlayerName(String colour) {
+    public String GetPlayerName(String colour) {
         if (m_p1.GetPiece().equals(colour)) {
             return m_p1.GetPlayerName();
         } else {
@@ -24,7 +24,7 @@ public class GameController {
         }
     }
 
-    public String getCurrent() {
+    public String GetCurrent() {
         return m_currentPlayer.GetPiece();
     }
     
@@ -64,12 +64,12 @@ public class GameController {
         if (m_gameType.equals(m_othello)) {
             m_othelloBoard = new Othello();
             m_othelloGUI = new OthelloGUI(m_othelloBoard, this);
-            m_othelloGUI.drawPieces();
-            m_othelloGUI.setPanelColour();
+            m_othelloGUI.DrawPieces();
+            m_othelloGUI.SetPanelColour();
         } else if (m_gameType.equals(m_connectFour)) {
             m_connectFourBoard = new ConnectFour();
             m_c4GUI = new Connect4GUI(m_connectFourBoard, this);
-            m_c4GUI.setPanelColour();
+            m_c4GUI.SetPanelColour();
         }
     }
     
@@ -81,9 +81,11 @@ public class GameController {
         }
         
         if (m_gameType.equals(m_othello)) {
-            m_othelloGUI.setPanelColour();
+            m_othelloGUI.SetPanelColour();
+            m_othelloGUI.SetOthelloInfo();
         } else if (m_gameType.equals(m_connectFour)) {
-            m_c4GUI.setPanelColour();
+            m_c4GUI.SetPanelColour();
+            m_c4GUI.setConnectFourInfo();
         }
     }
     
@@ -94,7 +96,7 @@ public class GameController {
         } else if (m_gameType.equals(m_connectFour)) {
             win = m_connectFourBoard.WinningCondition();
         }
-        setGameOn(win);
+        SetGameOn(win);
         return win;
     }
     

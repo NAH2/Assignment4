@@ -25,7 +25,7 @@ public class ConnectFour extends BoardGame {
 	String winningColour;
 
     /**
-    * This is the constructor for the ConnectFour
+    * This is the constructor for the Othello
     * It passes the height and the width to the BoardGame class for constructing the game board.
     *  
     */
@@ -63,7 +63,7 @@ public class ConnectFour extends BoardGame {
 				}
 			}
 			SetPiece(x, index, col);
-			checkWin(col);
+			CheckWin(x, index, col);
 
 			return true;
 		} else {
@@ -80,10 +80,11 @@ public class ConnectFour extends BoardGame {
      * \param col the color of the game piece.
      * \return boolean return true if there is a sequence of four pieces of the same color, false while the game is on.
      */
-	private boolean checkWin(String col) { 
+	private boolean CheckWin(int x, int index, String col) { 
+
 		GamePiece searchPiece;
-		for(int x=0;x<=GetWidth();x++){
-			for(int index=0;index<=GetHeight();index++){		
+		
+
 		// Search each direction (total : 8 direction)
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
@@ -91,7 +92,7 @@ public class ConnectFour extends BoardGame {
 				// boolean found = false;
 				searchY = index + i;
 				searchX = x + j;
-				counter = 0;
+				counter = 1;
 				while (found) {
 
 					if ((searchX >= GetWidth() || searchX < 0)
@@ -105,9 +106,9 @@ public class ConnectFour extends BoardGame {
 						// skip the search if one of the direction is same color
 						// piece
 						if ((i == 0 && j == 0) || searchPiece == null
-								|| searchPiece.getColour() != col) {
+								|| searchPiece.GetColour() != col) {
 							found = false; 
-						} else if (searchPiece.getColour() == col) {
+						} else if (searchPiece.GetColour() == col) {
 							found = true; 
 							counter++;
 							if (counter == 4) {
@@ -117,17 +118,13 @@ public class ConnectFour extends BoardGame {
 							}
 							searchY = searchY + i;
 							searchX = searchX + j;
-
 						}
 					}
-					
 				}
-				
 			}
 		}
-			}
-		}
-return false;
+		return false;
+
 	}
 
     /**
@@ -141,7 +138,7 @@ return false;
             return true;
         }
         m_draw = true;
-        for (int x=0; x<GetWidth(); x++){
+        for (int x=0; x < GetWidth(); x++){
         	if(board[x][0] == null){
         		m_draw = false;
         		return m_draw;

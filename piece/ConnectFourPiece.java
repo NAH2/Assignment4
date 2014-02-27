@@ -26,8 +26,8 @@ public class ConnectFourPiece extends GamePiece {
             System.out.println("ConnectFourPiece :: ConnectFourPiece() BEGIN");
         }
         
-        setColour(col);
-        setIcons();
+        SetColour(col);
+        SetIcons();
         
         if (test || m_test) {
             System.out.println("ConnectFourPiece :: ConnectFourPiece() END");
@@ -38,13 +38,13 @@ public class ConnectFourPiece extends GamePiece {
      * Accessor method to retrieve the ImageIcon of the piece
      * @return Icon depending on piece colour
      */
-    public Icon getIcon() {
+    public Icon GetIcon() {
         boolean test = false;
         if (test || m_test) {
             System.out.println("ConnectFourPiece :: getIcon() BEGIN");
         }
         
-        if (getColour().equals("yellow")) {
+        if (GetColour().equals("yellow")) {
             if (test || m_test) {
                 System.out.println("ConnectFourPiece :: getIcon() END");
             }
@@ -64,7 +64,7 @@ public class ConnectFourPiece extends GamePiece {
      * @return boolean on success
      * @throws NullPointerException
      */
-    public boolean setIcons() throws NullPointerException {
+    public boolean SetIcons() throws NullPointerException {
         boolean test = false;
         if (test || m_test) {
             System.out.println("ConnectFourPiece :: setIcons() BEGIN");

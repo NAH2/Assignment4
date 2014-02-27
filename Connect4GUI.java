@@ -6,6 +6,7 @@ import boardGame.*;
 import javax.swing.*;
 
 import piece.ConnectFourPiece;
+import piece.GamePiece;
 import piece.OthelloPiece;
 
 public class Connect4GUI extends GUI {
@@ -17,21 +18,21 @@ public class Connect4GUI extends GUI {
 	}
 
 	public boolean setConnectFourInfo(){
-		playerOneColor.setText(m_game.getPlayerName("red")+":");
+		playerOneColor.setText(m_game.GetPlayerName("red")+":");
 		playerOneColor.setFont(f);
 		playerOneColor.setVisible(true);
 		ConnectFourPiece red = new ConnectFourPiece("red");
-		playerOneIcon.setIcon(red.getIcon());
+		playerOneIcon.setIcon(red.GetIcon());
 		playerOneIcon.setVisible(true);
-		playerTwoColor.setText(m_game.getPlayerName("yellow")+":");
+		playerTwoColor.setText(m_game.GetPlayerName("yellow")+":");
 		playerTwoColor.setFont(f);
 		playerTwoColor.setVisible(true);
 		ConnectFourPiece yellow = new ConnectFourPiece("yellow");
-		playerTwoIcon.setIcon(yellow.getIcon());
+		playerTwoIcon.setIcon(yellow.GetIcon());
 		playerTwoIcon.setVisible(true);
-		playerTurnIcon.setIcon(new ConnectFourPiece(m_game.getCurrent()).getIcon());
+		playerTurnIcon.setIcon(new ConnectFourPiece(m_game.GetCurrent()).GetIcon());
 		playerTurnIcon.setVisible(true);
-		playerTurnLabel.setText("'s TURN");
+		playerTurnLabel.setText(m_game.GetPlayerName(m_game.GetCurrent()) + "'s TURN");
 		playerTurnLabel.setFont(f);
 		playerTurnLabel.setVisible(true);
 		m_frame.pack();
@@ -40,8 +41,8 @@ public class Connect4GUI extends GUI {
 	
 	public boolean SetPanelColour() {
 		
-		for (int y = 0; y < getBoard().GetHeight(); ++y) {
-			for (int x = 0; x < getBoard().GetWidth(); ++x) {
+		for (int y = 0; y < GetBoard().GetHeight(); ++y) {
+			for (int x = 0; x < GetBoard().GetWidth(); ++x) {
 				m_panels[x][y].removeAll();
 				m_panels[x][y].add(new JLabel((m_empty)));
 				m_panels[x][y].setBackground(Color.BLUE);
