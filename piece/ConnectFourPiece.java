@@ -3,7 +3,7 @@
  * \author -Gavin Bailey 711036
  * \date   -24th Feb 14
  * 
- * /brief Connect Four game piece used in a game of Connect Four,
+ * \brief Connect Four game piece used in a game of Connect Four,
  * extends GamePiece.java
  * 
  * This is an extension of the GamePiece class, where the icons
@@ -26,12 +26,8 @@ public class ConnectFourPiece extends GamePiece {
             System.out.println("ConnectFourPiece :: ConnectFourPiece() BEGIN");
         }
         
-        if (col.equals(m_red) || col.equals(m_yellow)) {
-            SetColour(col);
-            m_iconsSet = SetIcons();
-        } else {
-            System.out.println("Invalid Colours");
-        }
+        SetColour(col);
+        SetIcons();
         
         if (test || m_test) {
             System.out.println("ConnectFourPiece :: ConnectFourPiece() END");
@@ -48,22 +44,19 @@ public class ConnectFourPiece extends GamePiece {
             System.out.println("ConnectFourPiece :: getIcon() BEGIN");
         }
         
-        if (m_iconsSet) {
-            if (GetColour().equals(m_yellow)) {
-                if (test || m_test) {
-                    System.out.println("ConnectFourPiece :: getIcon() END");
-                }
-                
-                return m_yellowpiece;
-            } else if (GetColour().equals(m_red)){
-                if (test || m_test) {
-                    System.out.println("ConnectFourPiece :: getIcon() END");
-                }
-                
-                return m_redpiece;
+        if (GetColour().equals("yellow")) {
+            if (test || m_test) {
+                System.out.println("ConnectFourPiece :: getIcon() END");
             }
+            
+            return m_yellowpiece;
+        } else {
+            if (test || m_test) {
+                System.out.println("ConnectFourPiece :: getIcon() END");
+            }
+            
+            return m_redpiece;
         }
-        return null;
     }
     
     /**
@@ -83,12 +76,6 @@ public class ConnectFourPiece extends GamePiece {
         try {
             m_yellowpiece = new ImageIcon(getClass().getResource(yellowImageURL));
             m_redpiece = new ImageIcon(getClass().getResource(redImageURL));
-            
-            if (test || m_test) {
-                System.out.println("ConnectFourPiece :: setIcons() END");
-            }
-            
-            return true;
         } catch (NullPointerException e) {
             System.out.println("Images Not Found");
         }
@@ -96,29 +83,11 @@ public class ConnectFourPiece extends GamePiece {
         if (test || m_test) {
             System.out.println("ConnectFourPiece :: setIcons() END");
         }
-        return false;
         
-    }
-    
-    /** main method for tests */
-    public static void main(String[] args) {
-        ConnectFourPiece a = new ConnectFourPiece("red");
-        a.GetIcon();
-        a.SetIcons();
-        a.GetColour();
-        
-        ConnectFourPiece b = new ConnectFourPiece("123");
-        b.GetIcon();
-        b.SetIcons();
-        b.GetColour();
+        return true;
     }
     
     // variable declarations
-    /** flag for setting icons */
-    private boolean m_iconsSet = false;
-    /** Colour Strings */
-    private final String m_red = "red";
-    private final String m_yellow = "yellow";
     /** store the yellow icon */
     private Icon m_yellowpiece;
     /** store the red icon */
