@@ -16,7 +16,10 @@ public class SelectGame {
 	 * A method to draw GUI for SelectGame.
 	 */
 	public void Draw() {
-	
+		boolean test = false;
+		if (test || m_test){
+			System.out.println("SelectGame :: Draw() BEGIN");
+		}
 		display = new JFrame("Select Game");
 	
 		display.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -58,6 +61,10 @@ public class SelectGame {
 		display.pack();
 		display.setLocationRelativeTo(null);
 		display.setVisible(true);
+		
+		if (test || m_test){
+			System.out.println("SelectGame :: Draw() END");
+		}
 	}
 
 	/**
@@ -70,17 +77,27 @@ public class SelectGame {
 		 * Method to perform events.
 		 */
 		public void actionPerformed(ActionEvent event) {
-	
+			boolean test = false;
+			if (test || m_test){
+				System.out.println("SelectGame :: actionPerformed() BEGIN");
+			}
 			if (event.getSource() == othello_Button) {
 	
 				Selection s1 = new Selection("othello");
 				display.dispose();
+				if (test || m_test){
+					System.out.println("SelectGame :: actionPerformed() END");
+				}
 			}
 	
 			if (event.getSource() == connectFour_Button) {
 	
 				Selection s2 = new Selection("connectFour");
 				display.dispose();
+				
+				if (test || m_test){
+					System.out.println("SelectGame :: actionPerformed() END");
+				}
 			}
 		}
 	}
@@ -167,4 +184,6 @@ public class SelectGame {
 	 * BTN_CONNECT4_Y sets position y of connectFour_Button. Using GridBagLayout
 	 */
 	private final int BTN_CONNECT4_Y = 1;
+	
+	private boolean m_test=false;
 }

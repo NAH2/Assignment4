@@ -9,6 +9,8 @@
  * extends GUI.java
  * 
  * This class extends from the GUI class, it sets up the background of the connect four game board.
+ * 
+ * Due to problems of trying to test in the main. Testing is done in another class
  */
  
 import java.awt.Color;
@@ -16,6 +18,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 
 import boardGame.*;
+
 import javax.swing.*;
 
 import piece.ConnectFourPiece;
@@ -29,6 +32,11 @@ public class Connect4GUI extends GUI {
      * \return boolean  return true if the action complete.
      */
 	public boolean SetConnectFourInfo(){
+		boolean test = false;
+		if (test || m_test){
+			System.out.println("Connect4GUI :: SetConnectFourInfo() BEGIN");
+		}
+		
 		playerOneColor.setText(m_game.GetPlayerName("red")+":");
 		playerOneColor.setFont(f);
 		playerOneColor.setVisible(true);
@@ -47,6 +55,11 @@ public class Connect4GUI extends GUI {
 		playerTurnLabel.setFont(f);
 		playerTurnLabel.setVisible(true);
 		m_frame.pack();
+		
+		if (test || m_test){
+			System.out.println("Connect4GUI :: SetConnectFourInfo() END");
+		}
+		
 		return true;
 	}
 	
@@ -55,6 +68,10 @@ public class Connect4GUI extends GUI {
      * \return boolean  return true if the action complete.
      */
 	public boolean SetPanelColour() {
+		boolean test = false;
+		if (test || m_test){
+			System.out.println("Connect4GUI :: SetPannelColour() BEGIN");
+		}
 		
 		for (int y = 0; y < GetBoard().GetHeight(); ++y) {
 			for (int x = 0; x < GetBoard().GetWidth(); ++x) {
@@ -63,6 +80,11 @@ public class Connect4GUI extends GUI {
 				m_panels[x][y].setBackground(Color.BLUE);
 			}
 		}
+		
+		if (test || m_test){
+			System.out.println("Connect4GUI :: SetPannelColour() END");
+		}
+		
 		return true;
 	}
 
@@ -70,13 +92,22 @@ public class Connect4GUI extends GUI {
      * Set the image as the empty square in the game board. 
      * \return boolean  return true if the action complete.
      */
-	public boolean setImages() {
+	private boolean setImages() {
+		boolean test = false;
+		if (test || m_test){
+			System.out.println("Connect4GUI :: setImages() BEGIN");
+		}
+		
 		try {
 			m_empty = new ImageIcon(getClass().getResource("empty.png"));
 		} catch (Exception e) {
 			System.out.println("Images not found");
 		}
-
+		
+		if (test || m_test){
+			System.out.println("Connect4GUI :: setImage() END");
+		}
+		
 		return true;
 	}
 	
@@ -84,11 +115,25 @@ public class Connect4GUI extends GUI {
     * Constructor of Connect4GUI, calls the constructor of GUI for constructing the game board and sets the player information.
     * \param a BoardGame object which is in ConnectFour type, a GameController object.
     */
+	
 	public Connect4GUI(BoardGame b, GameController g) {
 		super(b, g);
+		
+		boolean test = false;
+		if (test || m_test){
+			System.out.println("Connect4GUI :: Connect4GUI() BEGIN");
+		}
+		
 		setImages();
 		SetConnectFourInfo();
+		
+		if (test || m_test){
+			System.out.println("Connect4GUI :: Connect4GUI() END");
+		}
 	}
 
+	/** image icon which holds a blank peice image*/
 	private ImageIcon m_empty;
+	/** boolean turn to true to print out begining and ends of methods*/
+	private boolean m_test =false;
 }

@@ -13,34 +13,29 @@
  */
 
 import javax.swing.*;
+
 import Player.HumanPlayer;
+
 import java.awt.event.*;
 import java.awt.*;
 
 public class Selection implements ActionListener {
 
-	/**
-	 * Constructor of Selection, receives the type of game, ready for later.
-	 * \param chosenGame a String for the chosen game.
-	 */
-	public Selection(String chosenGame) {
-		setGameType(chosenGame);
-		if (chosenGame.equalsIgnoreCase("othello")
-				|| chosenGame.equalsIgnoreCase("connectfour"))
-			setGameType(chosenGame);
-		else
-			System.err
-					.println("Selection::Selection() can only be Othello " +
-							"or ConnectFour.");
-		Draw();
-	}
+
 
 	/**
 	 * Accessor method to set the current game type 
 	 * \param GameType a string for the current game type
 	 */
 	private void setGameType(String GameType) {
+		boolean test = false;
+		if (test || m_test){
+			System.out.println("Selection :: setGameType() BEGIN");
+		}
 		m_currentGameType = GameType;
+		if (test || m_test){
+			System.out.println("Selection :: setGameType() END");
+		}
 	}
 
 	/**
@@ -48,7 +43,16 @@ public class Selection implements ActionListener {
 	 * \return currentGameType a String of what the current game type is
 	 */
 	public String GetGameType() {
+		boolean test = false;
+		if (test || m_test){
+			System.out.println("Selection :: GetGameType() BEGIN");
+		}
+		if (test || m_test){
+			System.out.println("Selection :: GetGameType() END");
+		}
 		return m_currentGameType;
+		
+
 	}
 
 	/**
@@ -56,7 +60,17 @@ public class Selection implements ActionListener {
 	 * \param playerName a String for the players name
 	 */
 	private void setPlayerNameOne(String playerName) {
+		
+		boolean test = false;
+		if (test || m_test){
+			System.out.println("Selection :: setPlayerNameOne() BEGIN");
+		}
+		
 		m_p1Text = playerName;
+		
+		if (test || m_test){
+			System.out.println("Selection :: setPlayerNameOne() END");
+		}
 	}
 
 	/**
@@ -64,7 +78,16 @@ public class Selection implements ActionListener {
 	 * \param playerName a String for the players name
 	 */
 	private void setPlayerNameTwo(String playerName) {
+		boolean test = false;
+		if (test || m_test){
+			System.out.println("Selection :: setPlayerNameTwo() BEGIN");
+		}
+		
 		m_p2Text = playerName;
+		
+		if (test || m_test){
+			System.out.println("Selection :: setPlayerNameTwo() END");
+		}
 	}
 
 	/**
@@ -72,6 +95,11 @@ public class Selection implements ActionListener {
 	 * elements
 	 */
 	public void Draw() {
+		boolean test = false;
+		if (test || m_test){
+			System.out.println("Selection :: Draw() BEGIN");
+		}
+
 		/** sets up JFrame */
 		displaySelection = new JFrame();
 		displaySelection.setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -144,19 +172,40 @@ public class Selection implements ActionListener {
 		displaySelection.setLocationRelativeTo(null);
 		displaySelection.setVisible(true);
 		displaySelection.setResizable(false);
+		
+        if (test || m_test) {
+            System.out.println("Selection :: Draw() END");
+        }
 	}
 
 	/** Sets up the action listeners for the objects needed for Listeners */
 	public void actionPerformed(ActionEvent e) {
+		boolean test = false;
+		if (test || m_test){
+			System.out.println("Selection :: actionPerformed() BEGIN");
+		}
+		
 		if (e.getSource() == btn_cancel) {
-			/** Closes the JFrame completely when button is performed */
+			/** Closes the JFrame completely when button is performed.
+			 * Creates a new SelectGame * */
+			
+			SelectGame s = new SelectGame();
+			s.Draw();
 			displaySelection.dispose();
+			
+			if (test || m_test){
+				System.out.println("Selection :: actionPerformed() END");
+			}
 		}
 
 		/** This if statement implements a action listener for the JComboBox */
 		if (e.getSource() == selectOpponent) {
 			/** Setting opponent type to Human or AI */
 			m_opponentType = (String) selectOpponent.getSelectedItem();
+			
+			if (test || m_test){
+				System.out.println("Selection :: actionPerformed() END");
+			}
 		}
 
 		/**
@@ -221,6 +270,9 @@ public class Selection implements ActionListener {
 							"AI not available in this version.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
+				if (test || m_test){
+					System.out.println("Selection :: actionPerformed() END");
+				}
 			}
 
 			/**
@@ -247,6 +299,11 @@ public class Selection implements ActionListener {
 					/** creates a new gameController object */
 					GameController gameCont = new GameController(
 							m_opponentConnectFour, HuPlay, HuPlayOpponent);
+					
+					if (test || m_test){
+						System.out.println("Selection :: actionPerformed() END");
+					}
+					
 				} else {
 					/**
 					 * displaySelections a error message dialog box, explaining
@@ -255,13 +312,49 @@ public class Selection implements ActionListener {
 					JOptionPane.showMessageDialog(null,
 							"AI not available in this version.", "Error",
 							JOptionPane.ERROR_MESSAGE);
+					
+					if (test || m_test){
+						System.out.println("Selection :: actionPerformed() END");
+					}
+					
+				}
+				
+				if (test || m_test){
+					System.out.println("Selection :: actionPerformed() END");
 				}
 			}
 		}
 	}
-
+	
+	/**
+	 * Constructor of Selection, receives the type of game, ready for later.
+	 * \param chosenGame a String for the chosen game.
+	 */
+	public Selection(String chosenGame) {
+		boolean test = false;
+		if (test || m_test){
+			System.out.println("Selection :: Selection() BEGIN");
+		}
+		setGameType(chosenGame);
+		if (chosenGame.equalsIgnoreCase("othello")
+				|| chosenGame.equalsIgnoreCase("connectfour"))
+			setGameType(chosenGame);
+		else
+			System.err
+					.println("Selection::Selection() can only be Othello " +
+							"or ConnectFour.");
+		Draw();
+		if (test || m_test){
+			System.out.println("Selection :: Selection() END");
+		}
+	}	
+	
 	public static void main(String args[]) {
+
 		Selection select = new Selection("othello");
+		
+		
+		
 	}
 
 	/** The JFrame name for displaying. */
@@ -310,7 +403,8 @@ public class Selection implements ActionListener {
 	 * in JTextField
 	 */
 	private String m_p2Text = "playerTwo";
-
+	/** Variable used to turn testing on or off*/
+	private boolean m_test = false;
 	/** Stores the game type that is passed through from SelectGame.java */
 	private String m_currentGameType;
 	/** The Othello String used throughout the class */

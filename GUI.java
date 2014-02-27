@@ -237,11 +237,6 @@ public class GUI extends JFrame {
 					+ "   WINS!!!!", "Winner", JOptionPane.OK_OPTION,
 					m_icon);
 		}
-
-		// System.exit(0);
-		SelectGame sg = new SelectGame();
-		sg.Draw();
-		m_frame.dispose();
 	}
 
 	protected Font f = new Font("Dialog", Font.PLAIN, 15);

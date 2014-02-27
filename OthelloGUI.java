@@ -9,9 +9,12 @@
  * extends GUI.java
  * 
  * This class extends from the GUI class, it changes the background colors of each square with different available moves.
+ * 
+ * Due to problems of trying to test in the main. Testing is done in another class
  */
  
 import java.awt.Color;
+
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.SwingUtilities;
@@ -27,6 +30,11 @@ public class OthelloGUI extends GUI {
      * \return boolean  return true if the action complete.
      */
 	public boolean SetOthelloInfo() {
+		boolean test = false;
+		if (test || m_test){
+			System.out.println("OthelloGUI :: SetOthelloInfo() BEGIN");
+		}
+		
 		playerOneColor.setText(m_game.GetPlayerName("black") + ":");
 		playerOneColor.setFont(f);
 		playerOneColor.setVisible(true);
@@ -57,6 +65,11 @@ public class OthelloGUI extends GUI {
 		whitePieces.setVisible(true);
 		m_passMove.setVisible(true);
 		m_frame.pack();
+		
+		if (test || m_test){
+			System.out.println("OthelloGUI :: SetOthelloInfo() END");
+		}
+		
 		return true;
 	}
 
@@ -65,6 +78,11 @@ public class OthelloGUI extends GUI {
      * \return boolean  return true if the action complete.
      */
 	public boolean SetPanelColour() {
+		boolean test=false;
+		if (test || m_test){
+			System.out.println("OthelloGUI :: SetPanelColour() BEGIN");
+		}
+		
 		char[][] availableMoves = ((Othello) GetBoard())
 				.AvailableMove(GetGame().GetCurrent());
 		Color defCol = new Color(170, 150, 100);
@@ -83,6 +101,11 @@ public class OthelloGUI extends GUI {
 				}
 			}
 		}
+		
+		if (test || m_test){
+			System.out.println("OthelloGUI :: SetPanelColour() END");
+		}
+		
 		return true;
 	}
 	
@@ -94,4 +117,6 @@ public class OthelloGUI extends GUI {
 		super(b, g);
 		SetOthelloInfo();
 	}
+	/** boolean turn to true to print out begining and ends of methods*/
+	boolean m_test = false;
 }
