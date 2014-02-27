@@ -81,7 +81,8 @@ public class ConnectFourPiece extends GamePiece {
         String redImageURL = "red.png";
         
         try {
-            m_yellowpiece = new ImageIcon(getClass().getResource(yellowImageURL));
+            m_yellowpiece = new ImageIcon(getClass()
+                                    .getResource(yellowImageURL));
             m_redpiece = new ImageIcon(getClass().getResource(redImageURL));
             
             if (test || m_test) {

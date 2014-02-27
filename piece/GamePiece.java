@@ -63,7 +63,8 @@ public abstract class GamePiece {
     public abstract Icon GetIcon();
     
     /**
-     * An abstract accessor method to set the icons of the pieces for the current game
+     * An abstract accessor method to set the icons of the pieces 
+     * for the current game
      * \return true when method completes
      */
     public abstract boolean SetIcons();
