@@ -24,12 +24,13 @@ public class Othello extends BoardGame {
 	 * 
 	 */
 	public Othello() {
+	super(8, 8);
         boolean test = false;
         if (test || m_test) {
             System.out.println("Othello :: Othello() BEGIN");
         }
 
-		super(8, 8);
+		
 		initialGame();
         if (test || m_test) {
             System.out.println("Othello :: Othello() END");
