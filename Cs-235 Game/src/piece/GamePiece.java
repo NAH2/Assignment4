@@ -21,7 +21,7 @@ public abstract class GamePiece {
      * @param col a String for piece colour
      * @return true when method completes
      */
-    public boolean setColour(String col) {
+    public boolean SetColour(String col) {
         boolean test = false;
         if (test || m_test) {
             System.out.println("GamePiece :: setColour() BEGIN");
@@ -40,7 +40,7 @@ public abstract class GamePiece {
      * Accessor method to get piece colour
      * @return m_colour a String of what colour the piece is currently
      */
-    public String getColour() {
+    public String GetColour() {
         boolean test = false;
         if (test || m_test) {
             System.out.println("GamePiece :: getColour() BEGIN");
@@ -59,13 +59,13 @@ public abstract class GamePiece {
      * An abstract accessor method to get the Icon of the piece
      * @return Icon image of piece 
      */
-    public abstract Icon getIcon();
+    public abstract Icon GetIcon();
     
     /**
      * An abstract accessor method to set the icons of the pieces for the current game
      * @return true when method completes
      */
-    public abstract boolean setIcons();
+    public abstract boolean SetIcons();
     
     /*variable declarations*/
     /** Stores the String of the current colour */

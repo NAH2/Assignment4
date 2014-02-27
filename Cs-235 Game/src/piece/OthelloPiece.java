@@ -26,8 +26,8 @@ public class OthelloPiece extends GamePiece{
             System.out.println("OthelloPiece :: OthelloPiece() BEGIN");
         }
         
-        setColour(col);
-        setIcons();
+        SetColour(col);
+        SetIcons();
         
         if (test || m_test) {
             System.out.println("OthelloPiece :: OthelloPiece() END");
@@ -38,13 +38,13 @@ public class OthelloPiece extends GamePiece{
      * Accessor method to retrieve the ImageIcon of the piece
      * @return Icon depending on piece colour
      */
-    public Icon getIcon() {
+    public Icon GetIcon() {
         boolean test = false;
         if (test || m_test) {
             System.out.println("OthelloPiece :: getIcon() BEGIN");
         }
         
-        if (getColour().equals("black")) {
+        if (GetColour().equals("black")) {
             if (test || m_test) {
                 System.out.println("OthelloPiece :: getIcon() END");
             }
@@ -64,7 +64,7 @@ public class OthelloPiece extends GamePiece{
      * @return boolean on success
      * @throws NullPointerException
      */
-    public boolean setIcons()  throws NullPointerException {
+    public boolean SetIcons()  throws NullPointerException {
         boolean test = false;
         if (test || m_test) {
             System.out.println("OthelloPiece :: setIcons() BEGIN");
