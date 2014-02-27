@@ -47,12 +47,18 @@ public class ConnectFour extends BoardGame {
         if (test || m_test) {
             System.out.println("ConnectFour :: SetPiece() BEGIN");
         }
-
+        if(x < GetWidth() && x >= 0 && y < GetHeight() && y >= 0) {
 		board[x][y] = new ConnectFourPiece(col);
-        if (test || m_test) {
-            System.out.println("ConnectFour :: SetPiece() END");
-        }
+        	if (test || m_test) {
+        		System.out.println("ConnectFour :: SetPiece() END");
+        	} 
 		return true;
+        } else {
+        	if (test || m_test) {
+        		System.out.println("ConnectFour :: SetPiece() END");
+        	}
+		return false;
+        }
 	}
 
 	/**
@@ -73,6 +79,9 @@ public class ConnectFour extends BoardGame {
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
 				if(singleDirection(col, x , index_y, i ,j)){
+			        if (test || m_test) {
+			            System.out.println("ConnectFour :: allDirection() END");
+			        }
 					return true;
 				}
 			}
@@ -128,6 +137,9 @@ public class ConnectFour extends BoardGame {
 					if (m_counter == 4) {
 						m_winningColour = col;
 						System.out.println(col + " wins");
+				        if (test || m_test) {
+				            System.out.println("ConnectFour :: singleDirection() END");
+				        }
 						return true;
 					}
 					m_searchY = m_searchY + i;
@@ -159,6 +171,9 @@ public class ConnectFour extends BoardGame {
 		for (int x = 0; x <= GetWidth(); x++) {
 			for (int index_y = 0; index_y <= GetHeight(); index_y++) {
 				if(allDirection(col, x , index_y)){
+			        if (test || m_test) {
+			            System.out.println("ConnectFour :: singleDirection() END");
+			        }
 					return true;
 				}
 			}
@@ -223,18 +238,27 @@ public class ConnectFour extends BoardGame {
 
 		if (m_counter >= NUM_IN_ROW_WIN) {
 			SetWinner();
+	        if (test || m_test) {
+	            System.out.println("ConnectFour :: singleDirection() END");
+	        }
 			return true;
 		}
 		m_draw = true;
 		for (int x = 0; x < GetWidth(); x++) {
 			if (board[x][0] == null) {
 				m_draw = false;
+		        if (test || m_test) {
+		            System.out.println("ConnectFour :: singleDirection() END");
+		        }
 				return m_draw;
 			}
 		}
 		if (m_draw == true) {
 			m_winningColour = "draw";
 			SetWinner();
+	        if (test || m_test) {
+	            System.out.println("ConnectFour :: singleDirection() END");
+	        }
 			return true;
 		}
         if (test || m_test) {
