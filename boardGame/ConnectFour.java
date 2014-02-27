@@ -23,16 +23,7 @@ public class ConnectFour extends BoardGame {
 	 * 
 	 */
 	public ConnectFour() {
-        boolean test = false;
-        if (test || m_test) {
-            System.out.println("ConnectFour :: ConnectFour() BEGIN");
-        }
-        
 		super(INITIAL_X, INITIAL_Y);
-        
-        if (test || m_test) {
-            System.out.println("ConnectFour :: ConnectFour() END");
-        }
 	}
 
 	/**
@@ -41,86 +32,102 @@ public class ConnectFour extends BoardGame {
 	 * of the game piece. \return boolean return true if the action complete.
 	 */
 	public boolean SetPiece(int x, int y, String col) {
-        boolean test = false;
-        if (test || m_test) {
-            System.out.println("ConnectFour :: SetPiece() BEGIN");
-        }
-
 		board[x][y] = new ConnectFourPiece(col);
 		return true;
-        if (test || m_test) {
-            System.out.println("ConnectFour :: SetPiece() END");
-        }
 	}
 
 	/**
-	 * Check the winning condition by searching a sequence of pieces of the same
-	 * color. \param x the x axis in the game board. \param index the lowest
-	 * possible point in a column. \param col the color of the game piece.
-	 * \return boolean return true if there is a sequence of four pieces of the
-	 * same color, false while the game is on.
+	 * Search a sequence of four pieces of the same color in all eight directions. 
+	 *  \param x the x axis in the game board. 
+	 *  \param index_y the lowest possible point in a column. 
+	 *  \param col the color of the game piece.
+	 * \return boolean return true if there is a sequence of four pieces of the same color, false while the game is on.
 	 */
-	private boolean checkWin(String col) {
-        boolean test = false;
-        if (test || m_test) {
-            System.out.println("ConnectFour :: checkWin() BEGIN");
-        }
-
-		GamePiece searchPiece;
-		for (int x = 0; x <= GetWidth(); x++) {
-			for (int index = 0; index <= GetHeight(); index++) {
+	private boolean allDirection(String col, int x, int index_y) {
+		
 				// Search each direction (total : 8 direction)
-				for (int i = -1; i <= 1; i++) {
-					for (int j = -1; j <= 1; j++) {
-						boolean found = true;
-						// boolean found = false;
-						m_searchY = index + i;
-						m_searchX = x + j;
-						m_counter = 0;
-						while (found) {
-	
-							if ((m_searchX >= GetWidth() || m_searchX < 0)
-									|| (m_searchY >= GetHeight() ||
-									m_searchY < 0)) {
-								found = false;
-							} else {
-								searchPiece = board[m_searchX][m_searchY];
-	
-								// skip the search if i and j is 0.
-								// skip the search if one of the direction is
-								// empty
-								// skip the search if one of the direction is
-								// same color
-								// piece
-								if ((i == 0 && j == 0) || searchPiece == null
-										|| searchPiece.GetColour() != col) {
-									found = false;
-								} else if (searchPiece.GetColour() == col) {
-									found = true;
-									m_counter++;
-									if (m_counter == 4) {
-										m_winningColour = col;
-										System.out.println(col + " wins");
-										return true;
-									}
-									m_searchY = m_searchY + i;
-									m_searchX = m_searchX + j;
-	
-								}
-							}
-	
-						}
-	
-					}
+		for (int i = -1; i <= 1; i++) {
+			for (int j = -1; j <= 1; j++) {
+				if(singleDirection(col, x , index_y, i ,j)){
+					return true;
 				}
 			}
 		}
 		return false;
-        if (test || m_test) {
-            System.out.println("ConnectFour :: checkWin() END");
-        }
 	}
+	
+	/**
+	 * Search a sequence of pieces of the same color in a single direction. 
+	 * \param x the x axis in the game board. 
+	 * \param index_y the lowest possible point in a column. 
+	 * \param col the color of the game piece.
+	 * \param i the difference of width between the searching piece and the current piece
+	 * \param j the difference of height between the searching piece and the current piece
+	 * \return boolean return true if there is a sequence of four pieces of the same color, false while the game is on.
+	 */
+	private boolean singleDirection(String col, int x, int index_y, int i, int j){
+		GamePiece searchPiece;
+		boolean found = true;
+		// boolean found = false;
+		m_searchY = index_y + i;
+		m_searchX = x + j;
+		m_counter = 0;
+		while (found) {
 
+			if ((m_searchX >= GetWidth() || m_searchX < 0)
+					|| (m_searchY >= GetHeight() ||
+					m_searchY < 0)) {
+				found = false;
+			} else {
+				searchPiece = board[m_searchX][m_searchY];
+
+				// skip the search if i and j is 0.
+				// skip the search if one of the direction is
+				// empty
+				// skip the search if one of the direction is
+				// same color
+				// piece
+				if ((i == 0 && j == 0) || searchPiece == null
+						|| searchPiece.GetColour() != col) {
+					found = false;
+				} else if (searchPiece.GetColour() == col) {
+					found = true;
+					m_counter++;
+					if (m_counter == 4) {
+						m_winningColour = col;
+						System.out.println(col + " wins");
+						return true;
+					}
+					m_searchY = m_searchY + i;
+					m_searchX = m_searchX + j;
+
+				}
+			}
+
+		}
+		return false;
+	}
+	
+	/**
+	 * Check the winning condition by searching a sequence of pieces of the same
+	 * color in the game board. 
+	 * \param col the color of the game piece.
+	 * \return boolean return true if there is a sequence of four pieces of the
+	 * same color, false while the game is on.
+	 */
+	private boolean checkWin(String col){
+		for (int x = 0; x <= GetWidth(); x++) {
+			for (int index_y = 0; index_y <= GetHeight(); index_y++) {
+				if(allDirection(col, x , index_y)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	
+		
 	/**
 	 * If the move is valid, place the piece on the game board and check the
 	 * winning condition. \param x the x axis in the game board. \param y the y
@@ -129,11 +136,6 @@ public class ConnectFour extends BoardGame {
 	 * the game board, false if the column is full.
 	 */
 	public boolean Move(int x, int y, String col) {
-        boolean test = false;
-        if (test || m_test) {
-            System.out.println("ConnectFour :: Move() BEGIN");
-        }
-
 		int index = 0;
 		if (board[x][0] == null) {
 			for (int h = 0; h < GetHeight() - 1; ++h) {
@@ -151,9 +153,7 @@ public class ConnectFour extends BoardGame {
 			System.out.println("Space Occupied");
 			return false;
 		}
-        if (test || m_test) {
-            System.out.println("ConnectFour :: Move() END");
-        }
+	
 	}
 
 	/**
@@ -163,11 +163,6 @@ public class ConnectFour extends BoardGame {
 	 */
 	@Override
 	public boolean WinningCondition() {
-        boolean test = false;
-        if (test || m_test) {
-            System.out.println("ConnectFour :: WinningCondition() BEGIN");
-        }
-
 		if (m_counter >= NUM_IN_ROW_WIN) {
 			SetWinner();
 			return true;
@@ -185,9 +180,6 @@ public class ConnectFour extends BoardGame {
 			return true;
 		}
 		return false;
-        if (test || m_test) {
-            System.out.println("ConnectFour :: WinningCondition() END");
-        }
 	}
 
 	/**
@@ -196,21 +188,11 @@ public class ConnectFour extends BoardGame {
 	 */
 	@Override
 	public boolean SetWinner() {
-        boolean test = false;
-        if (test || m_test) {
-            System.out.println("ConnectFour :: SetWinner() BEGIN");
-        }
-
 		SetWinningColour(m_winningColour);
 		return true;
-        if (test || m_test) {
-            System.out.println("ConnectFour :: SetWinner() END");
-        }
 	}
 
 	private boolean m_draw;
-	private String m_yellow = "yellow";
-	private String m_red = "red";
 	private int m_searchY, m_searchX;
 	private int m_counter;
 	private String m_winningColour;
@@ -218,5 +200,5 @@ public class ConnectFour extends BoardGame {
 	private final static int INITIAL_X = 10;
 	private final static int INITIAL_Y = 7;
 	private final int NUM_IN_ROW_WIN = 4;
-    private boolean m_test = false;
+
 }
