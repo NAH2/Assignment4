@@ -90,9 +90,9 @@ public class GameController {
     public boolean checkWin() {
         boolean win = false;
         if (m_gameType.equals(m_othello)) {
-            win = m_othelloBoard.winningCondition();
+            win = m_othelloBoard.WinningCondition();
         } else if (m_gameType.equals(m_connectFour)) {
-            win = m_connectFourBoard.winningCondition();
+            win = m_connectFourBoard.WinningCondition();
         }
         setGameOn(win);
         return win;

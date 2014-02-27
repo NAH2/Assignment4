@@ -11,10 +11,10 @@ public class OthelloGUI extends GUI {
 
 	public boolean setPanelColour() {
 		char[][] availableMoves = ((Othello) getBoard())
-				.availableMove(getGame().getCurrent());
+				.AvailableMove(getGame().getCurrent());
 		Color defCol = new Color(170, 150, 100);
-		for (int y = 0; y < getBoard().getHeight(); ++y) {
-			for (int x = 0; x < getBoard().getWidth(); ++x) {
+		for (int y = 0; y < getBoard().GetHeight(); ++y) {
+			for (int x = 0; x < getBoard().GetWidth(); ++x) {
 				m_panels[x][y].setBorder(BorderFactory
 						.createLineBorder(Color.black));
 				if (availableMoves[x][y] == 'O') {

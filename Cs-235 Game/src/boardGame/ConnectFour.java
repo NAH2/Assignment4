@@ -25,7 +25,7 @@ public class ConnectFour extends BoardGame {
 	String winningColour;
 
     /**
-    * This is the constructor for the Othello
+    * This is the constructor for the ConnectFour
     * It passes the height and the width to the BoardGame class for constructing the game board.
     *  
     */
@@ -40,7 +40,7 @@ public class ConnectFour extends BoardGame {
      * \param col the color of the game piece.
      * \return boolean  return true if the action complete.
      */
-	public boolean setPiece(int x, int y, String col) {
+	public boolean SetPiece(int x, int y, String col) {
 		board[x][y] = new ConnectFourPiece(col);
 		return true;
 	}
@@ -52,17 +52,17 @@ public class ConnectFour extends BoardGame {
      * \param col the color of the game piece.
      * \return boolean return true if the move is valid and the piece has been placed on the game board, false if the column is full.
      */
-	public boolean move(int x, int y, String col) {
+	public boolean Move(int x, int y, String col) {
 		int index = 0;
 		if (board[x][0] == null) {
-			for (int h = 0; h < getHeight() - 1; ++h) {
+			for (int h = 0; h < GetHeight() - 1; ++h) {
 				if (board[x][h + 1] == null) {
 					index = h + 1;
 				} else if (board[x][h] == null) {
 					index = h;
 				}
 			}
-			setPiece(x, index, col);
+			SetPiece(x, index, col);
 			checkWin(col);
 
 			return true;
@@ -82,8 +82,8 @@ public class ConnectFour extends BoardGame {
      */
 	private boolean checkWin(String col) { 
 		GamePiece searchPiece;
-		for(int x=0;x<=getWidth();x++){
-			for(int index=0;index<=getHeight();index++){		
+		for(int x=0;x<=GetWidth();x++){
+			for(int index=0;index<=GetHeight();index++){		
 		// Search each direction (total : 8 direction)
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
@@ -94,8 +94,8 @@ public class ConnectFour extends BoardGame {
 				counter = 0;
 				while (found) {
 
-					if ((searchX >= getWidth() || searchX < 0)
-							|| (searchY >= getHeight() || searchY < 0)) {
+					if ((searchX >= GetWidth() || searchX < 0)
+							|| (searchY >= GetHeight() || searchY < 0)) {
 						found = false;
 					} else {
 						searchPiece = board[searchX][searchY];
@@ -135,13 +135,13 @@ return false;
      *  \return boolean return true if one of the players wins the game, false if the game is on.
      */ 
     @Override
-    public boolean winningCondition() {
+    public boolean WinningCondition() {
         if (counter >= 4) {
-            setWinner();
+            SetWinner();
             return true;
         }
         m_draw = true;
-        for (int x=0; x<getWidth(); x++){
+        for (int x=0; x<GetWidth(); x++){
         	if(board[x][0] == null){
         		m_draw = false;
         		return m_draw;
@@ -149,7 +149,7 @@ return false;
         }
         if (m_draw == true){
         	winningColour = "draw";
-        	setWinner();
+        	SetWinner();
         	return true;
         }
         return false;
@@ -160,8 +160,8 @@ return false;
      *  \return boolean return true if one of the players wins the game, false if the game is on.
      */ 
     @Override
-    public boolean setWinner() {
-        setWinningColour(winningColour);
+    public boolean SetWinner() {
+        SetWinningColour(winningColour);
         return false;
     }
 

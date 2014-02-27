@@ -14,8 +14,8 @@ public class Connect4GUI extends GUI {
 
 	public boolean setPanelColour() {
 		
-		for (int y = 0; y < getBoard().getHeight(); ++y) {
-			for (int x = 0; x < getBoard().getWidth(); ++x) {
+		for (int y = 0; y < getBoard().GetHeight(); ++y) {
+			for (int x = 0; x < getBoard().GetWidth(); ++x) {
 				m_panels[x][y].removeAll();
 				m_panels[x][y].add(new JLabel((m_empty)));
 				m_panels[x][y].setBackground(Color.BLUE);

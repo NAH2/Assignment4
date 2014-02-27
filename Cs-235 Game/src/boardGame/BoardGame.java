@@ -15,11 +15,11 @@ public abstract class BoardGame {
         board = new GamePiece[width][height];
     }
     
-    public int getWidth() {
+    public int GetWidth() {
         return width;
     }
     
-    public int getHeight() {
+    public int GetHeight() {
         return height;
     }
     
@@ -31,7 +31,7 @@ public abstract class BoardGame {
         }
     }
     
-    public int getTotalPieces() {
+    public int GetTotalPieces() {
         int count = 0;
         for (int y = 0; y < height; ++y) {
             for (int x = 0; x < width; ++x) {
@@ -43,7 +43,7 @@ public abstract class BoardGame {
         return count;
     }
     
-    public boolean setWinningColour(String winner) {
+    public boolean SetWinningColour(String winner) {
         winningColour = winner;
         return true;
     }
@@ -51,10 +51,10 @@ public abstract class BoardGame {
     public String getWinningColour() {
         return winningColour;
     }
-    public abstract boolean setPiece(int x, int y, String col);
-    public abstract boolean move(int x, int y, String col);
-    public abstract boolean winningCondition();
-    public abstract boolean setWinner();
+    public abstract boolean SetPiece(int x, int y, String col);
+    public abstract boolean Move(int x, int y, String col);
+    public abstract boolean WinningCondition();
+    public abstract boolean SetWinner();
     
     
     public String toString() {
