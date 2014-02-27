@@ -352,8 +352,7 @@ public class Selection implements ActionListener {
 	public static void main(String args[]) {
 
 		Selection select = new Selection("othello");
-		
-		
+		Selection invalid = new Selection("argh");
 		
 	}
 
