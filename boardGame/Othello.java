@@ -70,9 +70,9 @@ public class Othello extends BoardGame {
 			for (int j = 0; j < GetWidth(); j++) {
 				if (board[j][i] != null) {
 
-					if (board[j][i].getColour() == "black") {
+					if (board[j][i].GetColour() == "black") {
 						m_scoreBlack++;
-					} else if (board[j][i].getColour() == "white")
+					} else if (board[j][i].GetColour() == "white")
 						m_scoreWhite++;
 				}
 			}
@@ -152,7 +152,7 @@ public class Othello extends BoardGame {
 					// skip the search if one of the direction is same color
 					// piece
 					if ((i == 0 && j == 0) || searchPiece == null
-							|| searchPiece.getColour() == col) {
+							|| searchPiece.GetColour() == col) {
 						continue;
 					}
 					m_counter = 1;
@@ -182,7 +182,7 @@ public class Othello extends BoardGame {
 							// Debug message
 							
 							// if find the same color is along to direction
-						} else if (searchPiece.getColour() == col) {
+						} else if (searchPiece.GetColour() == col) {
 
 							found = true;
 							m_j_diff = j;
@@ -218,7 +218,7 @@ public class Othello extends BoardGame {
 		for (int a = 0; a < m_counter; a++) {
 			m_searchY -= m_i_diff;
 			m_searchX -= m_j_diff;
-			board[m_searchX][m_searchY].setColour(col);
+			board[m_searchX][m_searchY].SetColour(col);
 		}
 	}
 
