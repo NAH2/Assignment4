@@ -15,29 +15,23 @@ package Player;
 
 public class HumanPlayer extends Player {
 
-	/** No argument constructor for testing purposes */
-	private HumanPlayer() {
-	}
-
-	/**
-	 * This is the constructor for the player calls to set the player name, turn
-	 * and piece colour
-	 * 
-	 * \param playName a String that contains the players name 
-	 * \param gamePiece sets the players piece colour
-	 * 
-	 */
-	public HumanPlayer(String playName, String gamePiece) {
-		SetPlayerName(playName);
-		SetPieceColor(gamePiece);
-	}
-
 	/**
 	 * An accessor method to retrieve the players name from the Player class.
 	 * \return m_playerName returns the player name retrieves from Player class
 	 */
 	public String GetPlayerName() {
+		boolean test = true;
+		if (test || m_test) {
+            System.out.println("HumanPlayer :: GetPlayerName() BEGIN");
+            }
+		
+		if (test || m_test) {
+			System.out.println("HumanPlayer :: GetPlayerName() END");
+		}
+		
 		return m_playerName;
+	
+		
 	}
 
 	/**
@@ -47,6 +41,17 @@ public class HumanPlayer extends Player {
 	 * retrieves from Player class
 	 */
 	public String GetPiece() {
+		boolean test = true;
+		if (test || m_test) {
+            System.out.println("HumanPlayer :: GetPiece() BEGIN");
+            }
+		
+		if (test || m_test) {
+			System.out.println("HumanPlayer :: GetPiece() END");
+		}
+		
+		
+		
 		return m_pieceColor;
 	}
 
@@ -91,6 +96,39 @@ public class HumanPlayer extends Player {
 		return false;
 	}
 
+	/** No argument constructor for testing purposes */
+	private HumanPlayer() {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("HumanPlayer :: HumanPlayer() BEGIN");
+		}
+        if (test || m_test) {
+            System.out.println("HumanPlayer :: HumanPlayer() END");
+        }
+	}
+	
+	/**
+	 * This is the constructor for the player calls to set the player name, turn
+	 * and piece colour
+	 * 
+	 * \param playName a String that contains the players name 
+	 * \param gamePiece sets the players piece colour
+	 * 
+	 */
+	public HumanPlayer(String playName, String gamePiece) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("HumanPlayer :: HumanPlayer() BEGIN");
+        }
+		
+		SetPlayerName(playName);
+		SetPieceColor(gamePiece);
+		
+		if (test || m_test) {
+            System.out.println("HumanPlayer :: HumanPlayer() END");
+        }
+	}
+	
 	/**
 	 * Testing in the main method.
 	 */
@@ -127,4 +165,6 @@ public class HumanPlayer extends Player {
 			System.out.println("HumanPlayer::main() END unit test");
 		}
 	}
+	/** Indicates whether to run tests */
+    private boolean m_test = false;
 }
