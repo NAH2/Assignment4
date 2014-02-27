@@ -103,12 +103,16 @@ public class Othello extends BoardGame {
 	public char[][] AvailableMove(String col) { // check available move and
 		// return the char array.
 		// 'O' means available move.
+<<<<<<< HEAD
         boolean test = false;
         if (test || m_test) {
             System.out.println("Othello :: AvailableMove() BEGIN");
         }
 
 		m_availableMov = new char[GetHeight()][GetWidth()];
+=======
+		m_availableMov = new char[GetWidth()][GetHeight()];
+>>>>>>> FETCH_HEAD
 		for (int i = 0; i < GetHeight(); i++) {
 			for (int j = 0; j < GetWidth(); j++) {
 				if (validMove(j, i, col)) {
@@ -167,9 +171,9 @@ public class Othello extends BoardGame {
 			for (int j = 0; j < GetWidth(); j++) {
 				if (board[j][i] != null) {
 	
-					if (board[j][i].GetColour() == "black") {
+					if (board[j][i].GetColour() == m_black) {
 						m_scoreBlack++;
-					} else if (board[j][i].GetColour() == "white")
+					} else if (board[j][i].GetColour() == m_white)
 						m_scoreWhite++;
 				}
 			}
@@ -252,9 +256,9 @@ public class Othello extends BoardGame {
 		if (m_scoreBlack == m_scoreWhite) {
 			SetWinningColour("draw");
 		} else if (m_scoreWhite > m_scoreBlack)
-			SetWinningColour("white");
+			SetWinningColour(m_white);
 		else {
-			SetWinningColour("black");
+			SetWinningColour(m_black);
 		}
 		return true;
         if (test || m_test) {
@@ -404,5 +408,9 @@ public class Othello extends BoardGame {
 	private String m_white = "white";
 	private String m_yellow = "yellow";
 	private String m_red = "red";
+<<<<<<< HEAD
     private boolean m_test = false;
 }
+=======
+}
+>>>>>>> FETCH_HEAD
