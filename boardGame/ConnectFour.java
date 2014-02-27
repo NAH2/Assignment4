@@ -23,12 +23,14 @@ public class ConnectFour extends BoardGame {
 	 * 
 	 */
 	public ConnectFour() {
+		super(INITIAL_X, INITIAL_Y);
+	
         boolean test = false;
         if (test || m_test) {
             System.out.println("ConnectFour :: ConnectFour() BEGIN");
         }
 
-		super(INITIAL_X, INITIAL_Y);
+		
         
         if (test || m_test) {
             System.out.println("ConnectFour :: ConnectFour() END");
@@ -269,6 +271,7 @@ public class ConnectFour extends BoardGame {
         a.Move(2,4,"red");
         a.WinningCondition();
         a.SetWinner();
+    }
         
         
 
