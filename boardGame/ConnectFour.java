@@ -23,7 +23,16 @@ public class ConnectFour extends BoardGame {
 	 * 
 	 */
 	public ConnectFour() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: ConnectFour() BEGIN");
+        }
+
 		super(INITIAL_X, INITIAL_Y);
+        
+        if (test || m_test) {
+            System.out.println("ConnectFour :: ConnectFour() END");
+        }
 	}
 
 	/**
@@ -32,7 +41,15 @@ public class ConnectFour extends BoardGame {
 	 * of the game piece. \return boolean return true if the action complete.
 	 */
 	public boolean SetPiece(int x, int y, String col) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: SetPiece() BEGIN");
+        }
+
 		board[x][y] = new ConnectFourPiece(col);
+        if (test || m_test) {
+            System.out.println("ConnectFour :: SetPiece() END");
+        }
 		return true;
 	}
 
@@ -44,6 +61,11 @@ public class ConnectFour extends BoardGame {
 	 * \return boolean return true if there is a sequence of four pieces of the same color, false while the game is on.
 	 */
 	private boolean allDirection(String col, int x, int index_y) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: allDirection() BEGIN");
+        }
+
 		
 				// Search each direction (total : 8 direction)
 		for (int i = -1; i <= 1; i++) {
@@ -53,6 +75,9 @@ public class ConnectFour extends BoardGame {
 				}
 			}
 		}
+        if (test || m_test) {
+            System.out.println("ConnectFour :: allDirection() END");
+        }
 		return false;
 	}
 	
@@ -66,6 +91,11 @@ public class ConnectFour extends BoardGame {
 	 * \return boolean return true if there is a sequence of four pieces of the same color, false while the game is on.
 	 */
 	private boolean singleDirection(String col, int x, int index_y, int i, int j){
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: singleDirection() BEGIN");
+        }
+
 		GamePiece searchPiece;
 		boolean found = true;
 		// boolean found = false;
@@ -105,6 +135,9 @@ public class ConnectFour extends BoardGame {
 			}
 
 		}
+        if (test || m_test) {
+            System.out.println("ConnectFour :: singleDirection() END");
+        }
 		return false;
 	}
 	
@@ -116,6 +149,11 @@ public class ConnectFour extends BoardGame {
 	 * same color, false while the game is on.
 	 */
 	private boolean checkWin(String col){
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: checkWin() BEGIN");
+        }
+
 		for (int x = 0; x <= GetWidth(); x++) {
 			for (int index_y = 0; index_y <= GetHeight(); index_y++) {
 				if(allDirection(col, x , index_y)){
@@ -123,6 +161,9 @@ public class ConnectFour extends BoardGame {
 				}
 			}
 		}
+        if (test || m_test) {
+            System.out.println("ConnectFour :: checkWin() END");
+        }
 		return false;
 	}
 	
@@ -136,6 +177,11 @@ public class ConnectFour extends BoardGame {
 	 * the game board, false if the column is full.
 	 */
 	public boolean Move(int x, int y, String col) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: Move() BEGIN");
+        }
+
 		int index = 0;
 		if (board[x][0] == null) {
 			for (int h = 0; h < GetHeight() - 1; ++h) {
@@ -147,10 +193,15 @@ public class ConnectFour extends BoardGame {
 			}
 			SetPiece(x, index, col);
 			checkWin(col);
-	
+            if (test || m_test) {
+                System.out.println("ConnectFour :: Move() END :: true");
+            }
 			return true;
 		} else {
 			System.out.println("Space Occupied");
+            if (test || m_test) {
+                System.out.println("ConnectFour :: Move() END :: false");
+            }
 			return false;
 		}
 	
@@ -163,6 +214,11 @@ public class ConnectFour extends BoardGame {
 	 */
 	@Override
 	public boolean WinningCondition() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: WinningCondition() BEGIN");
+        }
+
 		if (m_counter >= NUM_IN_ROW_WIN) {
 			SetWinner();
 			return true;
@@ -179,6 +235,9 @@ public class ConnectFour extends BoardGame {
 			SetWinner();
 			return true;
 		}
+        if (test || m_test) {
+            System.out.println("ConnectFour :: WinningCondition() END");
+        }
 		return false;
 	}
 
@@ -188,9 +247,30 @@ public class ConnectFour extends BoardGame {
 	 */
 	@Override
 	public boolean SetWinner() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour :: SetWinner() BEGIN");
+        }
+
 		SetWinningColour(m_winningColour);
+        if (test || m_test) {
+            System.out.println("ConnectFour :: SetWinner() END");
+        }
 		return true;
 	}
+    
+    /** main method for tests */
+    public static void main(String[] args) {
+        ConnectFour a = new ConnectFour();
+        a.SetPiece(3,3,"red");
+        a.allDirection("yellow",4,4);
+        a.singleDirection("red",2,3,4,5);
+        a.checkWin("yellow");
+        a.Move(2,4,"red");
+        a.WinningCondition();
+        a.SetWinner();
+        
+        
 
 	private boolean m_draw;
 	private int m_searchY, m_searchX;
@@ -200,5 +280,5 @@ public class ConnectFour extends BoardGame {
 	private final static int INITIAL_X = 10;
 	private final static int INITIAL_Y = 7;
 	private final int NUM_IN_ROW_WIN = 4;
-
+    private boolean m_test = false;
 }
