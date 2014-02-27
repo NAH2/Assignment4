@@ -5,11 +5,11 @@
  * 
  * \see BoardGame.java
  * 
- * \brief ConnectFour is used to store the game rules and control the game board . 
+ * \brief ConnectFour is used to store the game rules and control the game board 
  * extends BoardGame.java
  * 
- * This class extends from the BoardGame class. It will check the whether a column is full when 
- * the player place the pieces.
+ * This class extends from the BoardGame class. It will check the whether a 
+ * column is full when the player place the pieces.
  */
 
 package boardGame;
@@ -28,10 +28,7 @@ public class ConnectFour extends BoardGame {
         boolean test = false;
         if (test || m_test) {
             System.out.println("ConnectFour :: ConnectFour() BEGIN");
-        }
-
-		
-        
+        }		        
         if (test || m_test) {
             System.out.println("ConnectFour :: ConnectFour() END");
         }
@@ -66,16 +63,16 @@ public class ConnectFour extends BoardGame {
 	 *  \param x the x axis in the game board. 
 	 *  \param index_y the lowest possible point in a column. 
 	 *  \param col the color of the game piece.
-	 * \return boolean return true if there is a sequence of four pieces of the same color, false while the game is on.
+	 * \return boolean return true if there is a sequence of four pieces of the
+	 *  same color, false while the game is on.
 	 */
 	private boolean allDirection(String col, int x, int index_y) {
         boolean test = false;
         if (test || m_test) {
             System.out.println("ConnectFour :: allDirection() BEGIN");
         }
-
-		
-				// Search each direction (total : 8 direction)
+        
+		// Search each direction (total : 8 direction)
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
 				if(singleDirection(col, x , index_y, i ,j)){
@@ -97,11 +94,14 @@ public class ConnectFour extends BoardGame {
 	 * \param x the x axis in the game board. 
 	 * \param index_y the lowest possible point in a column. 
 	 * \param col the color of the game piece.
-	 * \param i the difference of width between the searching piece and the current piece
-	 * \param j the difference of height between the searching piece and the current piece
-	 * \return boolean return true if there is a sequence of four pieces of the same color, false while the game is on.
+	 * \param i the difference of width between the searching piece and 
+	 * the current piece
+	 * \param j the difference of height between the searching piece and the 
+	 * current piece
+	 * \return boolean return true if there is a sequence of four pieces of the 
+	 * same color, false while the game is on.
 	 */
-	private boolean singleDirection(String col, int x, int index_y, int i, int j){
+	private boolean singleDirection(String col, int x,int index_y,int i, int j){
         boolean test = false;
         if (test || m_test) {
             System.out.println("ConnectFour :: singleDirection() BEGIN");
@@ -138,16 +138,15 @@ public class ConnectFour extends BoardGame {
 						m_winningColour = col;
 						System.out.println(col + " wins");
 				        if (test || m_test) {
-				            System.out.println("ConnectFour :: singleDirection() END");
+				            System.out.println("ConnectFour :"
+				                    + ": singleDirection() END");
 				        }
 						return true;
 					}
 					m_searchY = m_searchY + i;
 					m_searchX = m_searchX + j;
-
 				}
 			}
-
 		}
         if (test || m_test) {
             System.out.println("ConnectFour :: singleDirection() END");
@@ -172,7 +171,8 @@ public class ConnectFour extends BoardGame {
 			for (int index_y = 0; index_y <= GetHeight(); index_y++) {
 				if(allDirection(col, x , index_y)){
 			        if (test || m_test) {
-			            System.out.println("ConnectFour :: singleDirection() END");
+			            System.out.println("ConnectFour :"
+			                    + ": singleDirection() END");
 			        }
 					return true;
 				}
@@ -302,8 +302,6 @@ public class ConnectFour extends BoardGame {
         a.WinningCondition();
         a.SetWinner();
     }
-        
-        
 
 	private boolean m_draw;
 	private int m_searchY, m_searchX;

@@ -15,7 +15,7 @@ import piece.*;
 
 public abstract class BoardGame {
 	
-		 /**
+	 /**
      * Set the board height.
      * \return boolean  return true if the action completes..
      */
@@ -25,15 +25,14 @@ public abstract class BoardGame {
         if (test || m_test) {
             System.out.println("BoardGame :: SetHeight() BEGIN");
         }
-
-        m_height= y;
+        if (y > 0) {
+            m_height= y;
+        }
         
         if (test || m_test) {
             System.out.println("BoardGame :: SetHeight() END");
         }
 		return true;
-        
-        
 	}
 
 	 /**
@@ -42,19 +41,14 @@ public abstract class BoardGame {
      */
 	public int GetHeight() {
         boolean test = false;
-        
         if (test || m_test) {
             System.out.println("BoardGame :: GetHeight() BEGIN");
         }
-        
         if (test || m_test) {
             System.out.println("BoardGame :: GetHeight() END");
         }
         
 	    return m_height;
-        
-        
-
 	}
 
 	 /**
@@ -64,26 +58,26 @@ public abstract class BoardGame {
      */
 	public GamePiece GetPiece(int x, int y) {
         boolean test = false;
-        
         if (test || m_test) {
             System.out.println("BoardGame :: GamePiece() BEGIN");
         }
 
-	    if  (board[x][y] != null) {if (test || m_test) {
-            System.out.println("BoardGame :: GamePiece() END");
-        }
+	    if  (board[x][y] != null) {
+	        if (test || m_test) {
+	            System.out.println("BoardGame :: GamePiece() END");
+	        }
+	        
 	        return board[x][y];
-	    } else {if (test || m_test) {
-            System.out.println("BoardGame :: GamePiece() END");
-        }
+	    } else {
+	        if (test || m_test) {
+	            System.out.println("BoardGame :: GamePiece() END");
+	        }
+	        
 	        return null;
 	    }
-        
-        
-
 	}
 
-		 /**
+	/**
      * Abstract method
      * \param x and y, the position of the GamePiece, the colour of the piece.
      * \return boolean
@@ -96,7 +90,6 @@ public abstract class BoardGame {
      */
 	public int GetTotalPieces() {
         boolean test = false;
-        
         if (test || m_test) {
             System.out.println("BoardGame :: GetTotalPieces() BEGIN");
         }
@@ -111,35 +104,30 @@ public abstract class BoardGame {
 	    }
 	    if (test || m_test) {
             System.out.println("BoardGame :: GetTotalPieces() END");
-        }
+        }  
 	    
-	    return count;
-        
-       
-
+	    return count;               
 	}
 
-		 /**
+	/**
      * Set the board width.
      * \return boolean  return true if the action completes..
      */
 	public boolean SetWidth(int x){
         boolean test = false;
-        
         if (test || m_test) {
             System.out.println("BoardGame :: SetWidth() BEGIN");
         }
-
-		m_width = x;
+        if (x > 0) {
+            m_width = x;
+        }
 		
 		if (test || m_test) {
             System.out.println("BoardGame :: SetWidth() END");
         }
-		return true;
-        
-        
-
-	}
+		
+		return true;        
+    }
 
 	 /**
      * Get the board width.
@@ -147,21 +135,17 @@ public abstract class BoardGame {
      */
 	public int GetWidth() {
         boolean test = false;
-        
         if (test || m_test) {
             System.out.println("BoardGame :: GetWidth() BEGIN");
         }
-
         if (test || m_test) {
             System.out.println("BoardGame :: GetWidth() END");
         }
-	    return m_width;
         
-      
-
+	    return m_width;
 	}
 
-		/**
+	/**
      * Set the colour of pieces meet the winning condition to winningColour.
      * \param the winning colour.
      * \return boolean  return true if the action completes..
@@ -178,14 +162,10 @@ public abstract class BoardGame {
 	    if (test || m_test) {
             System.out.println("BoardGame :: SetWinningColour() END");
         }
-	    
 	    return true;
-        
-       
-
 	}
 
-		 /**
+	/**
      * Get the winning colour.
      * \return String  return the colour.
      */
@@ -195,24 +175,20 @@ public abstract class BoardGame {
         if (test || m_test) {
             System.out.println("BoardGame :: GetWinningColour() BEGIN");
         }
-
-        
         if (test || m_test) {
             System.out.println("BoardGame :: GetWinningColour() END");
         }
-	    return m_winningColour;
         
-        
-
+	    return m_winningColour;        
 	}
 		 
-		 /**
+	/**
      * Abstract method.
      * \return boolean
      */
 	public abstract boolean SetWinner();
 
-		 /**
+	/**
      * Constructor of BoardGame, create a game board that stores the game pieces.
      * \param width and the height of the game board.
      */
@@ -230,23 +206,22 @@ public abstract class BoardGame {
         if (test || m_test) {
             System.out.println("BoardGame :: BoardGame() END");
         }
-
 	}
 	
-			 /**
+	/**
      * Abstract method.
      * \param X,y position and the colour of the piece.
      * \return boolean
      */
 	public abstract boolean Move(int x, int y, String col);
 
-		 /**
+	/**
      * Abstract method.
      * \return boolean
      */
 	public abstract boolean WinningCondition();
 
-			 /**
+	/**
      * This method is used for testing
      * \return String  gameBoard consists of texts.
      */
@@ -279,9 +254,6 @@ public abstract class BoardGame {
             System.out.println("BoardGame :: toString() END");
         }
 	    return boardStateString;
-        
-        
-
 	}
 
 	protected GamePiece[][] board;

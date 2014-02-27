@@ -8,8 +8,8 @@
  * \brief Othello is used to store the game rules and control the game board . 
  * extends BoardGame.java
  * 
- * This class extends from the BoardGame class. It will check the valid move when the
- * player place the pieces and return the feedback.
+ * This class extends from the BoardGame class. It will check the valid move 
+ * when the player place the pieces and return the feedback.
  */
 
 package boardGame;
@@ -24,7 +24,7 @@ public class Othello extends BoardGame {
 	 * 
 	 */
 	public Othello() {
-	super(8, 8);
+	super(INITIAL_W, INITIAL_H);
         boolean test = false;
         if (test || m_test) {
             System.out.println("Othello :: Othello() BEGIN");
@@ -53,7 +53,7 @@ public class Othello extends BoardGame {
         }
 
 		return m_scoreBlack;
-        	}
+        }
 
 	/**
 	 * Place the Othello piece on the game board 
@@ -93,7 +93,7 @@ public class Othello extends BoardGame {
         }
 
 		return m_scoreWhite;
-       	}
+    }
 
 	/**
 	 * Calculate all the available positions on the game board, then store them
@@ -429,14 +429,15 @@ public class Othello extends BoardGame {
         a.AvailableMove("black");
         a.CheckPassTurn();
         a.countScore();
-        a.flip("white");
         a.initialGame();
         a.Move(2,2,"black");
         a.SetWinner();
         a.validMove(4,4,"red");
         a.WinningCondition();
     }
-
+  //The following two int's are static due to calling the BoardGame in method.
+    private final static int INITIAL_W = 8;
+    private final static int INITIAL_H = 8;
 	private int m_counter;
 	private int m_scoreWhite;
 	private int m_scoreBlack;
@@ -451,8 +452,6 @@ public class Othello extends BoardGame {
 	private final int INITIAL_Y_TWO = 4;
 	private String m_black = "black";
 	private String m_white = "white";
-	private String m_yellow = "yellow";
-	private String m_red = "red";
 
     private boolean m_test = false;
 }
