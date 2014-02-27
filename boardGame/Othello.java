@@ -71,7 +71,7 @@ public class Othello extends BoardGame {
 	public char[][] AvailableMove(String col) { // check available move and
 		// return the char array.
 		// 'O' means available move.
-		m_availableMov = new char[GetHeight()][GetWidth()];
+		m_availableMov = new char[GetWidth()][GetHeight()];
 		for (int i = 0; i < GetHeight(); i++) {
 			for (int j = 0; j < GetWidth(); j++) {
 				if (validMove(j, i, col)) {
