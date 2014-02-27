@@ -19,25 +19,25 @@ public class OthelloGUI extends GUI {
 		playerOneColor.setFont(f);
 		playerOneColor.setVisible(true);
 		OthelloPiece black = new OthelloPiece("black");
-		playerOneIcon.setIcon(black.getIcon());
+		playerOneIcon.setIcon(black.GetIcon());
 		playerOneIcon.setVisible(true);
 		playerTwoColor.setText(m_game.getPlayerName("white")+":");
 		playerTwoColor.setFont(f);
 		playerTwoColor.setVisible(true);
 		OthelloPiece white = new OthelloPiece("white");
-		playerTwoIcon.setIcon(white.getIcon());
+		playerTwoIcon.setIcon(white.GetIcon());
 		playerTwoIcon.setVisible(true);
-		playerTurnIcon.setIcon(new OthelloPiece(m_game.getCurrent()).getIcon());
+		playerTurnIcon.setIcon(new OthelloPiece(m_game.getCurrent()).GetIcon());
 		playerTurnIcon.setVisible(true);
-		playerTurnLabel.setText("'s TURN");
+		playerTurnLabel.setText(m_game.getPlayerName(m_game.getCurrent()) + "'s TURN");
 		playerTurnLabel.setFont(f);
 		playerTurnLabel.setVisible(true);
-		blackIcon.setIcon(black.getIcon());
+		blackIcon.setIcon(black.GetIcon());
 		blackIcon.setVisible(true);
 		blackPieces.setText(((Othello)(m_board)).GetBlackScore()+"");
 		blackPieces.setFont(f);
 		blackPieces.setVisible(true);
-		whiteIcon.setIcon(white.getIcon());
+		whiteIcon.setIcon(white.GetIcon());
 		whiteIcon.setVisible(true);
 		whitePieces.setText(((Othello)(m_board)).GetWhiteScore()+"");
 		whitePieces.setFont(f);
@@ -45,23 +45,6 @@ public class OthelloGUI extends GUI {
 		m_passMove.setVisible(true);
 		m_frame.pack();
 		return true;
-	}
-	
-	public void drawPieces() {
-		for (int y = 0; y < m_height; ++y) {
-			for (int x = 0; x < m_width; ++x) {
-				GamePiece p = m_board.getPiece(x, y);
-
-				if (p != null) {
-					m_labels[x][y].setIcon(p.getIcon());
-					m_panels[x][y].removeAll();
-				}
-				m_panels[x][y].add(m_labels[x][y]);
-			}
-		}
-		SwingUtilities.updateComponentTreeUI(m_frame);
-			updatePlayerTurnIcon(new OthelloPiece(m_game.getCurrent()).getIcon());
-			updateScore(((Othello)(m_board)).GetBlackScore(),((Othello)(m_board)).GetWhiteScore());
 	}
 	
 	public boolean updateScore(int black, int white){

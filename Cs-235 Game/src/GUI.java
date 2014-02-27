@@ -47,18 +47,6 @@ public class GUI extends JFrame {
 
 		JPanel gamePanel = new JPanel(new GridLayout(m_height, m_width));
 		mainPanel.add(gamePanel, c);
-
-		/*m_passMove = new JButton("Pass");
-		c.gridx = 1;
-		c.gridy = 2;
-		mainPanel.add(m_passMove, c);
-		m_passMove.setVisible(false);
-
-		m_newGame = new JButton("New Game");
-		c.gridx = 1;
-		c.gridy = 0;
-		mainPanel.add(m_newGame, c);
-		m_newGame.setVisible(true);*/
 		
         JPanel infoPanel = new JPanel(new GridLayout(6,2));
         playerOneColor = new JLabel();
@@ -125,27 +113,27 @@ public class GUI extends JFrame {
 	}
 
 	public void drawPieces() {
-		/*for (int y = 0; y < m_height; ++y) {
+		for (int y = 0; y < m_height; ++y) {
 			for (int x = 0; x < m_width; ++x) {
-				GamePiece p = m_board.getPiece(x, y);
+				GamePiece p = m_board.GetPiece(x, y);
 
 				if (p != null) {
-					m_labels[x][y].setIcon(p.getIcon());
+					m_labels[x][y].setIcon(p.GetIcon());
 					m_panels[x][y].removeAll();
 				}
 				m_panels[x][y].add(m_labels[x][y]);
 			}
 		}
-		SwingUtilities.updateComponentTreeUI(m_frame);*/
+		SwingUtilities.updateComponentTreeUI(m_frame);
 	}
 
 	public void showWinningBox() {
-		if (m_board.getWinningColour().equals("draw")) {
+		if (m_board.GetWinningColour().equals("draw")) {
 			JOptionPane.showMessageDialog(m_frame, "GAME DRAWN", "Draw",
 					JOptionPane.OK_OPTION, m_icon);
 		} else {
 			JOptionPane.showMessageDialog(m_frame,
-					m_game.getPlayerName(m_board.getWinningColour())
+					m_game.getPlayerName(m_board.GetWinningColour())
 							+ "   WINS!!!!", "Winner", JOptionPane.OK_OPTION,
 					m_icon);
 		}
@@ -197,7 +185,7 @@ public class GUI extends JFrame {
 				if (m_game.getGamOn()) {
 					if (((Othello) m_board).CheckPassTurn()) {
 						m_game.alternate();
-						updatePlayerTurnIcon(new OthelloPiece(m_game.getCurrent()).getIcon());
+						updatePlayerTurnIcon(new OthelloPiece(m_game.getCurrent()).GetIcon());
 					}
 				}
 			}

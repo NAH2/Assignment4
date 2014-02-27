@@ -22,37 +22,21 @@ public class Connect4GUI extends GUI {
 		playerOneColor.setFont(f);
 		playerOneColor.setVisible(true);
 		ConnectFourPiece red = new ConnectFourPiece("red");
-		playerOneIcon.setIcon(red.getIcon());
+		playerOneIcon.setIcon(red.GetIcon());
 		playerOneIcon.setVisible(true);
 		playerTwoColor.setText(m_game.getPlayerName("yellow")+":");
 		playerTwoColor.setFont(f);
 		playerTwoColor.setVisible(true);
 		ConnectFourPiece yellow = new ConnectFourPiece("yellow");
-		playerTwoIcon.setIcon(yellow.getIcon());
+		playerTwoIcon.setIcon(yellow.GetIcon());
 		playerTwoIcon.setVisible(true);
-		playerTurnIcon.setIcon(new ConnectFourPiece(m_game.getCurrent()).getIcon());
+		playerTurnIcon.setIcon(new ConnectFourPiece(m_game.getCurrent()).GetIcon());
 		playerTurnIcon.setVisible(true);
-		playerTurnLabel.setText("'s TURN");
+		playerTurnLabel.setText(m_game.getPlayerName(m_game.getCurrent()) + "'s TURN");
 		playerTurnLabel.setFont(f);
 		playerTurnLabel.setVisible(true);
 		m_frame.pack();
 		return true;
-	}
-	
-	public void drawPieces() {
-		for (int y = 0; y < m_height; ++y) {
-			for (int x = 0; x < m_width; ++x) {
-				GamePiece p = m_board.getPiece(x, y);
-
-				if (p != null) {
-					m_labels[x][y].setIcon(p.getIcon());
-					m_panels[x][y].removeAll();
-				}
-				m_panels[x][y].add(m_labels[x][y]);
-			}
-		}
-		SwingUtilities.updateComponentTreeUI(m_frame);
-		updatePlayerTurnIcon(new ConnectFourPiece(m_game.getCurrent()).getIcon());
 	}
 	
 	public boolean SetPanelColour() {
