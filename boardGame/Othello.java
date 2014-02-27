@@ -66,7 +66,9 @@ public class Othello extends BoardGame {
         if (test || m_test) {
             System.out.println("Othello :: SetPiece() BEGIN");
         }
-
+	 if (x > GetWidth() || x < 0 || y > GetHeight() || y <0 ){
+		  return false;
+	  }
 		board[x][y] = new OthelloPiece(col);
         if (test || m_test) {
             System.out.println("Othello :: SetPiece() END");
@@ -421,7 +423,7 @@ public class Othello extends BoardGame {
         a.SetWinner();
         a.validMove(4,4,"red");
         a.WinningCondition();
-        
+    }
 
 	private int m_counter;
 	private int m_scoreWhite;
