@@ -23,7 +23,7 @@ public abstract class BoardGame {
         return height;
     }
     
-    public GamePiece GetPiece(int x, int y) {
+    public GamePiece getPiece(int x, int y) {
         if  (board[x][y] != null) {
             return board[x][y];
         } else {
@@ -48,7 +48,7 @@ public abstract class BoardGame {
         return true;
     }
     
-    public String GetWinningColour() {
+    public String getWinningColour() {
         return winningColour;
     }
     public abstract boolean SetPiece(int x, int y, String col);
@@ -56,7 +56,7 @@ public abstract class BoardGame {
     public abstract boolean WinningCondition();
     public abstract boolean SetWinner();
     
-    @Override
+    
     public String toString() {
         String boardStateString = "";
         String newline = System.getProperty("line.separator");
@@ -64,7 +64,7 @@ public abstract class BoardGame {
         for (int y = 0; y < height; ++y) {
             for (int x = 0; x < width; ++x) {
                 if (board[x][y] != null) {
-                    boardStateString += "[" + board[x][y].GetColour() + "] ";
+                    boardStateString += "[" + board[x][y].getColour() + "] ";
                 } else {
                     boardStateString += "[" + null + "] "; 
                 }

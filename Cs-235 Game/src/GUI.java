@@ -24,6 +24,12 @@ public class GUI extends JFrame {
 		playerTurnIcon.setIcon(picon);
 		return true;
 	}
+	
+	public boolean updateScore(int black, int white){
+		blackPieces.setText(black+"");
+		whitePieces.setText(white+"");
+		return true;
+	}
 
 	public GUI(BoardGame b, GameController g) {
 		m_board = b;
@@ -125,7 +131,7 @@ public class GUI extends JFrame {
 	}
 
 	public void drawPieces() {
-		/*for (int y = 0; y < m_height; ++y) {
+		for (int y = 0; y < m_height; ++y) {
 			for (int x = 0; x < m_width; ++x) {
 				GamePiece p = m_board.getPiece(x, y);
 
@@ -136,7 +142,13 @@ public class GUI extends JFrame {
 				m_panels[x][y].add(m_labels[x][y]);
 			}
 		}
-		SwingUtilities.updateComponentTreeUI(m_frame);*/
+		SwingUtilities.updateComponentTreeUI(m_frame);
+		if(m_board instanceof Othello){
+			updatePlayerTurnIcon(new OthelloPiece(m_game.getCurrent()).getIcon());
+			updateScore(((Othello)(m_board)).GetBlackScore(),((Othello)(m_board)).GetWhiteScore());
+		} else {
+			updatePlayerTurnIcon(new ConnectFourPiece(m_game.getCurrent()).getIcon());
+		}
 	}
 
 	public void showWinningBox() {
@@ -216,9 +228,9 @@ public class GUI extends JFrame {
 	protected BoardGame m_board;
 	protected GameController m_game;
 	protected JPanel[][] m_panels;
-	protected int m_width;
-	protected int m_height;
-	protected JLabel[][] m_labels;
+	private int m_width;
+	private int m_height;
+	private JLabel[][] m_labels;
 	protected JFrame m_frame;
 	protected JButton m_passMove;
 	private JButton m_newGame;
