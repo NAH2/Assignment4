@@ -6,6 +6,16 @@ import static org.hamcrest.CoreMatchers.*;
 import org.junit.Test;
 import Player.HumanPlayer;
 import boardGame.*;
+/** This is a test class
+*
+* \see ConnectFour.java
+*
+* \brief Testing the ConnectFour game class
+*
+* The test simulates the potential moves that the player might make by placing random pieces
+* the pieces are sometimes there to throw an error. Also checks that the winning condition
+* is found.
+*/
 
 public class ConnectFourTest {
 
