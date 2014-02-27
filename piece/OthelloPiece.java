@@ -1,6 +1,6 @@
 /**
  * \file   -OthelloPiece.java
- * \author -Gavin Bailey 711036
+ * \author -Tyrone Bramwell
  * \date   -24th Feb 14
  * 
  * \brief Othello game piece used in a game of Othello,
