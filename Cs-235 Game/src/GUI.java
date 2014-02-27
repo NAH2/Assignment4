@@ -209,6 +209,7 @@ public class GUI extends JFrame {
 				if (m_game.getGamOn()) {
 					if (((Othello) m_board).CheckPassTurn()) {
 						m_game.alternate();
+						updatePlayerTurnIcon(new OthelloPiece(m_game.getCurrent()).getIcon());
 					}
 				}
 			}
