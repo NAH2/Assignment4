@@ -7,17 +7,6 @@ import org.junit.Test;
 import Player.HumanPlayer;
 import boardGame.*;
 
-/** This is a test class
-*
-* \see ConnectFour.java
-*
-* \brief Testing the ConnectFour game class
-*
-* The test simulates the potential moves that the player might make by placing random pieces
-* the pieces are sometimes there to throw an error. Also checks that the winning condition
-* is found.
-*/
-
 public class ConnectFourTest {
 
 	HumanPlayer p1 = new HumanPlayer("Jim", "red");
@@ -86,7 +75,7 @@ public class ConnectFourTest {
 		
 		/**Valid Test Cases*/
 		c4.Move(9,6,"red");
-		c4.Move(9,6,"red");
+		c4.Move(9,5,"red");
 		c4.Move(9,6,"red");
 		c4.Move(9,6,"red");
 		assertTrue(c4.WinningCondition());
@@ -99,7 +88,7 @@ public class ConnectFourTest {
 		
 		/**Valid Test Cases*/
 		c4.Move(9,6,"red");
-		c4.Move(9,6,"red");
+		c4.Move(9,5,"red");
 		c4.Move(9,6,"red");
 		c4.Move(9,6,"red");
 		assertTrue(c4.SetWinner());
