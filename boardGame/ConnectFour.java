@@ -1,7 +1,7 @@
 /**
  * \file -ConnectFour.java 
  * \author - Lam Chak Yan 667271
- * \date -21th Feb 14
+ * \date -21st Feb 14
  * 
  * \see BoardGame.java
  * 
