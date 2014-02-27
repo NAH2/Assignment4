@@ -72,7 +72,7 @@ public class GameController {
 			m_othelloGUI.SetOthelloInfo();
 		} else if (m_gameType.equals(m_connectFour)) {
 			m_c4GUI.SetPanelColour();
-			m_c4GUI.setConnectFourInfo();
+			m_c4GUI.SetConnectFourInfo();
 		}
 	}
 
