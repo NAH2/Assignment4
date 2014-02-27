@@ -31,7 +31,7 @@ public class Selection implements ActionListener {
 	 */
 	public Selection(String chosenGame) {
 		setGameType(chosenGame);
-		//draw();
+		draw();
 	}
 
 	/**
