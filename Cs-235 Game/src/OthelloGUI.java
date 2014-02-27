@@ -1,7 +1,9 @@
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
+import javax.swing.SwingUtilities;
 
+import piece.GamePiece;
 import piece.OthelloPiece;
 import boardGame.*;
 
@@ -45,8 +47,26 @@ public class OthelloGUI extends GUI {
 		return true;
 	}
 	
-	public boolean updatePlayerTurnIcon(Icon picon){
-		playerTurnIcon.setIcon(picon);
+	public void drawPieces() {
+		for (int y = 0; y < m_height; ++y) {
+			for (int x = 0; x < m_width; ++x) {
+				GamePiece p = m_board.getPiece(x, y);
+
+				if (p != null) {
+					m_labels[x][y].setIcon(p.getIcon());
+					m_panels[x][y].removeAll();
+				}
+				m_panels[x][y].add(m_labels[x][y]);
+			}
+		}
+		SwingUtilities.updateComponentTreeUI(m_frame);
+			updatePlayerTurnIcon(new OthelloPiece(m_game.getCurrent()).getIcon());
+			updateScore(((Othello)(m_board)).GetBlackScore(),((Othello)(m_board)).GetWhiteScore());
+	}
+	
+	public boolean updateScore(int black, int white){
+		blackPieces.setText(black+"");
+		whitePieces.setText(white+"");
 		return true;
 	}
 	
