@@ -1,3 +1,15 @@
+/**
+ * \file -GUI.java 
+ * \author -
+ * \date -24th Feb 14
+ * 
+ * \see BoardGame.java
+ * \see GameController.java
+ * 
+ * \brief GUI is used to set up and update the display for game board and the information. 
+ * 
+ */
+ 
 import java.awt.*;
 import java.awt.event.*;
 
@@ -8,18 +20,57 @@ import piece.*;
 
 public class GUI extends JFrame {
 
+	 /**
+     * Get the game controller object.
+     * \return GameController  return the game controller object.
+     */
 	public GameController GetGame() {
 		return m_game;
 	}
 
+	 /**
+     * Get the board game object.
+     * \return BoardGame  return the board game object which is either connect4 and othello.
+     */
 	public BoardGame GetBoard() {
 		return m_board;
 	}
 
+	 /**
+     * Get the squares of the game board.
+     * \return JPanel[][]  return the two dimensional array in the game panel.
+     */
 	public JPanel[][] GetPanels() {
 		return m_panels;
 	}
 
+    /**
+    * Constructor of GUI, construct the game board and sets the player information.
+    * \param a BoardGame object , a GameController object.
+    */
+	public GUI(BoardGame b, GameController g) {
+		m_board = b;
+		m_game = g;
+		m_width = m_board.GetWidth();
+		m_height = m_board.GetHeight();
+		m_panels = new JPanel[m_width][m_height];
+		m_labels = new JLabel[m_width][m_height];
+		m_icon = new ImageIcon(getClass().getResource(m_iconURL));
+		Draw();
+	}
+	
+	/**
+     * Update the piece icon of the current player.
+     * \return boolean  return true if the action completes.
+     */
+	public boolean UpdatePlayerTurnIcon(Icon picon) {
+		playerTurnIcon.setIcon(picon);
+		return true;
+	}
+	
+	/**
+     * Draw the main frame which includes the game panel and the info panel.
+     */
 	public void Draw() {
 		m_frame = new JFrame("Game");
 		JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -95,6 +146,9 @@ public class GUI extends JFrame {
 		m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+		 /**
+     * Draw the pieces to be displayed on the JFrame.
+     */
 	public void DrawPieces() {
 		for (int y = 0; y < m_height; ++y) {
 			for (int x = 0; x < m_width; ++x) {
@@ -110,17 +164,9 @@ public class GUI extends JFrame {
 		SwingUtilities.updateComponentTreeUI(m_frame);
 	}
 
-	public GUI(BoardGame b, GameController g) {
-		m_board = b;
-		m_game = g;
-		m_width = m_board.GetWidth();
-		m_height = m_board.GetHeight();
-		m_panels = new JPanel[m_width][m_height];
-		m_labels = new JLabel[m_width][m_height];
-		m_icon = new ImageIcon(getClass().getResource(m_iconURL));
-		Draw();
-	}
-
+	/** These methods had to be declared as MouseListener is abstract. 
+	 * Detect mouse action and button click to pass the information to the BoardGame and GameController class.
+	 */
 	private class GUIHandler implements MouseListener, ActionListener {
 		// these methods had to be declared as MouseListener is abstract
 		public void mousePressed(MouseEvent e) {
@@ -175,11 +221,10 @@ public class GUI extends JFrame {
 			}
 		}
 	}
-	public boolean UpdatePlayerTurnIcon(Icon picon) {
-		playerTurnIcon.setIcon(picon);
-		return true;
-	}
 
+	 /**
+     * Show a dialog box of the game result when the game ends.
+     */
 	public void ShowWinningBox() {
 		if (m_board.GetWinningColour().equals("draw")) {
 			JOptionPane.showMessageDialog(m_frame, "GAME DRAWN", "Draw",
