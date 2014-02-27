@@ -16,11 +16,29 @@ public abstract class Player {
 
 	/** \return m_pieceColor players piece colour */
 	public String GetPiece() {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Player :: GetPiece() BEGIN");
+        }
+        
+        if (test || m_test) {
+            System.out.println("Player :: GetPiece() END");
+        }
+		
 		return m_pieceColor;
 	}
 
 	/** \return m_playerName the players name */
 	public String GetPlayerName() {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Player :: GetPlayerName() BEGIN");
+        }
+        
+        if (test || m_test) {
+            System.out.println("Player :: GetPlayerName() END");
+        }
+		
 		return m_playerName;
 	}
 
@@ -47,4 +65,6 @@ public abstract class Player {
 	protected String m_playerName;
 	/** The players piece colour */
 	protected String m_pieceColor;
+	/** Indicates whether to run tests */
+    private boolean m_test = false;
 }
