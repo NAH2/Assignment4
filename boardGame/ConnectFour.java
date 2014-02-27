@@ -1,6 +1,6 @@
 /**
  * \file -ConnectFour.java 
- * \author -
+ * \author - Lam Chak Yan 667271
  * \date -21th Feb 14
  * 
  * \see BoardGame.java
@@ -277,12 +277,18 @@ public class ConnectFour extends BoardGame {
         if (test || m_test) {
             System.out.println("ConnectFour :: SetWinner() BEGIN");
         }
-
-		SetWinningColour(m_winningColour);
-        if (test || m_test) {
-            System.out.println("ConnectFour :: SetWinner() END");
-        }
+		if(m_winningColour == null){
+	        if (test || m_test) {
+	            System.out.println("ConnectFour :: SetWinner() BEGIN");
+	        }
+			return false;
+		} else {
+			SetWinningColour(m_winningColour);
+			if (test || m_test) {
+				System.out.println("ConnectFour :: SetWinner() END");
+			}
 		return true;
+		}
 	}
     
     /** main method for tests */
