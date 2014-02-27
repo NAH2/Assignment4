@@ -27,7 +27,7 @@ public class Connect4GUITest {
 
 	@Test
 	public void testSetConnectFourInfo() {
-		assertTrue(C4GUI.setConnectFourInfo());
+		assertTrue(C4GUI.SetConnectFourInfo());
 	}
 
 	@Test
