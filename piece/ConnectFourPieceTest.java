@@ -3,7 +3,16 @@ package piece;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
+/** This is a test class
+*  \see ConnectFourPiece.java , GamePiece.java
+*
+* \brief This class tests the ConnectFourPiece
+*
+* The ConnectFourPiece was tested with invalid colours that are valid for 
+* the other class. There was also tests of numebrs which shouldn't be allowed
+* and there was tests for setting the Icons. As ConnectFourPiece inherits from
+* GamePiece.java therefore this goes towards testing that class.
+*/
 public class ConnectFourPieceTest {
 
 	ConnectFourPiece C4P;

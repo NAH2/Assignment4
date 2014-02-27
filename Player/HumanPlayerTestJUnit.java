@@ -3,7 +3,16 @@ package Player;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
+/** This is a testing class
+*
+* \see HumanPlayer.java, Player.java
+*
+* \brief To test that the player class is working correctly
+*
+* The test class checks that the methods in the HumanClass are working correctly.
+* The data is stored in the Player class therefore this testing class also tests
+* the Player.java class.
+*/
 public class HumanPlayerTestJUnit {
 	
 	HumanPlayer hp = new HumanPlayer("JUnit test", "yellow");

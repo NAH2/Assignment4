@@ -10,6 +10,15 @@ import static org.hamcrest.CoreMatchers.*;
 import Player.HumanPlayer;
 import boardGame.*;
 
+/** This is a testing class
+* \see Othello.java
+*
+* \brief The following class tests the Othello Game 
+*
+* moves and pieces are simulated to check for any potential move errors
+* and any other errors in the code.
+*/
+
 public class OthelloTest {
 
 	HumanPlayer p1 = new HumanPlayer("Jim", "black");

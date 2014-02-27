@@ -4,6 +4,16 @@ import org.junit.Test;
 
 import Player.HumanPlayer;
 import boardGame.Othello;
+/** 
+* This is a test class
+* \see OthelloGUI.java, GUI.java
+*
+* \brief The testing class for the OthelloGUI.java
+*
+* New players are simulated and the test is to make sure that information about the players
+* can be set. This class also tests the GUI.java class as OthelloGUI inherits from this.
+* 
+*/
 
 public class OthelloGUITest {
 	HumanPlayer p1 = new HumanPlayer("Jim", "black");

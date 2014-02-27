@@ -1,7 +1,14 @@
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
+/**
+*\see Selection.java
+*
+*\brief Selection.java test
+*
+*The class is a test class for Selection.java
+*There are tests for testing valid and invalid inputs.
+*/
 
 public class SelectionTest {
 

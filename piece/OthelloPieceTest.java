@@ -4,6 +4,17 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/** This is a test class
+*  \see OthelloPiece.java , GamePiece.java
+*
+* \brief This class tests the Othello Piece
+*
+* The OthelloPiece was tested with invalid colours that are valid for 
+* the other class. There was also tests of numebrs which shouldn't be allowed
+* and there was tests for setting the Icons. As OthelloPiece inherits from
+* GamePiece.java therefore this goes towards testing that class.
+*/
+
 public class OthelloPieceTest {
 
 	/**Tests both OthelloPiece.java and GamePiece.java*/
