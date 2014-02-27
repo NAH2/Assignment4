@@ -1,0 +1,14 @@
+HumanPlayer.java      = matt
+Player.java           = matt
+Connect4GUI.java      = Jason
+GUI.java              = Jake
+GameController.java   = Tom
+OthelloGUI.java       = Jake
+SelectGame.java       = Tyrone
+Selection.java        = Tom
+ConnectFourPiece.java = tyrone
+GamePiece.java        = me
+OthelloPiece.java     = me
+Othello.java          = Soo
+ConnectFour.java      = Jason
+BoardGame.java        = Soo
