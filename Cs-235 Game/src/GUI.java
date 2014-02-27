@@ -19,55 +19,6 @@ public class GUI extends JFrame {
 	public JPanel[][] getPanels() {
 		return m_panels;
 	}
-
-	public boolean setPassButton() {
-		m_passMove.setVisible(true);
-		m_frame.pack();
-
-		return true;
-	}
-	
-	public boolean setOthelloInfo(){
-		playerOneColor.setText(m_game.getPlayerName("black")+":");
-		playerOneColor.setFont(f);
-		playerOneColor.setVisible(true);
-		OthelloPiece black = new OthelloPiece("black");
-		playerOneIcon.setIcon(black.getIcon());
-		playerOneIcon.setVisible(true);
-		playerTwoColor.setText(m_game.getPlayerName("white")+":");
-		playerTwoColor.setFont(f);
-		playerTwoColor.setVisible(true);
-		OthelloPiece white = new OthelloPiece("white");
-		playerTwoIcon.setIcon(white.getIcon());
-		playerTwoIcon.setVisible(true);
-		playerTurnIcon.setIcon(new OthelloPiece(m_game.getCurrent()).getIcon());
-		playerTurnIcon.setVisible(true);
-		playerTurnLabel.setText("'s TURN");
-		playerTurnLabel.setFont(f);
-		playerTurnLabel.setVisible(true);
-		blackIcon.setIcon(black.getIcon());
-		blackIcon.setVisible(true);
-		blackPieces.setText(((Othello)(m_board)).GetBlackScore()+"");
-		blackPieces.setFont(f);
-		blackPieces.setVisible(true);
-		whiteIcon.setIcon(white.getIcon());
-		whiteIcon.setVisible(true);
-		whitePieces.setText(((Othello)(m_board)).GetWhiteScore()+"");
-		whitePieces.setFont(f);
-		whitePieces.setVisible(true);
-		m_passMove.setVisible(true);
-		m_frame.pack();
-		return true;
-	}
-	
-	public boolean setConnectFourInfo(){
-		playerTurnIcon.setIcon(new ConnectFourPiece(m_game.getCurrent()).getIcon());
-		playerTurnIcon.setVisible(true);
-		playerTurnLabel.setText("'s TURN");
-		playerTurnLabel.setFont(f);
-		playerTurnLabel.setVisible(true);
-		return true;
-	}
 	
 	public boolean updatePlayerTurnIcon(Icon picon){
 		playerTurnIcon.setIcon(picon);
@@ -270,17 +221,17 @@ public class GUI extends JFrame {
 		}
 	}
 	
-	private Font f = new Font("Dialog", Font.PLAIN, 15);
-	private JLabel playerOneColor, playerOneIcon, playerTwoColor, playerTwoIcon, playerTurnIcon, 
+	protected Font f = new Font("Dialog", Font.PLAIN, 15);
+	protected JLabel playerOneColor, playerOneIcon, playerTwoColor, playerTwoIcon, playerTurnIcon, 
 	playerTurnLabel, whiteIcon, whitePieces, blackIcon, blackPieces;
-	private BoardGame m_board;
-	private GameController m_game;
+	protected BoardGame m_board;
+	protected GameController m_game;
 	protected JPanel[][] m_panels;
 	private int m_width;
 	private int m_height;
 	private JLabel[][] m_labels;
-	private JFrame m_frame;
-	private JButton m_passMove;
+	protected JFrame m_frame;
+	protected JButton m_passMove;
 	private JButton m_newGame;
 	private Icon m_icon;
 	private String m_iconURL = "icon.png";
