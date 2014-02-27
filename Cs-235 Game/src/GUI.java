@@ -26,6 +26,59 @@ public class GUI extends JFrame {
 
 		return true;
 	}
+	
+	public boolean setOthelloInfo(){
+		playerOneColor.setText(m_game.getPlayerName("black")+":");
+		playerOneColor.setFont(f);
+		playerOneColor.setVisible(true);
+		OthelloPiece black = new OthelloPiece("black");
+		playerOneIcon.setIcon(black.getIcon());
+		playerOneIcon.setVisible(true);
+		playerTwoColor.setText(m_game.getPlayerName("white")+":");
+		playerTwoColor.setFont(f);
+		playerTwoColor.setVisible(true);
+		OthelloPiece white = new OthelloPiece("white");
+		playerTwoIcon.setIcon(white.getIcon());
+		playerTwoIcon.setVisible(true);
+		playerTurnIcon.setIcon(new OthelloPiece(m_game.getCurrent()).getIcon());
+		playerTurnIcon.setVisible(true);
+		playerTurnLabel.setText("'s TURN");
+		playerTurnLabel.setFont(f);
+		playerTurnLabel.setVisible(true);
+		blackIcon.setIcon(black.getIcon());
+		blackIcon.setVisible(true);
+		blackPieces.setText(((Othello)(m_board)).GetBlackScore()+"");
+		blackPieces.setFont(f);
+		blackPieces.setVisible(true);
+		whiteIcon.setIcon(white.getIcon());
+		whiteIcon.setVisible(true);
+		whitePieces.setText(((Othello)(m_board)).GetWhiteScore()+"");
+		whitePieces.setFont(f);
+		whitePieces.setVisible(true);
+		m_passMove.setVisible(true);
+		m_frame.pack();
+		return true;
+	}
+	
+	public boolean setConnectFourInfo(){
+		playerTurnIcon.setIcon(new ConnectFourPiece(m_game.getCurrent()).getIcon());
+		playerTurnIcon.setVisible(true);
+		playerTurnLabel.setText("'s TURN");
+		playerTurnLabel.setFont(f);
+		playerTurnLabel.setVisible(true);
+		return true;
+	}
+	
+	public boolean updatePlayerTurnIcon(Icon picon){
+		playerTurnIcon.setIcon(picon);
+		return true;
+	}
+	
+	public boolean updateScore(int black, int white){
+		blackPieces.setText(black+"");
+		whitePieces.setText(white+"");
+		return true;
+	}
 
 	public GUI(BoardGame b, GameController g) {
 		m_board = b;
@@ -45,11 +98,12 @@ public class GUI extends JFrame {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
 		c.gridy = 1;
+		c.ipadx = 15;
 
 		JPanel gamePanel = new JPanel(new GridLayout(m_height, m_width));
 		mainPanel.add(gamePanel, c);
 
-		m_passMove = new JButton("Pass");
+		/*m_passMove = new JButton("Pass");
 		c.gridx = 1;
 		c.gridy = 2;
 		mainPanel.add(m_passMove, c);
@@ -59,7 +113,49 @@ public class GUI extends JFrame {
 		c.gridx = 1;
 		c.gridy = 0;
 		mainPanel.add(m_newGame, c);
-		m_newGame.setVisible(true);
+		m_newGame.setVisible(true);*/
+		
+        JPanel infoPanel = new JPanel(new GridLayout(6,2));
+        playerOneColor = new JLabel();
+        playerOneColor.setVisible(false);
+        infoPanel.add(playerOneColor);
+        //playerOneColor.setVisible(true);    
+        playerOneIcon = new JLabel();
+        infoPanel.add(playerOneIcon);
+        playerOneIcon.setVisible(false);
+        playerTwoColor = new JLabel();     
+        playerTwoColor.setVisible(false);
+        infoPanel.add(playerTwoColor);
+        //playerOneIcon.setVisible(true);       
+        playerTwoIcon = new JLabel();
+        playerTwoIcon.setVisible(false);
+        infoPanel.add(playerTwoIcon);      
+        playerTurnIcon = new JLabel();
+        playerTurnIcon.setVisible(false);
+        infoPanel.add(playerTurnIcon);       
+        playerTurnLabel = new JLabel();
+        playerTurnLabel.setVisible(false);
+        infoPanel.add(playerTurnLabel);       
+        //JLabel whiteIcon = new JLabel();        
+        blackIcon = new JLabel();
+        blackIcon.setVisible(false);
+        infoPanel.add(blackIcon);
+        blackPieces = new JLabel();
+        blackPieces.setVisible(false);
+        infoPanel.add(blackPieces);
+        whiteIcon = new JLabel();
+        whiteIcon.setVisible(false);
+        infoPanel.add(whiteIcon);       
+        whitePieces = new JLabel();
+        whitePieces.setVisible(false);
+        infoPanel.add(whitePieces); 
+		m_newGame = new JButton("New Game");
+		infoPanel.add(m_newGame);
+		m_newGame.setVisible(true);   
+        m_passMove = new JButton("Pass");
+		infoPanel.add(m_passMove);
+		m_passMove.setVisible(false);    
+        
 
 		GUIHandler handler = new GUIHandler();
 		for (int y = 0; y < m_height; ++y) {
@@ -74,7 +170,8 @@ public class GUI extends JFrame {
 		m_passMove.addActionListener(handler);
 		m_newGame.addActionListener(handler);
 
-		m_frame.add(mainPanel);
+		m_frame.add(mainPanel, BorderLayout.WEST);
+		m_frame.add(infoPanel, BorderLayout.EAST);
 
 		m_frame.pack();
 		m_frame.setLocationRelativeTo(null);
@@ -95,6 +192,12 @@ public class GUI extends JFrame {
 			}
 		}
 		SwingUtilities.updateComponentTreeUI(m_frame);
+		if(m_board instanceof Othello){
+			updatePlayerTurnIcon(new OthelloPiece(m_game.getCurrent()).getIcon());
+			updateScore(((Othello)(m_board)).GetBlackScore(),((Othello)(m_board)).GetWhiteScore());
+		} else {
+			updatePlayerTurnIcon(new ConnectFourPiece(m_game.getCurrent()).getIcon());
+		}
 	}
 
 	public void showWinningBox() {
@@ -166,7 +269,10 @@ public class GUI extends JFrame {
 			}
 		}
 	}
-
+	
+	private Font f = new Font("Dialog", Font.PLAIN, 15);
+	private JLabel playerOneColor, playerOneIcon, playerTwoColor, playerTwoIcon, playerTurnIcon, 
+	playerTurnLabel, whiteIcon, whitePieces, blackIcon, blackPieces;
 	private BoardGame m_board;
 	private GameController m_game;
 	protected JPanel[][] m_panels;
