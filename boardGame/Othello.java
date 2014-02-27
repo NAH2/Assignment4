@@ -146,6 +146,7 @@ public class Othello extends BoardGame {
 		this.SetPiece(INITIAL_X_TWO, INITIAL_Y_TWO, m_black);
 		this.SetPiece(INITIAL_X_TWO, INITIAL_Y, m_white);
 		this.SetPiece(INTIAL_X, INITIAL_Y_TWO, m_white);
+		countScore();
 	}
 
 	/**
